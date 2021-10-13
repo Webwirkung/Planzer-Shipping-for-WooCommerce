@@ -3,6 +3,11 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
+vendor/
+dist/
+composer.lock
+yarn.lock
+
 # Node artifact files
 node_modules/
 
