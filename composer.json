@@ -1,0 +1,37 @@
+{
+  "name": "src/woocommerce-planzer",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "description": "WooCommerce Planzer",
+  "homepage": "https://bold.dev/",
+  "authors": [
+    {
+      "name": "BOLD_",
+      "email": "dev@bold.dev",
+      "homepage": "https://bold.dev/"
+    }
+  ],
+  "keywords": [
+    "wordpress"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Planzer\\": "src/"
+    },
+    "files": [
+      "inc/helpers.php"
+    ]
+  },
+  "require": {
+    "php": ">=7.2",
+    "composer/installers": "~1.0",
+    "illuminate/support": "5.6.*",
+    "joachim-n/case-converter": "^1.0",
+    "phpseclib/phpseclib": "^3.0",
+    "mpdf/mpdf": "^8.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^2.8.0",
+    "symfony/var-dumper": "^4.2"
+  }
+}
