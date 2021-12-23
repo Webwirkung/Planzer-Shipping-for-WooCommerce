@@ -1,4 +1,5 @@
 <?php
+
 namespace Planzer\Settings\Sections;
 
 use Planzer\Settings\Sections\Section;
@@ -10,21 +11,30 @@ class Notifications extends SectionBase implements Section
   {
     $this
       ->startGroup(__('Notifications', 'planzer'), 'notifications')
-        ->addRadio(__('Notifications', 'planzer'), 'notifications_enabled', ['options' => [
-          'yes' => __('Yes, send notifications', 'planzer'),
-          'no' => __('No, do not send notifications', 'planzer'),
-        ],])
-        ->addCheckbox(__('Email notification', 'planzer'), 'email_notification', [
-          'desc' => __('Send email notifications', 'planzer'),
-          'required' => true,
+        ->addRadio(__('Notifications', 'planzer'), 'sender_email_notifications', [
+          'options' => [
+            'yes' => __('Yes, send email notifications to me', 'planzer'),
+            'no' => __('No, do not send email notifications to me', 'planzer'),
+          ],
+          'desc' => __('Do you want to receive notifications?', 'planzer'),
+          'default' => 'yes',
         ])
-        ->addCheckbox(__('SMS notification', 'planzer'), 'sms_notification', ['desc' => __('Send sms notifications', 'planzer')])
-        ->addRadio(__('Notice of deposit', 'planzer'), 'deposit_notice', ['options' => [
-          '1' => __('No deposit with signature', 'planzer'),
-          '2' => __('Always deposit the package (without signature)', 'planzer'),
-          '3' => __('Usually with signature but the receiver can choose if he wants the package to be deposited', 'planzer'),
-        ],])
-        ->addTextInput(__('Content of package', 'planzer'), 'package_content')
+        ->addCheckbox(__('Customer email notification', 'planzer'), 'receiver_email_notification', [
+          'desc' => __('Send email notifications to the package receiver', 'planzer'),
+          'default' => 'yes',
+        ])
+        ->addCheckbox(__('Customer SMS notification', 'planzer'), 'receiver_sms_notification', [
+          'desc' => __('Send SMS notifications to the package receiver', 'planzer'),
+          'default' => 'yes',
+        ])
+        ->addRadio(__('Notice of deposit', 'planzer'), 'deposit_notice', [
+          'options' => [
+            '1' => __('No deposit with signature', 'planzer'),
+            '2' => __('Always deposit the package (without signature)', 'planzer'),
+            '3' => __('Usually with signature but the receiver can choose if he wants the package to be deposited', 'planzer'),
+          ],
+          'default' => 2,
+        ])
       ->endGroup('notifications');
   }
 

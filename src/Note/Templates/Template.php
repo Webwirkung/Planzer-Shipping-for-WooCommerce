@@ -1,6 +1,6 @@
 <?php
 
-namespace Planzer\DeliveryNote;
+namespace Planzer\Note\Templates;
 
 class Template
 {

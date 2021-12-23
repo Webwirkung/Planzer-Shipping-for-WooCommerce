@@ -22,7 +22,7 @@ class Generator
 
   public function getGeneratedQRUrl(string $data): string
   {
-    $code_url = add_query_arg(array_merge($this->getQRPrintOptions(), ['chl' => $data]), $this->qr_url);
+    $code_url = add_query_arg(array_merge($this->getQRPrintOptions(), ['chl' => urlencode($data)]), $this->qr_url);
     return $code_url;
   }
 

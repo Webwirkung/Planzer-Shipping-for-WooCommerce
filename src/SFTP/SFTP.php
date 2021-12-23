@@ -14,11 +14,18 @@ class SFTP
   {
     try {
       $this->sftp = new SFTPLib($this->getHost(), $this->getPort());
-      $this->sftp->login($this->getLogin(), $this->getPassword());
+      if (! $this->sftp->login($this->getLogin(), $this->getPassword())) {
+        throw new \Exception("PLANZER SFTP ERROR: Could not log into FTP: {$this->getHost()}", 1);
+      }
     } catch (\Exception $e) {
-      error_log('Planzer: ERROR with planzer SFTP server');
+      error_log('Planzer: ERROR connecting to Planzer SFTP server failed');
       throw new \Exception(__('There was a problem with the connection to the server, please try again later or contact administrator.', 'planzer'));
     }
+  }
+
+  public function __destruct()
+  {
+    $this->sftp->disconnect();
   }
 
   private function getPort(): int
@@ -28,19 +35,17 @@ class SFTP
 
   private function getLogin(): string
   {
-    return get_option('planzer_ftp_username');
+    return 'WooCommerce';
   }
 
   private function getPassword(): string
   {
-    return get_option('planzer_ftp_password');
+    return 'pLa27@WebWoComm09!';
   }
 
   private function getHost(): string
   {
-    $mode = ('yes' === get_option('planzer_ftp_test_mode')) ? 'test' : 'live';
-
-    return get_option("planzer_ftp_{$mode}_ip_address");
+    return get_option('planzer_ftp_live_server_address', 'lobplalb02.planzer.ch');
   }
 
   public function upload(string $csv, Package $package): void
@@ -50,8 +55,10 @@ class SFTP
 
       if (false === $upload) {
         $errors = $this->sftp->getSFTPErrors();
+        $errors[0] ??= 'undefined FTP error :-(';
 
-        throw new \Exception("PLANZER SFTP ERROR: $errors[0]");
+        $this->sftp->disconnect();
+        throw new \Exception("PLANZER SFTP ERROR: {$errors[0]}");
       }
 
       $this->sftp->disconnect();

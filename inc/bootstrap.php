@@ -1,21 +1,22 @@
 <?php
+
 require PLANZER_ROOT_PATH . '/vendor/autoload.php';
 
-if (!function_exists('planzerDoc') && function_exists('Planzer\\planzerDoc')) {
+if (! function_exists('planzerDoc') && function_exists('Planzer\\planzerDoc')) {
   function planzerDoc(): object
   {
     return Planzer\planzerDoc();
   }
 }
 
-if (!function_exists('planzer') && function_exists('Planzer\\planzer')) {
+if (! function_exists('planzer') && function_exists('Planzer\\planzer')) {
   function planzer(string $moduleName = ''): object
   {
     return Planzer\planzer($moduleName);
   }
 }
 
-if (!function_exists('createClass') && function_exists('Planzer\\createClass')) {
+if (! function_exists('createClass') && function_exists('Planzer\\createClass')) {
   function createClass(string $class, array $params = array()): object
   {
     $object = new $class(...$params);
@@ -24,7 +25,7 @@ if (!function_exists('createClass') && function_exists('Planzer\\createClass')) 
   }
 }
 
-if (!function_exists('errorLog')) {
+if (! function_exists('errorLog')) {
   function errorLog(\Throwable $error): void
   {
     error_log($error);

@@ -1,4 +1,5 @@
 <?php
+
 namespace Planzer\Settings;
 
 use Planzer\Settings\Sections\Section;

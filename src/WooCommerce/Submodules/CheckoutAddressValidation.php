@@ -22,7 +22,7 @@ class CheckoutAddressValidation
     $api_address = new Address(new ApiConfig());
 
     try {
-      $api_results = $api_address->checkAddress($data);
+      $api_results = $api_address->checkAddress($this->sanitizeData($data));
 
       if (
           200 !== $api_results['http_code'] ||
@@ -35,5 +35,25 @@ class CheckoutAddressValidation
       error_log('Planzer: ERROR with planzer API address validation');
       throw new \Exception(__('There was a problem with verifying your address, please try again later or contact administrator.', 'planzer'));
     }
+  }
+
+  private function sanitizeData(array $data): array
+  {
+    if (! empty($data['shipping_address_1'])) {
+      $data['shipping_address_1'] = preg_replace(
+          ['/St\.(?! )/', '/(\d) ([a-z]{1}|[A-Z]{1})$/'],
+          ['St. ', '$1$2'],
+          $data['shipping_address_1'],
+      );
+    }
+
+    if (! empty($data['shipping_city'])) {
+      $data['shipping_city'] = preg_replace(
+          ['/St\.(?! )/'],
+          ['St. '],
+          $data['shipping_city'],
+      );
+    }
+    return $data;
   }
 }

@@ -1,8 +1,8 @@
 {
-  "name": "src/woocommerce-planzer",
+  "name": "src/wc-planzer-shipping",
   "type": "wordpress-plugin",
   "license": "GPL2",
-  "description": "WooCommerce Planzer",
+  "description": "Shipping via Planzer for WooCommerce",
   "homepage": "https://bold.dev/",
   "authors": [
     {
@@ -23,7 +23,7 @@
     ]
   },
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.4",
     "composer/installers": "~1.0",
     "illuminate/support": "5.6.*",
     "joachim-n/case-converter": "^1.0",

@@ -14,6 +14,7 @@ class Init extends Singleton
     $this->addPrivate('Core\Config');
     $this->addPublic('Settings\Settings', 'settings');
     $this->addPublic('WooCommerce\WooCommerce');
+    $this->addPublic('Webwirkung\Webwirkung');
   }
 
   private function addPublic(string $name, string $label = ''): void

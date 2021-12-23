@@ -3,238 +3,244 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-22 16:03+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2021-12-08 14:13+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_CH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 2.4.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: resources/views/note/delivery-note/content.php:81
 msgid "Package number"
-msgstr ""
+msgstr "Paketnummer"
 
 #: resources/views/note/delivery-note/content.php:88
 msgid "Delivery note LS"
-msgstr ""
+msgstr "Lieferschein LS"
 
 #: resources/views/note/delivery-note/content.php:93
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: resources/views/note/delivery-note/content.php:95
 msgid "Customer number"
-msgstr ""
+msgstr "Kundennummer"
 
 #: resources/views/note/delivery-note/content.php:99
 msgid "Your contact person"
-msgstr ""
+msgstr "Ihr Ansprechpartner"
 
 #: resources/views/note/delivery-note/content.php:107
 msgid "Ladies and gentlemen"
-msgstr ""
+msgstr "Meine Damen und Herren"
 
 #: resources/views/note/delivery-note/content.php:112
 msgid "Item"
-msgstr ""
+msgstr "Pos"
 
 #: resources/views/note/delivery-note/content.php:113
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: resources/views/note/delivery-note/content.php:114
 msgid "Unit"
-msgstr ""
+msgstr "Einheit"
 
 #: resources/views/note/delivery-note/content.php:115
 msgid "Quantity ordered"
-msgstr ""
+msgstr "Bestellmenge"
 
 #: resources/views/note/delivery-note/content.php:116
 msgid "Crowd open"
-msgstr ""
+msgstr "Menge offen"
 
 #: resources/views/note/delivery-note/content.php:117
 msgid "Quantity delivered"
-msgstr ""
+msgstr "Gelieferte Menge"
 
 #: resources/views/note/delivery-note/content.php:132
 msgid "Product Code"
-msgstr ""
+msgstr "Produktcode"
 
 #: resources/views/note/delivery-note/content.php:145
 msgid "Thank you very much for the order."
-msgstr ""
+msgstr "Herzlichen Dank für die Bestellung."
 
 #: resources/views/note/delivery-note/content.php:146
 msgid "Feel free to contact us if you have any questions."
-msgstr ""
+msgstr "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren."
 
 #: resources/views/note/delivery-note/content.php:147
 msgid "Kind regards"
-msgstr ""
+msgstr "Mit freundlichen Grüssen"
 
 #: resources/views/note/delivery-note/footer.php:3
 msgid "E-Mail:"
-msgstr ""
+msgstr "Email:"
 
 #: resources/views/note/delivery-note/footer.php:4
 msgid "Website:"
-msgstr ""
+msgstr "Webseite:"
 
 #: src/Note/Note.php:36
 msgid "Planzer delivery note for order"
-msgstr ""
+msgstr "Planzer Lieferschein der Bestellung"
 
 #: src/Note/Note.php:39
 msgid "Planzer label note for order"
-msgstr ""
+msgstr "Planzer Etikette der Bestellung"
 
 #: src/Note/Note.php:42
 msgid "Planzer note for order"
-msgstr ""
+msgstr "Planzer Notiz der Bestellung"
 
 #: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:37
 msgid "Delivery"
-msgstr ""
+msgstr "Lieferschein/Etikette"
 
 #: src/Settings/Sections/Delivery.php:14
 msgid "Delivery note"
-msgstr ""
+msgstr "Lieferschein oder Etikette generieren"
 
 #: src/Settings/Sections/Delivery.php:16
 msgid "Generate delivery note"
-msgstr ""
+msgstr "Lieferschein generieren"
 
 #: src/Settings/Sections/Delivery.php:17
 msgid "Generate label note"
-msgstr ""
+msgstr "Etikette generieren"
 
 #: src/Settings/Sections/Delivery.php:21
 msgid "Logo URL"
-msgstr ""
+msgstr "Logo URL"
 
 #: src/Settings/Sections/Delivery.php:21
 msgid "URL of logo that will be placed on the delivery note"
-msgstr ""
+msgstr "URL des Logos, das auf dem Lieferschein platziert wird."
 
 #: src/Settings/Sections/Delivery.php:22
 msgid "Note receiver"
-msgstr ""
+msgstr "Lieferschein/Etikette empfangen"
 
 #: src/Settings/Sections/Delivery.php:23
 msgid ""
 "Receiver of the delivery/label note (for multiple addresses separate them by "
 "using commas)"
 msgstr ""
+"An welche E-Mail Adresse dürfen wir den Lieferschein/Etikette senden? (Komma "
+"separierte Liste für mehrere Empfänger)"
 
 #: src/Settings/Sections/Delivery.php:26
 msgid "Contact name"
-msgstr ""
+msgstr "Kontaktperson"
 
 #: src/Settings/Sections/Delivery.php:26
 msgid "First and last name that will be placed on the delivery note"
 msgstr ""
+"Vor- und Nachname der Person, welche auf dem Lieferschein als Kontaktperson "
+"ausgegeben werden soll."
 
 #: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:28
 msgid "Other"
-msgstr ""
+msgstr "Produkte ausschliessen"
 
 #: src/Settings/Sections/Other.php:13
 msgid "Excluded products"
-msgstr ""
+msgstr "Produkte wählen"
 
 #: src/Settings/Sections/Other.php:16
 msgid "Select product that are note being sent with Planzer."
 msgstr ""
+"Wählen Sie die Produkte aus, welche nicht mit Planzer versendet werden "
+"sollen. (z.B. Gutscheine)"
 
 #: src/Settings/Sections/Other.php:44
 msgid "none"
-msgstr ""
+msgstr "Keine"
 
 #: src/Settings/Sections/Notifications.php:13
 #: src/Settings/Sections/Notifications.php:14
 #: src/Settings/Sections/Notifications.php:48
 msgid "Notifications"
-msgstr ""
+msgstr "Benachrichtigungen"
 
 #: src/Settings/Sections/Notifications.php:16
 msgid "Yes, send email notifications to me"
-msgstr ""
+msgstr "Ja, E-Mail-Benachrichtigung an mich senden"
 
 #: src/Settings/Sections/Notifications.php:17
 msgid "No, do not send email notifications to me"
-msgstr ""
+msgstr "Nein, keine E-Mail-Benachrichtigung an mich senden"
 
 #: src/Settings/Sections/Notifications.php:19
 msgid "Do you want to receive notifications?"
-msgstr ""
+msgstr "Wollen Sie über den Status der Lieferung informiert werden?"
 
 #: src/Settings/Sections/Notifications.php:22
 msgid "Customer email notification"
-msgstr ""
+msgstr "E-Mail-Benachrichtigungen an Kunde"
 
 #: src/Settings/Sections/Notifications.php:23
 msgid "Send email notifications to the package receiver"
-msgstr ""
+msgstr "E-Mail-Benachrichtigung an den Kunden senden"
 
 #: src/Settings/Sections/Notifications.php:26
 msgid "Customer SMS notification"
-msgstr ""
+msgstr "SMS-Benachrichtigungen an Kunde"
 
 #: src/Settings/Sections/Notifications.php:27
 msgid "Send SMS notifications to the package receiver"
-msgstr ""
+msgstr "SMS-Benachrichtigung an den Kunden senden"
 
 #: src/Settings/Sections/Notifications.php:30
 msgid "Notice of deposit"
-msgstr ""
+msgstr "Auslieferung Pakete"
 
 #: src/Settings/Sections/Notifications.php:32
 msgid "No deposit with signature"
-msgstr ""
+msgstr "Nur gegen Unterschrift"
 
 #: src/Settings/Sections/Notifications.php:33
 msgid "Always deposit the package (without signature)"
-msgstr ""
+msgstr "Immer deponieren"
 
 #: src/Settings/Sections/Notifications.php:34
 msgid ""
 "Usually with signature but the receiver can choose if he wants the package "
 "to be deposited"
-msgstr ""
+msgstr "Gegen Unterschrift & Empfänger kann übersteuern"
 
 #: src/Settings/Sections/FTP.php:13
 msgid "Mode"
-msgstr ""
+msgstr "Modus"
 
 #: src/Settings/Sections/FTP.php:14
 msgid "Test Mode"
-msgstr ""
+msgstr "Testmodus"
 
 #: src/Settings/Sections/FTP.php:15
 msgid "Enable test mode of SFTP integration"
-msgstr ""
+msgstr "Testmodus aktivieren, dies stoppt die Übermittlung an Planzer"
 
 #: src/Settings/Sections/FTP.php:20
 msgid "Live"
-msgstr ""
+msgstr "Verbindung zu Planzer"
 
 #: src/Settings/Sections/FTP.php:21
 msgid "Account ID"
-msgstr ""
+msgstr "Account-ID"
 
 #: src/Settings/Sections/FTP.php:23
 msgid "Server URL"
-msgstr ""
+msgstr "Server URL"
 
 #: src/Settings/Sections/FTP.php:26
 msgid ""
@@ -242,26 +248,29 @@ msgid ""
 "so by support or you know what you are doing. Changes in this field can "
 "result in data no longer being transmitted to Planzer."
 msgstr ""
+"Bitte ändern Sie die URL nicht, ausser sie sind ausdrücklich vom Support "
+"dazu aufgefordert worden oder Sie wissen was Sie tun. Änderungen in diesem "
+"Feld können dazu führen, dass Daten nicht mehr an Planzer übermittelt werden."
 
 #: src/Settings/Sections/FTP.php:42
 msgid "FTP"
-msgstr ""
+msgstr "Verbindung zu Planzer"
 
 #: src/Settings/Sections/Sender.php:12
 msgid "Contract Details"
-msgstr ""
+msgstr "Angaben zu Planzer Vertrag"
 
 #: src/Settings/Sections/Sender.php:13
 msgid "Depart. No."
-msgstr ""
+msgstr "Abteilungsnummer"
 
 #: src/Settings/Sections/Sender.php:21
 msgid "Customer No."
-msgstr ""
+msgstr "Kundennummer"
 
 #: src/Settings/Sections/Sender.php:29
 msgid "Your branch"
-msgstr ""
+msgstr "Ihre zuständige Filiale"
 
 #: src/Settings/Sections/Sender.php:32
 msgid "Dietikon"
@@ -309,35 +318,35 @@ msgstr ""
 
 #: src/Settings/Sections/Sender.php:48
 msgid "Sender Information"
-msgstr ""
+msgstr "Absenderangaben"
 
 #: src/Settings/Sections/Sender.php:49
 msgid "Company"
-msgstr ""
+msgstr "Absendername"
 
 #: src/Settings/Sections/Sender.php:50
 msgid "Company extra"
-msgstr ""
+msgstr "Firma Zusatz"
 
 #: src/Settings/Sections/Sender.php:54
 msgid "Street"
-msgstr ""
+msgstr "Strasse"
 
 #: src/Settings/Sections/Sender.php:58
 msgid "House Number"
-msgstr ""
+msgstr "Hausnummer"
 
 #: src/Settings/Sections/Sender.php:62
 msgid "ZIP"
-msgstr ""
+msgstr "PLZ"
 
 #: src/Settings/Sections/Sender.php:66
 msgid "City"
-msgstr ""
+msgstr "Stadt"
 
 #: src/Settings/Sections/Sender.php:70
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: src/Settings/Sections/Sender.php:73
 msgid "Schweiz / Switzerland"
@@ -345,35 +354,35 @@ msgstr ""
 
 #: src/Settings/Sections/Sender.php:77
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: src/Settings/Sections/Sender.php:81
 msgid "Instruction"
-msgstr ""
+msgstr "Instruktion"
 
 #: src/Settings/Sections/Sender.php:82
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail Adresse"
 
 #: src/Settings/Sections/Sender.php:86
 msgid "Phone"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: src/Settings/Sections/Sender.php:87
 msgid "Mobile"
-msgstr ""
+msgstr "Mobilenummer"
 
 #: src/Settings/Sections/Sender.php:91
 msgid "Automatic address verification (experimental feature)"
-msgstr ""
+msgstr "Automatische Adressprüfung (experimentelles Feature)"
 
 #: src/Settings/Sections/Sender.php:92
 msgid "Activate automatic address checking on the checkout"
-msgstr ""
+msgstr "Automatische Adressprüfung im Checkout aktivieren "
 
 #: src/Settings/Sections/Sender.php:97 src/Settings/Sections/Sender.php:100
 msgid "Manual transmission"
-msgstr ""
+msgstr "Manuelle Übermittlung"
 
 #: src/Settings/Sections/Sender.php:98
 msgid ""
@@ -382,116 +391,124 @@ msgid ""
 "function and send orders to Planzer manually by changing the status of the "
 "order to \"Transmit to Planzer\" manually."
 msgstr ""
+"Standardmässig werden Bestellungen mit dem Status «In Bearbeitung» "
+"automatisch an Planzer übermittelt. Sie haben hier die Möglichkeit diese "
+"Funktion zu deaktivieren und Bestellungen manuell an Planzer zu senden, in "
+"dem Sie den Status der Bestellung auf «Übermittlung an Planzer» manuell "
+"ändern."
 
 #: src/Settings/Sections/Sender.php:101
 msgid "Send orders to Planzer only after manual status adjustment"
 msgstr ""
+"Bestellungen erst nach manueller Statusanpassung an Planzer übermitteln"
 
 #: src/Settings/Sections/Sender.php:105
 msgid "Pickup Orders"
-msgstr ""
+msgstr "Bestellungen abholen"
 
 #: src/Settings/Sections/Sender.php:106
 msgid "Orders until this time will get picked up by Planzer the same day"
 msgstr ""
+"Bestellungen welche bis um diese Uhrzeit eingehen, werden am selben Tag von "
+"Planzer abgeholt."
 
 #: src/Settings/Sections/Sender.php:108
 msgid "Orders until"
-msgstr ""
+msgstr "Bestellungen bis"
 
 #: src/Settings/Sections/Sender.php:122
 msgid "Sender"
-msgstr ""
+msgstr "Allgemein"
 
 #: src/Settings/Sections/Sender.php:128
 msgctxt "language name"
 msgid "Deutsch"
-msgstr ""
+msgstr "Deutsch"
 
 #: src/Settings/Sections/Sender.php:129
 msgctxt "language name"
 msgid "Français"
-msgstr ""
+msgstr "Français"
 
 #: src/Settings/Sections/Sender.php:130
 msgctxt "language name"
 msgid "Italiano"
-msgstr ""
+msgstr "Italiano"
 
 #: src/Settings/Sections/Sender.php:131
 msgctxt "language name"
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: src/Settings/Sections/General.php:13
 msgid "Checkbox"
-msgstr ""
+msgstr "Kontrollkästchen"
 
 #: src/Settings/Sections/General.php:14
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/Settings/Sections/General.php:15
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 #: src/Settings/Sections/General.php:16
 msgid "Select"
-msgstr ""
+msgstr "Auswählen"
 
 #: src/Settings/Sections/General.php:27
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/Settings/Sections/SectionBase.php:97
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/Settings/Sections/SectionBase.php:98
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:44
 #: src/WooCommerce/Submodules/OrderStatus.php:60
 msgid "Transmit to Planzer"
-msgstr ""
+msgstr "Übermittlung an Planzer"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:49
 #, php-format
 msgid "Transmit to Planzer (%s)"
 msgid_plural "Transmit to Planzer (%s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Übermittlung an Planzer (%s)"
+msgstr[1] "Übermittlung an Planzer (%s)"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:80
 #: src/WooCommerce/Submodules/OrderAction.php:38
 msgid "All products excluded from delivery"
-msgstr ""
+msgstr "Alle Produkte von der Lieferung ausgeschlossen"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:85
 #: src/WooCommerce/Submodules/OrderAction.php:43
 msgid "Test mode enabled - data not sent"
-msgstr ""
+msgstr "Testmodus aktiviert - Daten nicht gesendet"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:89
 #: src/WooCommerce/Submodules/OrderAction.php:47
 msgid "Planzer: CSV generated."
-msgstr ""
+msgstr "Planzer: Lieferschein und CSV generiert."
 
 #: src/WooCommerce/Submodules/OrderStatus.php:95
 #: src/WooCommerce/Submodules/OrderAction.php:53
 msgid "Planzer: delivery/label note and CSV generated."
-msgstr ""
+msgstr "Planzer: Liefer-/Etikettenschein und CSV generiert."
 
 #: src/WooCommerce/Submodules/OrderStatus.php:103
 #: src/WooCommerce/Submodules/OrderAction.php:61
 msgid "Reference number:"
-msgstr ""
+msgstr "Referenz:"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:104
 #: src/WooCommerce/Submodules/OrderAction.php:62
 msgid "Package number: "
-msgstr ""
+msgstr "Paketnummer: "
 
 #: src/WooCommerce/Submodules/OrderStatus.php:107
 #: src/WooCommerce/Submodules/OrderAction.php:65
@@ -499,28 +516,93 @@ msgid ""
 "There was an error while sending data to Planzer - please try again or check "
 "debuglog."
 msgstr ""
+"Beim Senden von Daten an Planzer ist ein Fehler aufgetreten. Bitte versuchen "
+"Sie es erneut oder überprüfen Sie das Debuglog."
 
-#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:32
+#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:37
 msgid "The address is invalid - please type in an existing address"
-msgstr ""
+msgstr "Die Adresse ist ungültig - bitte geben Sie eine vorhandene Adresse ein"
 
-#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:36
+#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:41
 #: src/Api/Endpoints/Address.php:37
 msgid ""
 "There was a problem with verifying your address, please try again later or "
 "contact administrator."
 msgstr ""
+"Bei der Bestätigung Ihrer Adresse ist ein Problem aufgetreten. Bitte "
+"versuchen Sie es später erneut oder wenden Sie sich an den Administrator."
 
 #: src/WooCommerce/Submodules/OrderAction.php:21
 msgid "Generate Planzer note and create package"
-msgstr ""
+msgstr "Zusätzlichen Planzer Lieferschein/Etikette generieren"
 
 #: src/Core/Config.php:71
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
-#: src/SFTP/SFTP.php:22
+#: src/SFTP/SFTP.php:20
 msgid ""
 "There was a problem with the connection to the server, please try again "
 "later or contact administrator."
 msgstr ""
+"Bei der Bestätigung Ihrer Adresse ist ein Problem aufgetreten. Bitte "
+"versuchen Sie es später erneut oder wenden Sie sich an den Administrator."
+
+#~ msgid "Shop Default data"
+#~ msgstr "Aus WooCommerce"
+
+#~ msgid "None"
+#~ msgstr "Keiner"
+
+#~ msgid "Content of package"
+#~ msgstr "Inhalt des Pakets"
+
+#~ msgid "Pickup Date"
+#~ msgstr "Abholzeitraum"
+
+#~ msgid "Pickup date is order date + 1 day"
+#~ msgstr "In welchem Zeitraum soll Planzer Ihre Pakete abholen?"
+
+#~ msgid "Time from"
+#~ msgstr "Abholzeit von"
+
+#~ msgid "Time until"
+#~ msgstr "Abholzeit bis"
+
+#~ msgid "Test"
+#~ msgstr "Test"
+
+#~ msgid "Send sms notifications"
+#~ msgstr "SMS-Benachrichtigungen senden"
+
+#~ msgid "Control No."
+#~ msgstr "Ihre zuständige Filiale"
+
+#~ msgid "Server Address"
+#~ msgstr "IP Addresse"
+
+#~ msgid "Account"
+#~ msgstr "Konto"
+
+#~ msgid "Username"
+#~ msgstr "Nutzername"
+
+#~ msgid "Password"
+#~ msgstr "Passwort"
+
+#~ msgid "Find attached"
+#~ msgstr "Finde im Anhang"
+
+#~ msgid "Receiver of the delivery note"
+#~ msgstr "Empfänger des Lieferscheins"
+
+#~ msgid "The zip code is invalid - please type in an existing zip code"
+#~ msgstr ""
+#~ "Die Postleitzahl ist ungültig - bitte geben Sie eine vorhandene "
+#~ "Postleitzahl ein"
+
+#~ msgid "Without signature"
+#~ msgstr "Ohne Unterschrift"
+
+#~ msgid "Location"
+#~ msgstr "Ort"

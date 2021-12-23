@@ -10,8 +10,10 @@ class Other extends SectionBase implements Section
   {
     $this
       ->startGroup(__('Other', 'planzer'), 'other')
-        ->addMultiselectInput(__('Excluded products'), 'excluded_products', [
+        ->addMultiselectInput(__('Excluded products', 'planzer'), 'excluded_products', [
           'options' => $this->getProductsList(),
+          'default' => 'none',
+          'desc' => __('Select product that are note being sent with Planzer.', 'planzer'),
         ])
       ->endGroup('other');
   }
@@ -38,6 +40,9 @@ class Other extends SectionBase implements Section
     array_walk($list, function (&$value, $key) {
       $value = get_the_title($key);
     });
+
+    $list = array_replace(['none' => __('none', 'planzer')], $list);
+
     return apply_filters('planzer/settings/other/excluded_products_list', $list);
   }
 }

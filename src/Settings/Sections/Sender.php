@@ -26,11 +26,20 @@ class Sender extends SectionBase implements Section
           ],
           'required' => true,
         ])
-        ->addNumberInput(__('Control No.', 'planzer'), 'control_number', [
-          'custom_attributes' => [
-            'min' => 0,
-            'max' => 999,
-            'step' => 1,
+        ->addSelectInput(__('Your branch', 'planzer'), 'control_number', [
+          'default' => 57,
+          'options' => [
+            '50' => __('Dietikon', 'planzer'),
+            '51' => __('Pratteln / Basel', 'planzer'),
+            '52' => __('Bioggio', 'planzer'),
+            '53' => __('Bern', 'planzer'),
+            '54' => __('Penthalaz', 'planzer'),
+            '55' => __('Conthey', 'planzer'),
+            '56' => __('Domat / Ems', 'planzer'),
+            '57' => __('Altstetten / Zürich', 'planzer'),
+            '58' => __('Carouge', 'planzer'),
+            '59' => __('Märstetten', 'planzer'),
+            '60' => __('Seewen', 'planzer'),
           ],
           'required' => true,
         ])
@@ -41,12 +50,12 @@ class Sender extends SectionBase implements Section
         ->addTextInput(__('Company extra', 'planzer'), 'company_extra')
       ->endGroup('sender_information')
 
-      ->startGroup(__('Shop Default data', 'planzer'), 'shop_data')
+      ->startGroup('', 'shop_data')
         ->addTextInput(__('Street', 'planzer'), 'street', [
           'required' => true,
           'default' => get_option('woocommerce_store_address')
         ])
-        ->addTextInput(__('House Number', 'planzer'), 'number', [
+        ->addTextInput(__('House Number', 'planzer'), 'house_number', [
           'required' => true,
           'default' => get_option('')
         ])
@@ -78,6 +87,21 @@ class Sender extends SectionBase implements Section
         ->addTextInput(__('Mobile', 'planzer'), 'mobile')
       ->endGroup('shop_data')
 
+      ->startGroup('', 'address_verification')
+        ->addCheckbox(__('Automatic address verification (experimental feature)', 'planzer'), 'verify_address', [
+          'desc' => __('Activate automatic address checking on the checkout', 'planzer'),
+          'default' => 'no',
+        ])
+      ->endGroup('address_verification')
+
+      ->startGroup(__('Manual transmission', 'planzer'), 'manual_orders', [
+        'desc' => __('By default, orders with the status "Processing" are automatically transmitted to Planzer. Here you have the possibility to deactivate this function and send orders to Planzer manually by changing the status of the order to "Transmit to Planzer" manually.', 'planzer')
+      ])
+        ->addCheckbox(__('Manual transmission', 'planzer'), 'enable_manual_orders', [
+          'desc' => __('Send orders to Planzer only after manual status adjustment', 'planzer'),
+        ])
+      ->endGroup('manual_orders')
+
       ->startGroup(__('Pickup Orders', 'planzer'), 'pickup_time', [
         'desc' => __('Orders until this time will get picked up by Planzer the same day', 'planzer')
       ])
@@ -85,17 +109,6 @@ class Sender extends SectionBase implements Section
           'required' => true,
         ])
       ->endGroup('pickup_time')
-
-      ->startGroup(__('Pickup Date', 'planzer'), 'pickup_date', [
-        'desc' => __('Pickup date is order date + 1 day', 'planzer')
-      ])
-        ->addTimeInput(__('Time from', 'planzer'), 'pickup_time_from', [
-          'required' => true,
-        ])
-        ->addTimeInput(__('Time until', 'planzer'), 'pickup_time_until', [
-          'required' => true,
-        ])
-      ->endGroup('pickup_date')
       ;
   }
 

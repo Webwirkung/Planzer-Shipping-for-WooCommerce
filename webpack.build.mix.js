@@ -12,10 +12,11 @@ Mix.manifest.refresh = _ => void 0;
 const rootPath = path.join(__dirname);
 const pluginResources = path.join(__dirname, 'resources');
 
-mix.copy(`${rootPath}/woocommerce-planzer.php`, `build/`);
-mix.copyDirectory(`${rootPath}/inc`, `build/inc`);
-mix.copyDirectory(`${rootPath}/src`, `build/src`);
-mix.copyDirectory(`${rootPath}/vendor`, `build/vendor`);
-mix.copyDirectory(`${rootPath}/dist`, `build/dist`);
-mix.copyDirectory(`${pluginResources}/views`, `build/resources/views`);
-mix.copyDirectory(`${pluginResources}/lang`, `build/resources/lang`);
+mix.copy(`${rootPath}/wc-planzer-shipping.php`, `build/wc-planzer-shipping/`);
+mix.copy(`${rootPath}/readme*.txt`, `build/wc-planzer-shipping/`);
+mix.copyDirectory(`${rootPath}/inc`, `build/wc-planzer-shipping/inc`);
+mix.copyDirectory(`${rootPath}/src`, `build/wc-planzer-shipping/src`);
+mix.copyDirectory(`${rootPath}/vendor`, `build/wc-planzer-shipping/vendor`);
+mix.copyDirectory(`${rootPath}/dist`, `build/wc-planzer-shipping/dist`);
+mix.copyDirectory(`${pluginResources}/views`, `build/wc-planzer-shipping/resources/views`);
+mix.copyDirectory(`${pluginResources}/lang`, `build/wc-planzer-shipping/resources/lang`);

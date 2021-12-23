@@ -80,6 +80,15 @@ abstract class SectionBase
     ]));
   }
 
+  protected function addToggle(string $title, string $id, array $args = []): self
+  {
+    return $this->addField($title, $id, wp_parse_args($args, [
+      'type' => 'toggle',
+      'default' => 'no',
+      'toggle_type' => 'round', //if anything but this toggle will be square
+    ]));
+  }
+
   protected function addRadio(string $title, string $id, array $args = []): self
   {
     return $this->addField($title, $id, wp_parse_args($args, [
