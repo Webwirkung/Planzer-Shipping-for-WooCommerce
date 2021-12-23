@@ -17,11 +17,11 @@
     float: left;
     width: 28%;
   }
-  .deliviery-note {
+  .delivery-note {
     font-size: 16px;
     font-weight: bold;
   }
-  .deliviery-note-table,
+  .delivery-note-table,
   .order-table {
     width: 100%;
     margin: 5px 0 25px;
@@ -31,7 +31,7 @@
     border-bottom: 1px solid brown;
   }
 
-  .deliviery-note-table td,
+  .delivery-note-table td,
   .order-table td {
     font-size: 12px;
   }
@@ -63,41 +63,41 @@
 </style>
 <?php if (! empty($data['logo'])) : ?>
   <div class="logo">
-    <img width="150" src="<?php echo $data['logo'];?>">
+    <img width="150" src="<?php echo esc_attr($data['logo']);?>">
   </div>
 <?php endif; ?>
 <div class="company-name">
-  <?php echo $data['company']; ?>, <?php echo $data['company_address']->get_base_address(); ?>, <?php echo $data['company_address']->get_base_postcode(); ?> <?php echo $data['country']; ?>
+  <?php echo esc_html($data['company']); ?><?php echo esc_html(empty($data['company_extra']) ? '' : (" {$data['company_extra']}")); ?>, <?php echo esc_html($data['company_address']->get_base_address()); ?>, <?php echo esc_html($data['company_address']->get_base_postcode()); ?> <?php echo esc_html($data['country']); ?>
 </div>
 <div style="clear: both;"></div>
 <div class="customer">
-  <?php echo $data['order']->get_shipping_first_name() ?: $data['order']->get_billing_first_name(); ?> <?php echo $data['order']->get_shipping_last_name() ?: $data['order']->get_billing_last_name(); ?> <br/>
-  <?php echo $data['order']->get_shipping_company() ?: $data['order']->get_billing_company(); ?><br/>
-  <?php echo $data['order']->get_shipping_address_1() ?: $data['order']->get_billing_address_1(); ?> <?php echo $data['order']->get_shipping_address_2() ?: $data['order']->get_billing_address_2(); ?> <br/>
-  <?php echo $data['order']->get_shipping_postcode() ?: $data['order']->get_billing_postcode(); ?> <?php echo $data['order']->get_shipping_city() ?: $data['order']->get_billing_city(); ?><br/>
-  <?php echo $data['country']; ?>
+  <?php echo esc_html($data['order']->get_shipping_first_name() ?: $data['order']->get_billing_first_name()); ?> <?php echo esc_html($data['order']->get_shipping_last_name() ?: $data['order']->get_billing_last_name()); ?> <br/>
+  <?php echo esc_html($data['order']->get_shipping_company() ?: $data['order']->get_billing_company()); ?><br/>
+  <?php echo esc_html($data['order']->get_shipping_address_1() ?: $data['order']->get_billing_address_1()); ?> <?php echo esc_html($data['order']->get_shipping_address_2() ?: $data['order']->get_billing_address_2()); ?> <br/>
+  <?php echo esc_html($data['order']->get_shipping_postcode() ?: $data['order']->get_billing_postcode()); ?> <?php echo esc_html($data['order']->get_shipping_city() ?: $data['order']->get_billing_city()); ?><br/>
+  <?php echo esc_html($data['country']); ?>
 </div>
 <div class="package-number">
-  <?php echo __('Package number', 'planzer'); ?>: <?php echo $data['package_number']; ?><br/>
-  <img src="<?php echo $data['qr_url']; ?>"/>
+  <?php echo __('Package number', 'planzer'); ?>: <?php echo esc_html($data['package_number']); ?><br/><br/>
+  <img class="qr-code" width="200" src="<?php echo esc_url($data['qr_url']); ?>"/>
 </div>
 <div style="clear: both;"></div>
 <br/>
 <br/>
-<div class="deliviery-note">
-  <?php echo __('Delivery note LS', 'planzer'); ?>-<?php echo $data['sequence_number']; ?>
+<div class="delivery-note">
+  <?php echo __('Delivery note LS', 'planzer'); ?>-<?php echo esc_html($data['sequence_number']); ?>
 </div>
-<table class="deliviery-note-table">
+<table class="delivery-note-table">
   <tbody class="tbody">
     <tr>
       <td class='first-td'><?php echo __('Date', 'planzer'); ?>:</td>
-      <td><?php echo $data['order']->get_date_created()->date('d.m.Y'); ?></td>
+      <td><?php echo esc_html($data['order']->get_date_created()->date('d.m.Y')); ?></td>
       <td><?php echo __('Customer number', 'planzer'); ?>:</td>
-      <td><?php echo $data['order']->get_customer_id(); ?></td>
+      <td><?php echo esc_html($data['order']->get_customer_id()); ?></td>
     </tr>
     <tr>
       <td><?php echo __('Your contact person', 'planzer'); ?>:</td>
-      <td><?php echo $data['contact_name']; ?></td>
+      <td><?php echo esc_html($data['contact_name']); ?></td>
       <td></td>
       <td></td>
     </tr>
@@ -105,7 +105,6 @@
 </table>
 <div class="dear-sir">
   <?php echo __('Ladies and gentlemen', 'planzer'); ?> <br><br>
-  <?php echo __('Find attached', 'planzer'); ?>:
 </div>
 <table class="order-table">
   <thead>
@@ -124,17 +123,17 @@
     foreach ($data['order']->get_items() as $item_id => $item) :
       $product = wc_get_product($item->get_product_id());
 
-      if (in_array($item->get_product_id(), $data['excluded_products_ids'])) {
+      if (! empty($data['excluded_products_ids']) && in_array($item->get_product_id(), $data['excluded_products_ids'])) {
         continue;
       }
       ?>
         <tr valign="top" class="order-tr">
-          <td><?php echo $x; ?></td>
-          <td><?php echo $item->get_name(); ?><br><?php echo __('Product Code', 'planzer'); ?>: <?php echo $product->get_sku(); ?></td>
+          <td><?php echo esc_html($x); ?></td>
+          <td><?php echo esc_html($item->get_name()); ?><br><?php echo __('Product Code', 'planzer'); ?>: <?php echo esc_html($product->get_sku()); ?></td>
           <td></td>
-          <td align="center"><?php echo $item->get_quantity(); ?></td>
+          <td align="center"><?php echo esc_html($item->get_quantity()); ?></td>
           <td align="center">0</td>
-          <td align="center"><?php echo $item->get_quantity(); ?></td>
+          <td align="center"><?php echo esc_html($item->get_quantity()); ?></td>
         </tr>
       <?php
       $x++;
@@ -146,6 +145,6 @@
   <?php echo __('Thank you very much for the order.', 'planzer'); ?><br><br>
   <?php echo __('Feel free to contact us if you have any questions.', 'planzer'); ?><br><br>
   <?php echo __('Kind regards', 'planzer'); ?><br>
-  <?php echo $data['contact_name']; ?> <br>
-  <?php echo $data['company']; ?>
+  <?php echo esc_html($data['contact_name']); ?> <br>
+  <?php echo esc_html($data['company']); ?>
 </div>

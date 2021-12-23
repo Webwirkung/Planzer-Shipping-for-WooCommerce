@@ -1,10 +1,17 @@
 <?php
+
 namespace Planzer\Settings;
 
+use Planzer\Settings\Fields\Toggle;
 use Planzer\Settings\Page;
 
 class Settings
 {
+  public function __construct()
+  {
+    createClass(Toggle::class);
+  }
+
   /**
    * @filter woocommerce_get_settings_pages
    */

@@ -12,17 +12,19 @@ class DataLoader
   private ?array $field_mapping = null;
   private string $time_zone = 'Europe/Zurich';
   private string $pickup_end_of_day_hour = '15:00';
-  private string $pickup_pickup_from = '08:00';
-  private string $pickup_pickup_to = '16:00';
-  private ?WC_Order $order = null;
+  private string $pickup_pickup_from = '16:00';
+  private string $pickup_pickup_to = '18:00';
+  private WC_Order $order;
+  private PlanzerPackage $package;
 
-  public function __construct(WC_Order $order)
+  public function __construct(WC_Order $order, PlanzerPackage &$package)
   {
     $this->time_zone = apply_filters('plz/csv/data/time_zone', 'Europe/Zurich');
     $this->pickup_end_of_day_hour = apply_filters('plz/csv/data/pickup/end_of_day', get_option('planzer_sender_pickup_time_today', '15:00'));
-    $this->pickup_pickup_from = apply_filters('plz/csv/data/pickup/from', get_option('planzer_sender_pickup_time_from', '08:00'));
-    $this->pickup_pickup_to = apply_filters('plz/csv/data/pickup/to', get_option('planzer_sender_pickup_time_until', '16:00'));
+    $this->pickup_pickup_from = apply_filters('plz/csv/data/pickup/from', $this->pickup_pickup_from);
+    $this->pickup_pickup_to = apply_filters('plz/csv/data/pickup/to', $this->pickup_pickup_to);
     $this->order = $order;
+    $this->package = $package;
     $this->initFieldMapping();
   }
 
@@ -45,7 +47,6 @@ class DataLoader
 
   private function initFieldMapping(): void
   {
-    $package = new PlanzerPackage($this->order->get_id());
     $parsed_address = AddressHelper::getParsedAddressLine($this->order->get_shipping_address_1() ?: $this->order->get_billing_address_1());
     $this->field_mapping = [
       // 'CSV_fiels_number' => 'setting_name_or_val', //field names start with "planzer_"
@@ -66,14 +67,14 @@ class DataLoader
       'A1_18' => 'planzer_sender_phone',
       'A1_19' => 'planzer_sender_mobile',
 
-      'A1_20' => $this->getSmsNotificationValue(),
+      'A1_20' => $this->getSenderSmsNotificationValue(),
       'A1_21' => 'planzer_sender_email',
-      'A1_22' => $this->getEmailNotificationValue(),
+      'A1_22' => $this->getSenderEmailNotificationValue(),
       'A1_23' => 'planzer_sender_language',
 
       'A1_34' => $this->getPickupDate()->format('d.m.Y'),
-      'A1_35' => implode('.', [...explode(':', $this->pickup_pickup_from), '00']),
-      'A1_36' => implode('.', [...explode(':', $this->pickup_pickup_to), '00']),
+      // 'A1_35' => implode('.', [...explode(':', $this->pickup_pickup_from), '00']), // PLZ-64 do not send this data
+      // 'A1_36' => implode('.', [...explode(':', $this->pickup_pickup_to), '00']), // PLZ-64 do not send this data
       'A1_39' => $this->order->get_shipping_first_name() ?: $this->order->get_billing_first_name(),
 
       'A1_40' => $this->order->get_shipping_last_name() ?: $this->order->get_shipping_first_name(),
@@ -85,15 +86,15 @@ class DataLoader
       'A1_47' => $parsed_address['house_number'],
 
       'A1_51' => $this->order->get_billing_phone(),
-      'A1_53' => $this->getSmsNotificationValue(),
+      'A1_53' => $this->getReceiverSmsNotificationValue(),
       'A1_54' => $this->order->get_billing_email(),
-      'A1_55' => $this->getEmailNotificationValue(),
+      'A1_55' => $this->getReceiverEmailNotificationValue(),
       'A1_56' => 'planzer_sender_language',
       'A1_57' => apply_filters('planzer/csv/client_salutation', '', $this->order),
 
       'A1_67' => $this->getDeliveryDate()->format('d.m.Y'),
 
-      'A1_70' => $package->getPackageNumber(),
+      'A1_70' => "{$this->order->get_id()}_{$this->package->getSequenceNumber(0)}", // same as P1_7, this is the "upper" reference number
 
       // MS: do not use this field anymore - see PLZ-27
       // 'A1_76' => 'planzer_notifications_deposit_notice',
@@ -104,9 +105,9 @@ class DataLoader
     $this->field_mapping = array_merge($this->field_mapping, [
       'P1_0' => 'P1',
       'P1_1' => 'PAKE',
-      'P1_6' => 'planzer_notifications_package_content',
-      'P1_7' => $package->getPackageNumber(),
-      'P1_8' => $package->getQRContentWithoutSuffix(),
+      // 'P1_6' => 'books, toys', // PLZ-56 do not send value anymore
+      'P1_7' => "{$this->order->get_id()}_{$this->package->getSequenceNumber(0)}", // same as A1_70, this is the "lower" reference number (on yellow background)
+      'P1_8' => $this->package->getQRContentWithoutSuffix(), // see PLZ-42 task for details
     ]);
 
     $this->field_mapping = array_merge($this->field_mapping, [
@@ -117,38 +118,35 @@ class DataLoader
 
   private function getAccountNumber(): string
   {
-    if ('no' !== get_option('planzer_ftm_test_mode', 'yes')) {
-      return get_option('planzer_ftp_test_account_id');
-    }
     return get_option('planzer_ftp_live_account_id');
   }
 
-  private function getSmsNotificationValue(): string
+  private function getReceiverSmsNotificationValue(): string
   {
-    if ('no' !== get_option('planzer_notifications_notifications_enabled', 'no')) {
-      return 'yes' === get_option('planzer_notifications_sms_notification') ? '' : 'A';
-    }
+    return 'yes' === get_option('planzer_notifications_receiver_sms_notification', 'no') ? '' : 'A';
+  }
+
+  private function getReceiverEmailNotificationValue(): string
+  {
+    return 'yes' === get_option('planzer_notifications_receiver_email_notification', 'no') ? '' : 'B';
+  }
+
+  private function getSenderSmsNotificationValue(): string
+  {
     return 'A';
   }
 
-  private function getEmailNotificationValue(): string
+  private function getSenderEmailNotificationValue(): string
   {
-    if ('no' !== get_option('planzer_notifications_notifications_enabled', 'no')) {
-      return 'yes' === get_option('planzer_notifications_email_notification') ? '' : 'B';
-    }
-    return 'B';
+    return 'yes' === get_option('planzer_notifications_sender_email_notifications', 'no') ? '' : 'B';
   }
 
   public function getPickupDate(): Carbon
   {
-    $order_date = $this->order->get_date_paid();
     $pickup_date = Carbon::now($this->time_zone);
-    if (! empty($order_date)) {
-      $pickup_date = Carbon::createFromTimestamp($order_date->getTimestamp(), $this->time_zone);
-    }
 
     if ($this->pickup_end_of_day_hour <= $pickup_date->hour) {
-      //if is after "EOD" hour move pickup to next avaiable day
+      //if is after "EOD" hour move pickup to next available day
       $pickup_date = $this->maybeMoveToNextWorkingDay($pickup_date->addDay());
     }
     return apply_filters('planzer/csv/pickup_date', $pickup_date, $this->order);

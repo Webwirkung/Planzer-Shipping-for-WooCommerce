@@ -2,18 +2,20 @@
 
 namespace Planzer\CSV;
 
-use Carbon\Carbon;
+use Planzer\Package\Package;
 use WC_Order;
 
 class CSV
 {
   private ?WC_Order $order = null;
   private ?DataLoader $data = null;
+  private Package $package;
 
-  public function __construct(WC_Order $order)
+  public function __construct(WC_Order $order, Package &$package)
   {
     $this->order = $order;
-    $this->data = new DataLoader($this->order);
+    $this->package = $package;
+    $this->data = new DataLoader($this->order, $this->package);
   }
 
   public function generateGroupA(): string

@@ -1,4 +1,5 @@
 <?php
+
 namespace Planzer\Settings\Sections;
 
 use Planzer\Settings\Sections\Section;
@@ -10,27 +11,24 @@ class FTP extends SectionBase implements Section
   {
     $this
       ->startGroup(__('Mode', 'planzer'), 'mode')
-        ->addCheckbox(__('Test Mode'), 'test_mode', ['desc' => __('Enable test mode of SFTP integration', 'planzer')])
+        ->addToggle(__('Test Mode', 'planzer'), 'test_mode', [
+          'desc' => __('Enable test mode of SFTP integration', 'planzer'),
+          'default' => 'yes',
+        ])
       ->endGroup('mode')
 
-      ->startGroup(__('Test', 'planzer'), 'test')
-        ->addTextInput(__('Account ID', 'planzer'), 'test_account_id')
-        ->addTextInput(__('IP Address', 'planzer'), 'test_ip_address')
-      ->endGroup('test')
-
       ->startGroup(__('Live', 'planzer'), 'live')
-        ->addTextInput(__('Account ID', 'planzer'), 'live_account_id')
-        ->addTextInput(__('IP Address', 'planzer'), 'live_ip_address')
+        ->addTextInput(__('Account ID', 'planzer'), 'live_account_id', ['required' => true,])
+        ->addTextInput(
+            __('Server URL', 'planzer'),
+            'live_server_address',
+            [
+              'desc' => __('Please do not change the URL unless you have been expressly requested to do so by support or you know what you are doing. Changes in this field can result in data no longer being transmitted to Planzer.', 'planzer'),
+              'default' => 'lobplalb02.planzer.ch',
+              'required' => true,
+            ],
+        )
       ->endGroup('live')
-
-      ->startGroup(__('Account', 'planzer'), 'account')
-        ->addTextInput(__('Username', 'planzer'), 'username', [
-          'required' => true,
-        ])
-        ->addPasswordInput(__('Password', 'planzer'), 'password', [
-          'required' => true,
-        ])
-      ->endGroup('account')
     ;
   }
 

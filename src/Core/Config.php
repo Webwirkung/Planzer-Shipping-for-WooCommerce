@@ -1,4 +1,5 @@
 <?php
+
 namespace Planzer\Core;
 
 class Config
@@ -8,7 +9,9 @@ class Config
    */
   public function initConfig(): void
   {
-    load_textdomain('planzer', PLANZER_RESOURCES_PATH . '/lang/' . get_locale() . '.mo');
+    if (! load_textdomain('planzer', PLANZER_RESOURCES_PATH . '/lang/' . get_locale() . '.mo')) {
+      load_textdomain('planzer', PLANZER_RESOURCES_PATH . '/lang/' . explode('_', get_locale())[0] . '.mo');
+    }
   }
 
   /**
@@ -18,10 +21,17 @@ class Config
   {
     $version = 'production' === wp_get_environment_type() ? null : time();
 
-    wp_enqueue_style('planzer/front.css', PLANZER_ASSETS_URI . '/styles/front.css', false, $version);
-    wp_enqueue_script('planzer/manifest.js', PLANZER_ASSETS_URI . '/scripts/manifest.js', ['jquery'], $version, true);
-    wp_enqueue_script('planzer/vendor.js', PLANZER_ASSETS_URI . '/scripts/vendor.js', ['planzer/manifest.js'], $version, true);
-    wp_enqueue_script('planzer/front.js', PLANZER_ASSETS_URI . '/scripts/front.js', ['planzer/manifest.js'], $version, true);
+    /**
+     * MS: PLZ-51 - disable loading assets since they are empty anyway
+     * when enabling make sure they will work for WPML setup like:
+     * - example.test/en/wp-content/plugins/wc-planzer-shipping/dist/styles/admin.css
+     * - example.test/de/wp-content/plugins/wc-planzer-shipping/dist/styles/admin.css
+     */
+
+    // wp_enqueue_style('planzer/front.css', PLANZER_ASSETS_URI . '/styles/front.css', false, $version);
+    // wp_enqueue_script('planzer/manifest.js', PLANZER_ASSETS_URI . '/scripts/manifest.js', ['jquery'], $version, true);
+    // wp_enqueue_script('planzer/vendor.js', PLANZER_ASSETS_URI . '/scripts/vendor.js', ['planzer/manifest.js'], $version, true);
+    // wp_enqueue_script('planzer/front.js', PLANZER_ASSETS_URI . '/scripts/front.js', ['planzer/manifest.js'], $version, true);
 
     wp_localize_script('planzer/front.js', 'planzer', [
       'ajax' => admin_url('admin-ajax.php')
@@ -46,7 +56,7 @@ class Config
   }
 
   /**
-   * @filter plugin_action_links_woocommerce-planzer/woocommerce-planzer.php
+   * @filter plugin_action_links_wc-planzer-shipping/wc-planzer-shipping.php
    */
   public function settingsLink($links)
   {
