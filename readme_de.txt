@@ -3,7 +3,7 @@ Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checko
 Requires at least: 5.7
 Tested up to: 5.8.2
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 

@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 5.8.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -181,3 +181,7 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 * Fix folder naming
 * Add PHP and WooCommerce checks
 * Update readme - add _de translation
+
+= 1.0.2 2021-12-29 =
+
+* Fix company name when the shipping address is filled

@@ -72,7 +72,7 @@
 <div style="clear: both;"></div>
 <div class="customer">
   <?php echo esc_html($data['order']->get_shipping_first_name() ?: $data['order']->get_billing_first_name()); ?> <?php echo esc_html($data['order']->get_shipping_last_name() ?: $data['order']->get_billing_last_name()); ?> <br/>
-  <?php echo esc_html($data['order']->get_shipping_company() ?: $data['order']->get_billing_company()); ?><br/>
+  <?php echo esc_html(($data['order']->get_billing_company() === $data['order']->get_shipping_company()) ? $data['order']->get_billing_company() : $data['order']->get_shipping_company()); ?><br/>
   <?php echo esc_html($data['order']->get_shipping_address_1() ?: $data['order']->get_billing_address_1()); ?> <?php echo esc_html($data['order']->get_shipping_address_2() ?: $data['order']->get_billing_address_2()); ?> <br/>
   <?php echo esc_html($data['order']->get_shipping_postcode() ?: $data['order']->get_billing_postcode()); ?> <?php echo esc_html($data['order']->get_shipping_city() ?: $data['order']->get_billing_city()); ?><br/>
   <?php echo esc_html($data['country']); ?>
