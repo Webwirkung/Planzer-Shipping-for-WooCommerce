@@ -24,6 +24,13 @@ To use this plugin you must be a Planzer customer. By signing a contract with Pl
 
 [Become a Planzer customer now](https://planzerhelp.zendesk.com/hc/en-us/requests/new)
 
+= necessary information you need =
+
+* Department number
+* Customer number
+* Your responsible branch
+* Account ID (tab connection to Planzer)
+
 == Standard process ==
 
 1. order is placed in your WooCommerce online store.
@@ -36,75 +43,24 @@ To use this plugin you must be a Planzer customer. By signing a contract with Pl
 
 == setup & Configuration ==
 
-All settings for the plugin can be found under "WooCommerce > Settings", here a new tab "Planzer" is displayed in the right area.
-In this tab you will find the following five categories:
+All settings for the plugin can be found under "WooCommerce > Settings", here a new tab "Planzer" is displayed in the right area where you can make all configurations.
 
-= General =
+== Functions ==
+* Manually OR automatic transmission of orders to Planzer
+* Settings for notifications to you and your customers
+* Generate a label OR a personalized delivery note with your logo (both with Planzer QR-Code) and send it to an email address of your choice
+* Exclude products which should not be shipped via Planzer (e.g. Vouchers)
+* View the status of the order and transmission
+* Multiple delivery notes/labels per order
+* Testmode that prevents sending orders to Planzer
 
-* Fill in at least the mandatory fields and save the changes
-* Select whether the transmission of the order to Planzer should happen manually. In case of manual transmission, the order status must then be manually set to "Transmit to Planzer".
-* Define under "Pick up orders" which orders should be picked up by Planzer on the same day.
-
-For example: orders received in the online store before 12.00 noon will be picked up by Planzer at 6.00 p.m. on the same day and delivered to their customers the next day. Orders received after 12.00 o'clock will be picked up by Planzer the next day.
-
-**Tip:** You will find the following information in your Planzer contract:
-
-* Department number
-* Customer number
-* Your responsible branch
-* Account ID (tab connection to Planzer)
-
-= Connection to Planzer =
-* During the installation and configuration of the plugin, check "Enable test mode, this stops the transmission to Planzer" so that no data is transmitted to your live portal. The test mode is enabled by default.
-* Add your account ID for proper connection to Planzer
-* Uncheck Test Mode once you have made all the adjustments and you want the data to be sent to Planzer from now on.
-
+== General ==
 Contact our [Support](mailto:support@webwirkung.ch) in the following cases:
 
 * Your webshop is not hosted in one of the following countries: Switzerland, Liechtenstein, Germany, Austria, Italy or France.
 * Despite correct information, orders are not displayed in your portal
 
 **! Never make unsolicited changes to the server URL !**
-
-= Notifications =
-
-* Decide if and which notifications should be sent to you and your customers.
-* Determine how packages are delivered (e.g. always deposit)
-
-= Delivery note/label =
-
-Decide whether a normal label with QR code or a personalized delivery note with QR code should be generated. The selected label will be sent to the specified email address. Separate multiple recipients with a comma. If you choose the personalized delivery note, you need to provide the following information.
-
-* Enter the URL of your logo, it will be automatically printed on the delivery note
-* Specify a general contact person, which will be printed on the delivery note
-
-**Tip:** For an automatic printout of your delivery note, enter the e-mail address of your printer.
-
-= Exclude products =
-
-You have individual products that should not be shipped with Planzer?
-
-* Select the products that should not be sent with Planzer (e.g. vouchers).
-* Orders with multiple products and only one excluded product will still be sent to Planzer
-* If only one excluded product is ordered, you will receive the order but it will not be sent to Planzer.
-
-== Other functions ==
-
-= Status to order and transmission ==
-
-Go to the detailed view of an order in Wordpress, here you can see the status of the transmission to Planzer in the right area.
-This allows you to see if an order has not been transmitted and you can see why the transmission has not taken place.
-
-= Multiple delivery notes/labels per order =
-
-If you have an order for which you need multiple labels or delivery bills, you can generate additional ones as follows:
-
-* In WooCommerce, go to the detail view for the corresponding order.
-* At the top of the right area you have a selectbox for "Order actions"
-* Select here "Create Planzer delivery note" and update the order
-
-Then an additional delivery bill or label will be sent to you by e-mail. You can perform this action several times. A first delivery note/label is already generated during the first transmission, so for two packages per order, for example, only one additional delivery note/label needs to be generated.
-
 
 == Frequently Asked Questions ==
 
