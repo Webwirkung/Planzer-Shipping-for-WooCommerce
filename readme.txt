@@ -24,7 +24,7 @@ To use this plugin you must be a Planzer customer. By signing a contract with Pl
 
 [Become a Planzer customer now](https://planzerhelp.zendesk.com/hc/en-us/requests/new)
 
-= necessary information you need =
+= Necessary information you need =
 
 * Department number
 * Customer number
@@ -33,22 +33,22 @@ To use this plugin you must be a Planzer customer. By signing a contract with Pl
 
 == Standard process ==
 
-1. order is placed in your WooCommerce online store.
-2. order is created in WooCommerce with status "On hold/In waiting", if e.g. payment is made by prepayment.
-3. the status of the order is changed to "In process" (for some payment methods this step is done immediately, e.g. credit card)
-4. the order is automatically transferred to the Planzer portal
-5. a QR code or (if desired) a personalized delivery note is generated
-6. you pack the product and place the label or delivery note with QR code on it
+1. Order is placed in your WooCommerce online store.
+2. Order is created in WooCommerce with status "On hold/In waiting", if e.g. payment is made by prepayment.
+3. The status of the order is changed to "In process" (for some payment methods this step is done immediately, e.g. credit card)
+4. The order is automatically transferred to the Planzer portal
+5. A QR code or (if desired) a personalized delivery note is generated
+6. You pack the product and place the label or delivery note with QR code on it
 7. Planzer picks up the package from you between 4:00 and 6:00 p.m. and delivers it
 
-== setup & Configuration ==
+== Setup & Configuration ==
 
 All settings for the plugin can be found under "WooCommerce > Settings", here a new tab "Planzer" is displayed in the right area where you can make all configurations.
 
 == Functions ==
-* Manually OR automatic transmission of orders to Planzer
+* Manually or automatic transmission of orders to Planzer
 * Settings for notifications to you and your customers
-* Generate a label OR a personalized delivery note with your logo (both with Planzer QR-Code) and send it to an email address of your choice
+* Generate a label or a personalized delivery note with your logo (both with Planzer QR-Code) and send it to an email address of your choice
 * Exclude products which should not be shipped via Planzer (e.g. Vouchers)
 * View the status of the order and transmission
 * Multiple delivery notes/labels per order
@@ -61,6 +61,10 @@ Contact our [Support](mailto:support@webwirkung.ch) in the following cases:
 * Despite correct information, orders are not displayed in your portal
 
 **! Never make unsolicited changes to the server URL !**
+
+== Documentation ==
+Please check out our Github Repository to view our full documentation:
+https://github.com/Webwirkung/Planzer-Shipping-for-WooCommerce
 
 == Frequently Asked Questions ==
 

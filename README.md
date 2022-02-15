@@ -31,12 +31,12 @@ To use this plugin you must be a Planzer customer. By signing a contract with Pl
 ## Standard process
 The default process if not chosen differently (manual transmission) the process will be the following:
 
-1. order is placed in your WooCommerce online store
-2. order is created in WooCommerce with status "On hold/In waiting", if e.g. payment is made by prepayment.
-3. the status of the order is changed to "In process" (for some payment methods this step is done immediately, e.g. credit card)
-4. the order is automatically transferred to the Planzer portal
-5. a label or (if desired) a personalized delivery note (both with QR code) is generated
-6. you pack the product and place the label or delivery note on it
+1. Order is placed in your WooCommerce online store
+2. Order is created in WooCommerce with status "On hold/In waiting", if e.g. payment is made by prepayment.
+3. The status of the order is changed to "In process" (for some payment methods this step is done immediately, e.g. credit card)
+4. The order is automatically transferred to the Planzer portal
+5. A label or (if desired) a personalized delivery note (both with QR code) is generated
+6. You pack the product and place the label or delivery note on it
 7. Planzer picks up the package from you between 4:00 and 6:00 p.m. and delivers it
 
 ## Setup & Configuration
