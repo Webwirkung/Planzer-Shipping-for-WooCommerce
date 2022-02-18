@@ -145,3 +145,11 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 = 1.0.2 2021-12-29 =
 
 * Fix company name when the shipping address is filled
+
+* Fix company name when the shipping address is filled
+
+= 1.0.3 2022-02-18 =
+
+* Fix label PDF fields usage
+* Use sender email in PDF footer instead WP admin email
+* Fix hour detection for end of day

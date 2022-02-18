@@ -67,7 +67,7 @@
   </div>
 <?php endif; ?>
 <div class="company-name">
-  <?php echo esc_html($data['company']); ?><?php echo esc_html(empty($data['company_extra']) ? '' : (" {$data['company_extra']}")); ?>, <?php echo esc_html($data['company_address']->get_base_address()); ?>, <?php echo esc_html($data['company_address']->get_base_postcode()); ?> <?php echo esc_html($data['country']); ?>
+  <?php echo esc_html($data['company']); ?><?php echo esc_html(empty($data['company_extra']) ? '' : (" {$data['company_extra']}")); ?>, <?php echo esc_html($data['company_address']->get_base_address()); ?>, <?php echo esc_html($data['company_address']->get_base_postcode()); ?> <?php echo esc_html($data['company_city']); ?>
 </div>
 <div style="clear: both;"></div>
 <div class="customer">
