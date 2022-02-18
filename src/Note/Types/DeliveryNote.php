@@ -13,7 +13,7 @@ class DeliveryNote extends AbstractNote implements NoteInterface
     $this->getMpdf()->SetFooter(Template::generateTemplate('note/delivery-note/footer', [
       'company' => get_option('planzer_sender_company_name'),
       'company_address' => WC()->countries,
-      'email' => get_option('admin_email'),
+      'email' => get_option('planzer_sender_email'),
       'website' => site_url(),
     ]));
 
@@ -23,6 +23,7 @@ class DeliveryNote extends AbstractNote implements NoteInterface
       'package_number' => $this->package->getQRContentWithoutSuffix(),
       'qr_url' => $this->package->getGeneratedQRUrl(),
       'sequence_number' => $this->package->getSequenceNumber(0),
+      'company_city' => get_option('planzer_sender_city'),
       'company' => get_option('planzer_sender_company_name'),
       'company_extra' => get_option('planzer_sender_company_extra'),
       'company_address' => WC()->countries,

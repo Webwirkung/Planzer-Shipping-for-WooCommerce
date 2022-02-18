@@ -144,8 +144,11 @@ class DataLoader
   public function getPickupDate(): Carbon
   {
     $pickup_date = Carbon::now($this->time_zone);
+    $end_of_day_date = Carbon::now($this->time_zone);
+    $end_of_day_date->hour = explode(':', $this->pickup_end_of_day_hour)[0];
+    $end_of_day_date->minute = explode(':', $this->pickup_end_of_day_hour)[1];
 
-    if ($this->pickup_end_of_day_hour <= $pickup_date->hour) {
+    if (0 >= $pickup_date->diffInMinutes($end_of_day_date, false)) {
       //if is after "EOD" hour move pickup to next available day
       $pickup_date = $this->maybeMoveToNextWorkingDay($pickup_date->addDay());
     }
