@@ -33,5 +33,11 @@
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.8.0",
     "symfony/var-dumper": "^4.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "kylekatarnls/update-helper": true
+    }
   }
 }
