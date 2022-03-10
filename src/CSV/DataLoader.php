@@ -148,7 +148,7 @@ class DataLoader
     $end_of_day_date->hour = explode(':', $this->pickup_end_of_day_hour)[0];
     $end_of_day_date->minute = explode(':', $this->pickup_end_of_day_hour)[1];
 
-    if (0 >= $pickup_date->diffInMinutes($end_of_day_date, false)) {
+    if (0 >= $pickup_date->diffInMinutes($end_of_day_date, false) || $pickup_date->isWeekend()) {
       //if is after "EOD" hour move pickup to next available day
       $pickup_date = $this->maybeMoveToNextWorkingDay($pickup_date->addDay());
     }
