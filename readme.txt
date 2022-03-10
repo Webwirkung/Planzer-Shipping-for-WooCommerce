@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 5.9
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -153,3 +153,7 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 * Fix label PDF fields usage
 * Use sender email in PDF footer instead WP admin email
 * Fix hour detection for end of day
+
+= 1.0.4 2022-03-10 =
+
+* Fix weekend detection for pickup and delivery dates
