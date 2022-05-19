@@ -3,12 +3,12 @@
   "type": "wordpress-plugin",
   "license": "GPL2",
   "description": "Shipping via Planzer for WooCommerce",
-  "homepage": "https://bold.dev/",
+  "homepage": "https://webwirkung.ch",
   "authors": [
     {
-      "name": "BOLD_",
-      "email": "dev@bold.dev",
-      "homepage": "https://bold.dev/"
+      "name": "Webwirkung",
+      "email": "info@webwirkung.ch",
+      "homepage": "https://webwirkung.ch"
     }
   ],
   "keywords": [
