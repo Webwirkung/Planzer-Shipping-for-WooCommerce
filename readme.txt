@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.0
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -157,3 +157,8 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 = 1.0.4 2022-03-10 =
 
 * Fix weekend detection for pickup and delivery dates
+
+= 1.0.5 2022-05-20 =
+
+* Add customer note (if not empty) to delivery note PDF.
+* Change QR code size on delivery note.

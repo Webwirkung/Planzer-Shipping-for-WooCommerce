@@ -50,6 +50,7 @@
   .order-tr td{
     padding: 5px 0;
   }
+  .customer-note,
   .thank-you {
     font-size: 10px;
     line-height: 12px;
@@ -79,7 +80,7 @@
 </div>
 <div class="package-number">
   <?php echo __('Package number', 'planzer'); ?>: <?php echo esc_html($data['package_number']); ?><br/><br/>
-  <img class="qr-code" width="200" src="<?php echo esc_url($data['qr_url']); ?>"/>
+  <img class="qr-code" width="160" src="<?php echo esc_url($data['qr_url']); ?>"/>
 </div>
 <div style="clear: both;"></div>
 <br/>
@@ -141,6 +142,13 @@
   ?>
   </tbody>
 </table>
+<?php if (! empty($data['order']->get_customer_note())) : ?>
+  <div class="customer-note">
+    <?php echo __('Annotation:', 'planzer'); ?>
+    <br>
+    <?php echo $data['order']->get_customer_note(); ?>
+  </div>
+<?php endif; ?>
 <div class="thank-you">
   <?php echo __('Thank you very much for the order.', 'planzer'); ?><br><br>
   <?php echo __('Feel free to contact us if you have any questions.', 'planzer'); ?><br><br>
