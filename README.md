@@ -1,7 +1,7 @@
 # Shipping via Planzer for WooCommerce
-Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce  
+Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.0 Stable
-tag: 1.0.4
+tag: 1.0.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -110,14 +110,14 @@ Then an additional delivery bill or label will be sent to you by e-mail. You can
 Yes, your server MUST have the function `eval()` enabled - it is needed to send data to Planzer servers.
 
 ### What do I need to use this plugin?
-For this plugin you need a contract with Planzer in advance. In this contract you will find all the information you need to configure the plugin.  
+For this plugin you need a contract with Planzer in advance. In this contract you will find all the information you need to configure the plugin.
 You don't have a contract yet? Become a [Planzer customer](https://planzerhelp.zendesk.com/hc/en-us/requests/new)
 
 ### Where can I see the orders?
 You can see all submitted orders [in your Planzer Portal](https://paketversenden.planzergroup.com/myorders).
 
 ### Why can't I connect to Planzer?
-Is your webshop hosted in Switzerland, Liechtenstein, Germany, Austria, Italy or France?  
+Is your webshop hosted in Switzerland, Liechtenstein, Germany, Austria, Italy or France?
 If not, please contact our [Support](mailto:support@webwirkung.ch).
 
 ### Can I also send only selected orders with Planzer
@@ -179,3 +179,8 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 **1.0.4 2022-03-10**
 
 * Fix weekend detection for pickup and delivery dates
+
+**1.0.5 2022-05-20**
+
+* Add customer note (if not empty) to delivery note PDF.
+* Change QR code size on delivery note.

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-08 14:13+0100\n"
+"POT-Creation-Date: 2022-05-20 11:10+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,67 +18,71 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: resources/views/note/delivery-note/content.php:81
+#: resources/views/note/delivery-note/content.php:82
 msgid "Package number"
 msgstr "Paketnummer"
 
-#: resources/views/note/delivery-note/content.php:88
+#: resources/views/note/delivery-note/content.php:89
 msgid "Delivery note LS"
 msgstr "Lieferschein LS"
 
-#: resources/views/note/delivery-note/content.php:93
+#: resources/views/note/delivery-note/content.php:94
 msgid "Date"
 msgstr "Datum"
 
-#: resources/views/note/delivery-note/content.php:95
+#: resources/views/note/delivery-note/content.php:96
 msgid "Customer number"
 msgstr "Kundennummer"
 
-#: resources/views/note/delivery-note/content.php:99
+#: resources/views/note/delivery-note/content.php:100
 msgid "Your contact person"
 msgstr "Ihr Ansprechpartner"
 
-#: resources/views/note/delivery-note/content.php:107
+#: resources/views/note/delivery-note/content.php:108
 msgid "Ladies and gentlemen"
 msgstr "Meine Damen und Herren"
 
-#: resources/views/note/delivery-note/content.php:112
+#: resources/views/note/delivery-note/content.php:113
 msgid "Item"
 msgstr "Pos"
 
-#: resources/views/note/delivery-note/content.php:113
+#: resources/views/note/delivery-note/content.php:114
 msgid "Description"
 msgstr "Beschreibung"
 
-#: resources/views/note/delivery-note/content.php:114
+#: resources/views/note/delivery-note/content.php:115
 msgid "Unit"
 msgstr "Einheit"
 
-#: resources/views/note/delivery-note/content.php:115
+#: resources/views/note/delivery-note/content.php:116
 msgid "Quantity ordered"
 msgstr "Bestellmenge"
 
-#: resources/views/note/delivery-note/content.php:116
+#: resources/views/note/delivery-note/content.php:117
 msgid "Crowd open"
 msgstr "Menge offen"
 
-#: resources/views/note/delivery-note/content.php:117
+#: resources/views/note/delivery-note/content.php:118
 msgid "Quantity delivered"
 msgstr "Gelieferte Menge"
 
-#: resources/views/note/delivery-note/content.php:132
+#: resources/views/note/delivery-note/content.php:133
 msgid "Product Code"
 msgstr "Produktcode"
 
-#: resources/views/note/delivery-note/content.php:145
+#: resources/views/note/delivery-note/content.php:147
+msgid "Annotation:"
+msgstr "Anmerkung:"
+
+#: resources/views/note/delivery-note/content.php:153
 msgid "Thank you very much for the order."
 msgstr "Herzlichen Dank für die Bestellung."
 
-#: resources/views/note/delivery-note/content.php:146
+#: resources/views/note/delivery-note/content.php:154
 msgid "Feel free to contact us if you have any questions."
 msgstr "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren."
 
-#: resources/views/note/delivery-note/content.php:147
+#: resources/views/note/delivery-note/content.php:155
 msgid "Kind regards"
 msgstr "Mit freundlichen Grüssen"
 
@@ -101,6 +105,11 @@ msgstr "Planzer Etikette der Bestellung"
 #: src/Note/Note.php:42
 msgid "Planzer note for order"
 msgstr "Planzer Notiz der Bestellung"
+
+#: src/Note/Note.php:51
+#, php-format
+msgid "Planzer: ERROR while sending Planzer PDF email - %s"
+msgstr ""
 
 #: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:37
 msgid "Delivery"
@@ -519,11 +528,11 @@ msgstr ""
 "Beim Senden von Daten an Planzer ist ein Fehler aufgetreten. Bitte versuchen "
 "Sie es erneut oder überprüfen Sie das Debuglog."
 
-#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:37
+#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:32
 msgid "The address is invalid - please type in an existing address"
 msgstr "Die Adresse ist ungültig - bitte geben Sie eine vorhandene Adresse ein"
 
-#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:41
+#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:36
 #: src/Api/Endpoints/Address.php:37
 msgid ""
 "There was a problem with verifying your address, please try again later or "
@@ -540,7 +549,7 @@ msgstr "Zusätzlichen Planzer Lieferschein/Etikette generieren"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/SFTP/SFTP.php:20
+#: src/SFTP/SFTP.php:22
 msgid ""
 "There was a problem with the connection to the server, please try again "
 "later or contact administrator."
@@ -603,6 +612,3 @@ msgstr ""
 
 #~ msgid "Without signature"
 #~ msgstr "Ohne Unterschrift"
-
-#~ msgid "Location"
-#~ msgstr "Ort"

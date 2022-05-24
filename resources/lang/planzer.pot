@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-22 16:03+0100\n"
+"POT-Creation-Date: 2022-05-20 11:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,67 +18,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: resources/views/note/delivery-note/content.php:81
+#: resources/views/note/delivery-note/content.php:82
 msgid "Package number"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:88
+#: resources/views/note/delivery-note/content.php:89
 msgid "Delivery note LS"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:93
+#: resources/views/note/delivery-note/content.php:94
 msgid "Date"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:95
+#: resources/views/note/delivery-note/content.php:96
 msgid "Customer number"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:99
+#: resources/views/note/delivery-note/content.php:100
 msgid "Your contact person"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:107
+#: resources/views/note/delivery-note/content.php:108
 msgid "Ladies and gentlemen"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:112
+#: resources/views/note/delivery-note/content.php:113
 msgid "Item"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:113
+#: resources/views/note/delivery-note/content.php:114
 msgid "Description"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:114
+#: resources/views/note/delivery-note/content.php:115
 msgid "Unit"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:115
+#: resources/views/note/delivery-note/content.php:116
 msgid "Quantity ordered"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:116
+#: resources/views/note/delivery-note/content.php:117
 msgid "Crowd open"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:117
+#: resources/views/note/delivery-note/content.php:118
 msgid "Quantity delivered"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:132
+#: resources/views/note/delivery-note/content.php:133
 msgid "Product Code"
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:145
+#: resources/views/note/delivery-note/content.php:147
+msgid "Annotation:"
+msgstr ""
+
+#: resources/views/note/delivery-note/content.php:153
 msgid "Thank you very much for the order."
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:146
+#: resources/views/note/delivery-note/content.php:154
 msgid "Feel free to contact us if you have any questions."
 msgstr ""
 
-#: resources/views/note/delivery-note/content.php:147
+#: resources/views/note/delivery-note/content.php:155
 msgid "Kind regards"
 msgstr ""
 
@@ -100,6 +104,11 @@ msgstr ""
 
 #: src/Note/Note.php:42
 msgid "Planzer note for order"
+msgstr ""
+
+#: src/Note/Note.php:51
+#, php-format
+msgid "Planzer: ERROR while sending Planzer PDF email - %s"
 msgstr ""
 
 #: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:37
