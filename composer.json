@@ -24,8 +24,8 @@
   },
   "require": {
     "php": ">=7.4",
-    "ext-mbstring": "*",  
-    "ext-ctype": "*", 
+    "ext-mbstring": "*",
+    "ext-ctype": "*",
     "composer/installers": "~1.0",
     "illuminate/support": "5.6.*",
     "joachim-n/case-converter": "^1.0",
@@ -38,7 +38,7 @@
   },
   "replace": {
     "symfony/polyfill-mbstring": "*",
-    "symfony/polyfill-ctype": "*",  
+    "symfony/polyfill-ctype": "*",
     "ralouphie/getallheaders": "*"
   },
   "config": {

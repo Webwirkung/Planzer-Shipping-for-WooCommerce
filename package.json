@@ -21,7 +21,7 @@
     "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "build": "npm run rmdist && npm run rmbuild && npm run production && npm run production -- --env.mixfile=webpack.build.mix.js && rimraf build/*/resources/blocks/*/*.scss && rimraf build/*/resources/blocks/*/*.js",
+    "build": "npm run vendor:prod:get; npm run rmdist && npm run rmbuild && npm run production && npm run production -- --env.mixfile=webpack.build.mix.js && rimraf build/*/resources/blocks/*/*.scss && rimraf build/*/resources/blocks/*/*.js; npm run vendor:prod:remove",
     "rmdist": "rimraf dist",
     "rmbuild": "rimraf build",
     "pot": "mkdir -p ./resources/lang && find ./resources ./src -iname '*.php' | xargs xgettext --add-comments=TRANSLATORS --force-po --from-code=UTF-8 --default-domain=en_US -k__ -k_e -k_n:1,2 -k_x:1,2c -k_ex:1,2c -k_nx:4c,12 -kesc_attr__ -kesc_attr_e -kesc_attr_x:1,2c -kesc_html__ -kesc_html_e -kesc_html_x:1,2c -k_n_noop:1,2 -k_nx_noop:3c,1,2, -k__ngettext_noop:1,2 -o resources/lang/planzer.pot && find ./resources -iname '*.blade.php' | xargs xgettext --language=Python --add-comments=TRANSLATORS --force-po --from-code=UTF-8 --default-domain=en_US -k__ -k_e -k_n:1,2 -k_x:1,2c -k_ex:1,2c -k_nx:4c,12 -kesc_attr__ -kesc_attr_e -kesc_attr_x:1,2c -kesc_html__ -kesc_html_e -kesc_html_x:1,2c -k_n_noop:1,2 -k_nx_noop:3c,1,2, -k__ngettext_noop:1,2 -j -o resources/lang/planzer.pot",
@@ -32,7 +32,9 @@
     "srp:staging:local": "wp search-replace planzer.webwirkungdev.ch planzer.test --all-tables --path=../../../ && wp search-replace https://planzer.test http://planzer.test --all-tables --path=../../../",
     "srp:prod:local": "wp search-replace planzer.prod planzer.test --all-tables --path=../../../ && wp search-replace https://planzer.test http://planzer.test --all-tables --path=../../../",
     "srp:local:staging": "wp search-replace planzer.test planzer.webwirkungdev.ch --all-tables --path=../../../ && wp search-replace http://planzer.webwirkungdev.ch https://planzer.webwirkungdev.ch --all-tables --path=../../../",
-    "srp:local:prod": "wp search-replace planzer.test planzer.prod --all-tables --path=../../../ && wp search-replace http://planzer.prod https://planzer.prod --all-tables --path=../../../"
+    "srp:local:prod": "wp search-replace planzer.test planzer.prod --all-tables --path=../../../ && wp search-replace http://planzer.prod https://planzer.prod --all-tables --path=../../../",
+    "vendor:prod:get": "mv vendor vendor-dev && composer install --no-dev --optimize-autoloader",
+    "vendor:prod:remove": "rimraf vendor && mv vendor-dev vendor"
   },
   "engines": {
     "node": ">= 12.1.0"
