@@ -23,8 +23,8 @@
         </tr>
         <tr>
           <td class="delivery-label-text" text-rotate="90"><?php echo esc_html($data['order']->get_shipping_first_name() ?: $data['order']->get_billing_first_name()); ?> <?php echo esc_html($data['order']->get_shipping_last_name() ?: $data['order']->get_billing_last_name()); ?></td>
-          <td class=td-qr-code>
-            <img width="200" src="<?php echo esc_url($data['qr_url']); ?>">
+          <td class="td-qr-code">
+            <img width="600" src="<?php echo esc_url($data['qr_url']); ?>">
           </td>
           <td class="delivery-label-text" text-rotate="-90"><?php echo esc_html($data['contact_name']); ?></td>
         </tr>

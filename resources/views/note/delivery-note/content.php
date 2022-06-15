@@ -85,6 +85,7 @@
 <div style="clear: both;"></div>
 <br/>
 <br/>
+<br/>
 <div class="delivery-note">
   <?php echo __('Delivery note LS', 'planzer'); ?>-<?php echo esc_html($data['sequence_number']); ?>
 </div>
