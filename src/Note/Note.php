@@ -48,7 +48,7 @@ class Note
 
           if (! $result) {
             error_log('Planzer: ERROR while sending Planzer PDF email - ' . substr($email, 0, 4) . '...');
-            $this->order->add_order_note(__(sprintf('Planzer: ERROR while sending Planzer PDF email - %s', substr($email, 0, 4) . '...')));
+            $this->order->add_order_note(sprintf(__('Planzer: ERROR while sending Planzer PDF email - %s', 'planzer'), substr($email, 0, 4) . '...'));
           }
         }
       }
