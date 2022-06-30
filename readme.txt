@@ -167,4 +167,5 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 
 * Change QR code size on the label note.
 * Change the orientation page to landscape on the label note
+* Change HTML structure in the label note
 * Change page margin on the delivery note

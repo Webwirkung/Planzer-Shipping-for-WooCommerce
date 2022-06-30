@@ -16,7 +16,7 @@ class NoteFactory
           $note = new DeliveryNote($order, $package, ['format' => 'A4', 'orientation' => 'P', 'margin_top' => 5]);
           break;
       case 'label_note':
-        $note = new LabelNote($order, $package, ['format' => 'A6', 'orientation' => 'L']);
+        $note = new LabelNote($order, $package, ['format' => 'A6', 'orientation' => 'L', 'margin_right' => 0, 'margin_left' => 0, 'margin_top' => 2, 'margin_bottom' => 2]);
           break;
       default:
           return null;
