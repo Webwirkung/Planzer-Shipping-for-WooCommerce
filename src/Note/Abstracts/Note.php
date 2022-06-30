@@ -16,9 +16,9 @@ abstract class Note
 
   protected Package $package;
 
-  public function __construct(WC_Order $order, Package &$package, $note_format = 'A4')
+  public function __construct(WC_Order $order, Package &$package, array $config = [])
   {
-    $this->mpdf = new Mpdf(['format' => $note_format]);
+    $this->mpdf = new Mpdf($config);
     $this->mpdf->defaultfooterline = 0;
     $this->order = $order;
     $this->package = $package;
