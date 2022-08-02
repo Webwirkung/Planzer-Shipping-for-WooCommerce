@@ -1,7 +1,7 @@
 # Shipping via Planzer for WooCommerce
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.0 Stable
-tag: 1.0.6
+tag: 1.0.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -191,3 +191,7 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 * Change the orientation page to landscape on the label note
 * Change HTML structure in the label note
 * Change page margin on the delivery note
+
+**1.0.7 2022-08-02**
+
+* Bugfix connected with wrong/empty SKU for variant products in the delivery note

@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: pianificatore, spedizione, e-commerce, negozio, vendite, vendita, woo, negozio, carrello, checkout, woo commerce
 Tested up to: 6.0
-Stable tag: 1.0.5
+Stable tag: 1.0.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -159,3 +159,14 @@ Se un ordine viene annullato in WooCommerce da te o dal tuo cliente, questo non 
 
 * Add customer note (if not empty) to delivery note PDF.
 * Change QR code size on delivery note.
+
+= 1.0.6 2022-06-15 =
+
+* Change QR code size on the label note.
+* Change the orientation page to landscape on the label note
+* Change HTML structure in the label note
+* Change page margin on the delivery note
+
+= 1.0.7 2022-08-02 =
+
+* Bugfix connected with wrong/empty SKU for variant products in the delivery note
