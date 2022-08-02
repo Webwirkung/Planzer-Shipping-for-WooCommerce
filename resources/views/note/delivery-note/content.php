@@ -123,7 +123,7 @@
   <?php
     $x = 1;
     foreach ($data['order']->get_items() as $item_id => $item) :
-      $product = wc_get_product($item->get_product_id());
+      $product = wc_get_product($item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id());
 
       if (! empty($data['excluded_products_ids']) && in_array($item->get_product_id(), $data['excluded_products_ids'])) {
         continue;
