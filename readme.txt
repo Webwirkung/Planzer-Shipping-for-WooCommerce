@@ -1,29 +1,28 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.0
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-‘Planzer Parcel Service & Plugin’ is as straightforward as it sounds: you install the plugin into your WooCommerce e-commerce solution. You can now send your online store parcels up to 30 kg via our Swiss parcel service. We collect your parcels daily on working days by appointment. Incidentally, we primarily store, pick, pack and transport goods within Switzerland. And 60% travel by eco-friendly rail.
+Shipping via Planzer for WooCommerce automatically franks your orders thanks to the link to Planzer. Besides, it directly generates a delivery bill or label. Save time and focus on growing your store.
 
 == Description ==
 
-Planzer Parcel is exactly what you need for your online store: quick collection, punctual delivery, friendly end customer contact, an all-round unparalleled delivery experience.
+All orders that come into your WooCommerce online store are automatically transmitted to [Planzer Paket](https://planzer-paket.ch/en/) with this plugin. The order is immediately visible in your Planzer portal and your package will be picked up by Planzer, at your location, for delivery.
 
-We deliver parcels of various sizes up to 30 kg to your recipient’s door in Switzerland – by the following evening and in person. Unless you would like something quicker or more specific. Interesting additional options let you tailor the delivery to your customer’s wishes.
+== Advantages at a glance ==
 
-To provide this outstanding B2C service, we combine our decades of experience in transport and logistics with new technologies and maximum e-commerce efficiency.
+* **Easy installation**<br />The plugin can be easily installed and filled with your data. Once the plugin is activated and in live mode, Planzer will pick up the packages from you.
+* **More time for the important things**<br />With our plugin, you no longer have to manually enter orders in the Planzer portal. This saves you time and allows you to take care of your daily business.
+* **Lower error rate**<br /> Since the orders are automatically transferred according to the input of your customers, (including shipping and billing addresses) the error rate will automatically decrease.
+* **QR code with personalized delivery note**<br /> On request, a personalized delivery bill is generated instead of the simple label with QR code.
 
-[More informationen about Plug & Planzer Parcel](https://plug-n.planzer-paket.ch/en/)
+== Already a Planzer customer? ==
 
-== Now the ball’s in your court ==
+To use this plugin you must be a Planzer customer. By signing a contract with Planzer you will receive the necessary information you need to start using the plugin.
 
-Whether you already work with Planzer Parcel or are new to us today, we look forward to getting to know you and your end customers.
-
-For this we need some information. Please fill out [this form](https://plug-n.planzer-paket.ch/en/installation-en/#register). We will contact you immediately and discuss all the information with you personally. The costs per shipment depend on the number of shipments per week.
-
-[Register now](https://plug-n.planzer-paket.ch/en/installation-en/#register)
+[Become a Planzer customer now](https://planzerhelp.zendesk.com/hc/en-us/requests/new)
 
 = Necessary information you need =
 
@@ -32,11 +31,19 @@ For this we need some information. Please fill out [this form](https://plug-n.pl
 * Your responsible branch
 * Account ID (tab connection to Planzer)
 
+== Standard process ==
+
+1. Order is placed in your WooCommerce online store.
+2. Order is created in WooCommerce with status "On hold/In waiting", if e.g. payment is made by prepayment.
+3. The status of the order is changed to "In process" (for some payment methods this step is done immediately, e.g. credit card)
+4. The order is automatically transferred to the Planzer portal
+5. A QR code or (if desired) a personalized delivery note is generated
+6. You pack the product and place the label or delivery note with QR code on it
+7. Planzer picks up the package from you between 4:00 and 6:00 p.m. and delivers it
+
 == Setup & Configuration ==
 
 All settings for the plugin can be found under "WooCommerce > Settings", here a new tab "Planzer" is displayed in the right area where you can make all configurations.
-
-[More information about the process](https://plug-n.planzer-paket.ch/en/installation-en/)
 
 == Functions ==
 * Manually or automatic transmission of orders to Planzer
@@ -58,8 +65,6 @@ Contact our [Support](mailto:support@webwirkung.ch) in the following cases:
 == Documentation ==
 Please check out our Github Repository to view our full documentation:
 https://github.com/Webwirkung/Planzer-Shipping-for-WooCommerce
-
-Or visit our page [Plug & Planzer parcel](https://plug-n.planzer-paket.ch/en/)
 
 == Frequently Asked Questions ==
 
@@ -90,12 +95,11 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 
 == Screenshots ==
 
-1. settings tab "General"
+1. settings tab "General
 2. settings "connection to Planzer" tab
-3. settings tab "notifications"
-4. settings tab "delivery note/label"
-5. settings tab "exclude products"
-6. process
+3. settings tab "notifications
+4. settings tab "delivery note/label
+5. settings tab "exclude products
 
 
 == Changelog ==
@@ -169,3 +173,7 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 = 1.0.7 2022-08-02 =
 
 * Bugfix connected with wrong/empty SKU for variant products in the delivery note
+
+= 1.0.8 2022-10-13 =
+
+* Bugfix with wrong transmission data
