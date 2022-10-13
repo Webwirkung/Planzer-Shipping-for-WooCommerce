@@ -78,16 +78,16 @@ class DataLoader
       'A1_39' => $this->order->get_shipping_first_name() ?: $this->order->get_billing_first_name(),
 
       'A1_40' => $this->order->get_shipping_last_name() ?: $this->order->get_shipping_first_name(),
-      'A1_41' => $this->order->get_shipping_company() ?: $this->order->get_billing_company(),
+      'A1_41' => (AddressHelper::isShippingAddressFiled($this->order)) ? $this->order->get_shipping_company() : $this->order->get_billing_company(),
       'A1_43' => $this->order->get_shipping_country() ?: $this->order->get_billing_country(),// @TO-DO test values
       'A1_44' => $this->order->get_shipping_city() ?: $this->order->get_billing_city(),
       'A1_45' => $this->order->get_shipping_postcode() ?: $this->order->get_billing_postcode(),
       'A1_46' => $parsed_address['street'],
       'A1_47' => $parsed_address['house_number'],
 
-      'A1_51' => $this->order->get_billing_phone(),
+      'A1_51' => (AddressHelper::isShippingAddressFiled($this->order)) ? '' : $this->order->get_billing_phone(),
       'A1_53' => $this->getReceiverSmsNotificationValue(),
-      'A1_54' => $this->order->get_billing_email(),
+      'A1_54' => (AddressHelper::isShippingAddressFiled($this->order)) ? '' : $this->order->get_billing_email(),
       'A1_55' => $this->getReceiverEmailNotificationValue(),
       'A1_56' => 'planzer_sender_language',
       'A1_57' => apply_filters('planzer/csv/client_salutation', '', $this->order),
