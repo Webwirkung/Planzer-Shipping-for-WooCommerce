@@ -9,8 +9,8 @@ class Config
    */
   public function initConfig(): void
   {
-    if (! load_textdomain('planzer', PLANZER_RESOURCES_PATH . '/lang/' . get_locale() . '.mo')) {
-      load_textdomain('planzer', PLANZER_RESOURCES_PATH . '/lang/' . explode('_', get_locale())[0] . '.mo');
+    if (! load_textdomain('planzer', PLANZER_RESOURCES_PATH . '/lang/' . get_user_locale() . '.mo')) {
+      load_textdomain('planzer', PLANZER_RESOURCES_PATH . '/lang/' . explode('_', get_user_locale())[0] . '.mo');
     }
   }
 

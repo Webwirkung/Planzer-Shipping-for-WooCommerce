@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Shipping via Planzer for WooCommerce
  * Description: Shipping via Planzer for WooCommerce
- * Version: 1.0.8
+ * Version: 1.0.9
  * Author: Webwirkung <info@webwirkung.ch>
  * Author URI: https://webwirkung.ch/
  * Text Domain: planzer
