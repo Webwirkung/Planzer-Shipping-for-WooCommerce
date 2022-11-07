@@ -1,5 +1,6 @@
 <style>
   .logo {
+    padding-top: -20px;
     text-align: right;
   }
   .company-name {
