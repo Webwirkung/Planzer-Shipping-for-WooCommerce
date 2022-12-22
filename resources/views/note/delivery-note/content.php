@@ -129,14 +129,25 @@
       if (! empty($data['excluded_products_ids']) && in_array($item->get_product_id(), $data['excluded_products_ids'])) {
         continue;
       }
+
+      if ((string) $data['order']->get_total_refunded_for_item($item->get_id()) === $item->get_total()) {
+        continue;
+      }
+
+      $quantity = $item->get_quantity();
+
+      if (0 !== $data['order']->get_qty_refunded_for_item($item->get_id())) {
+        $quantity -= abs($data['order']->get_qty_refunded_for_item($item->get_id()));
+      }
+
       ?>
         <tr valign="top" class="order-tr">
           <td><?php echo esc_html($x); ?></td>
           <td><?php echo esc_html($item->get_name()); ?><br><?php echo __('Product Code', 'planzer'); ?>: <?php echo esc_html($product->get_sku()); ?></td>
           <td></td>
-          <td align="center"><?php echo esc_html($item->get_quantity()); ?></td>
+          <td align="center"><?php echo esc_html($quantity); ?></td>
           <td align="center">0</td>
-          <td align="center"><?php echo esc_html($item->get_quantity()); ?></td>
+          <td align="center"><?php echo esc_html($quantity); ?></td>
         </tr>
       <?php
       $x++;

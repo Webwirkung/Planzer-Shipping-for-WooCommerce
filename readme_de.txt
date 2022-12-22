@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce, Plug & Planzer Paket
 Tested up to: 6.0
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -178,3 +178,7 @@ Wenn eine Bestellung in WooCommerce von Ihnen oder Ihrem Kunden storniert wird, 
 
 * Add FR translation
 * Add new margins to the delivery note.
+
+= 1.0.10 2022-12-21 =
+
+* Remove fully refunded items from the delivery note.
