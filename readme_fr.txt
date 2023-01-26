@@ -40,9 +40,12 @@ Tous les paramètres du plugin se trouvent sous "WooCommerce > Paramètres", ici
 
 == Fonctions ==
 * Transmission manuelle ou automatique des commandes à Planzer
+* En cas de transmission manuelle, sélectionner et transmettre plusieurs commandes via la vue en liste (Bulk-Action)
 * Paramètres pour les notifications destinées à vous et à vos clients
 * Générez une étiquette ou un bon de livraison personnalisé avec votre logo (les deux avec Planzer QR-Code) et envoyez-le à une adresse e-mail de votre choix
+* Adapter les textes dans le bon de livraison personnalisé
 * Exclure les produits qui ne doivent pas être expédiés via Planzer (par exemple, les bons)
+* Exclure les modes d'expédition qui ne doivent pas être envoyés via Planzer (par exemple. enlèvement)
 * Voir l'état de la commande et de la transmission
 * Plusieurs bons de livraison/étiquettes par commande
 * Testmode qui empêche l'envoi de commandes à Planzer
@@ -183,3 +186,12 @@ Si une commande est annulée dans WooCommerce par vous ou votre client, cela ne 
 = 1.0.10 2022-12-21 =
 
 * Remove fully refunded items from the delivery note.
+
+= 1.0.11 2023-01-26 =
+
+* Remove from delivery note products that are refunded AND have a price of 0.
+* Make all default texts on the delivery note editable.
+* Add the order number to the delivery note.
+* Add the action for transmitting orders to Planzer to Bulk actions on the list view.
+* Make shipping with planzer dependent on the shipping option.
+* Add a text field for the deposit notice.

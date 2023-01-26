@@ -1,7 +1,7 @@
 # Shipping via Planzer for WooCommerce
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.0 Stable
-tag: 1.0.10
+Tested up to: 6.1 Stable
+tag: 1.0.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -39,6 +39,8 @@ The default process if not chosen differently (manual transmission) the process 
 6. You pack the product and place the label or delivery note on it
 7. Planzer picks up the package from you between 4:00 and 6:00 p.m. and delivers it
 
+**Tip:** If you are in manual transmission mode you can also choose multiple orders in the order-list view and transmit them to planzer with the bulk-action at once. (max. 5 orders)
+
 ## Setup & Configuration
 
 All settings for the plugin can be found under "WooCommerce > Settings", here a new tab "Planzer" is displayed in the right area.
@@ -68,6 +70,7 @@ Contact our [Support](mailto:support@webwirkung.ch) in the following cases:
 
 * Decide if and which notifications should be sent to you and your customers.
 * Determine how packages are delivered (e.g. always deposit)
+* Add your own deposit text if you chose always deposit
 
 ### Delivery note/label
 
@@ -75,16 +78,35 @@ Decide whether a normal label with QR code or a personalized delivery note with 
 
 * Enter the URL of your logo, it will be automatically printed on the delivery note
 * Specify a general contact person, which will be printed on the delivery note
+* Add your own texts (salutation, signature, footer) to the delivery note
+* Use placeholders in the text fields for the delivery note
 
 **Tip:** For an automatic printout of your delivery note, enter the e-mail address of your printer.
 
-### Exclude products
+#### Available Placeholders for the delivery note
+**Salutation field**
+{first_name} - First name from shipping/billing order address
+{last_name} - Last name from shipping/billing order address
 
-You have individual products that should not be shipped with Planzer?
+**Signature field**
+{contact_name} - contact name from planzer plugin configuration
+{company} - company name from planzer plugin configuration
+
+**Footer field**
+{company} - company name from planzer plugin configuration
+{address} - company address from woocommerce configuration
+{email} - email from planzer plugin configuration
+{website} - this website's url
+
+### Exclude products or shipping classes
+
+You have individual products or individual shipping classes that should not be shipped with Planzer?
 
 * Select the products that should not be sent with Planzer (e.g. vouchers).
 * Orders with multiple products and only one excluded product will still be sent to Planzer
 * If only one excluded product is ordered, you will receive the order but it will not be sent to Planzer.
+* Select the shipping classes that should not be sent with Planzer (e.g. pick-up).
+
 
 ## Other functions
 
@@ -208,3 +230,12 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 **1.0.10 2022-12-21**
 
 * Remove fully refunded items from the delivery note.
+
+**1.0.11 2023-01-26**
+
+* Remove from delivery note products that are refunded AND have a price of 0.
+* Make all default texts on the delivery note editable.
+* Add the order number to the delivery note.
+* Add the action for transmitting orders to Planzer to Bulk actions on the list view.
+* Make shipping with planzer dependent on the shipping option.
+* Add a text field for the deposit notice.

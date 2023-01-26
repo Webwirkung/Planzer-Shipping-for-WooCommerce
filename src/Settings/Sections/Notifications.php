@@ -35,6 +35,7 @@ class Notifications extends SectionBase implements Section
           ],
           'default' => 2,
         ])
+        ->addTextInput(__('Deposit notice', 'planzer'), 'deposit_notice_information')
       ->endGroup('notifications');
   }
 

@@ -6,6 +6,7 @@ class WooCommerce
 {
   public function __construct()
   {
+    createClass('Planzer\\WooCommerce\\Submodules\\BulkAction');
     createClass('Planzer\\WooCommerce\\Submodules\\OrderAction');
     createClass('Planzer\\WooCommerce\\Submodules\\OrderStatus');
 

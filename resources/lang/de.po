@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 11:10+0200\n"
+"POT-Creation-Date: 2023-01-25 09:58+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,84 +15,80 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 
-#: resources/views/note/delivery-note/content.php:82
+#: resources/views/note/delivery-note/content.php:83
 msgid "Package number"
 msgstr "Paketnummer"
 
-#: resources/views/note/delivery-note/content.php:89
+#: resources/views/note/delivery-note/content.php:91
 msgid "Delivery note LS"
 msgstr "Lieferschein LS"
 
-#: resources/views/note/delivery-note/content.php:94
+#: resources/views/note/delivery-note/content.php:91
+msgid "Order number"
+msgstr "Bestellnummer"
+
+#: resources/views/note/delivery-note/content.php:96
 msgid "Date"
 msgstr "Datum"
 
-#: resources/views/note/delivery-note/content.php:96
+#: resources/views/note/delivery-note/content.php:98
 msgid "Customer number"
 msgstr "Kundennummer"
 
-#: resources/views/note/delivery-note/content.php:100
+#: resources/views/note/delivery-note/content.php:102
 msgid "Your contact person"
 msgstr "Ihr Ansprechpartner"
 
-#: resources/views/note/delivery-note/content.php:108
-msgid "Ladies and gentlemen"
-msgstr "Meine Damen und Herren"
-
-#: resources/views/note/delivery-note/content.php:113
+#: resources/views/note/delivery-note/content.php:115
 msgid "Item"
 msgstr "Pos"
 
-#: resources/views/note/delivery-note/content.php:114
+#: resources/views/note/delivery-note/content.php:116
 msgid "Description"
 msgstr "Beschreibung"
 
-#: resources/views/note/delivery-note/content.php:115
+#: resources/views/note/delivery-note/content.php:117
 msgid "Unit"
 msgstr "Einheit"
 
-#: resources/views/note/delivery-note/content.php:116
+#: resources/views/note/delivery-note/content.php:118
 msgid "Quantity ordered"
 msgstr "Bestellmenge"
 
-#: resources/views/note/delivery-note/content.php:117
+#: resources/views/note/delivery-note/content.php:119
 msgid "Crowd open"
 msgstr "Menge offen"
 
-#: resources/views/note/delivery-note/content.php:118
+#: resources/views/note/delivery-note/content.php:120
 msgid "Quantity delivered"
 msgstr "Gelieferte Menge"
 
-#: resources/views/note/delivery-note/content.php:133
+#: resources/views/note/delivery-note/content.php:147
 msgid "Product Code"
 msgstr "Produktcode"
 
-#: resources/views/note/delivery-note/content.php:147
+#: resources/views/note/delivery-note/content.php:161
 msgid "Annotation:"
 msgstr "Anmerkung:"
 
-#: resources/views/note/delivery-note/content.php:153
-msgid "Thank you very much for the order."
-msgstr "Herzlichen Dank für die Bestellung."
+#: src/Note/Types/DeliveryNote.php:20 src/Settings/Sections/Delivery.php:49
+msgid "{company} {address} Email: {email} Website: {website}"
+msgstr "{company} {address} Email: {email} Webseite: {website}"
 
-#: resources/views/note/delivery-note/content.php:154
-msgid "Feel free to contact us if you have any questions."
-msgstr "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren."
+#: src/Note/Types/DeliveryNote.php:40 src/Settings/Sections/Delivery.php:33
+msgid "Ladies and gentlemen"
+msgstr "Meine Damen und Herren"
 
-#: resources/views/note/delivery-note/content.php:155
-msgid "Kind regards"
-msgstr "Mit freundlichen Grüssen"
-
-#: resources/views/note/delivery-note/footer.php:3
-msgid "E-Mail:"
-msgstr "Email:"
-
-#: resources/views/note/delivery-note/footer.php:4
-msgid "Website:"
-msgstr "Webseite:"
+#: src/Note/Types/DeliveryNote.php:41 src/Settings/Sections/Delivery.php:41
+msgid ""
+"Thank you very much for the order.<br><br>Feel free to contact us if you "
+"have any questions.<br><br>Kind regards<br>{contact_name}<br>{company}"
+msgstr ""
+"Vielen Dank für die Bestellung.<br><br>Bei Fragen stehen wir Ihnen gerne zur "
+"Verfügung.<br><br>Mit freundlichen Grüßen<br>{contact_name}<br>{company}"
 
 #: src/Note/Note.php:36
 msgid "Planzer delivery note for order"
@@ -109,9 +105,9 @@ msgstr "Planzer Notiz der Bestellung"
 #: src/Note/Note.php:51
 #, php-format
 msgid "Planzer: ERROR while sending Planzer PDF email - %s"
-msgstr ""
+msgstr "Planzer: FEHLER beim Senden der Planzer-PDF-E-Mail - %s"
 
-#: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:37
+#: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:61
 msgid "Delivery"
 msgstr "Lieferschein/Etikette"
 
@@ -157,7 +153,33 @@ msgstr ""
 "Vor- und Nachname der Person, welche auf dem Lieferschein als Kontaktperson "
 "ausgegeben werden soll."
 
-#: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:28
+#: src/Settings/Sections/Delivery.php:27
+msgid "Salutation"
+msgstr "Anrede"
+
+#: src/Settings/Sections/Delivery.php:29
+msgid "This salutation text is visible in the delivery note."
+msgstr ""
+"Vor- und Nachname der Person, welche auf dem Lieferschein als Kontaktperson "
+"ausgegeben werden soll."
+
+#: src/Settings/Sections/Delivery.php:35
+msgid "Signature"
+msgstr "Unterschrift"
+
+#: src/Settings/Sections/Delivery.php:37
+msgid "This signature text is visible in the delivery note."
+msgstr "Dieser Signaturtext ist im Lieferschein sichtbar."
+
+#: src/Settings/Sections/Delivery.php:43
+msgid "Footer"
+msgstr "Fusszeile"
+
+#: src/Settings/Sections/Delivery.php:45
+msgid "This footer text is visible in the delivery note."
+msgstr "Dieser Fußtext ist im Lieferschein sichtbar."
+
+#: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:33
 msgid "Other"
 msgstr "Produkte ausschliessen"
 
@@ -171,13 +193,21 @@ msgstr ""
 "Wählen Sie die Produkte aus, welche nicht mit Planzer versendet werden "
 "sollen. (z.B. Gutscheine)"
 
-#: src/Settings/Sections/Other.php:44
+#: src/Settings/Sections/Other.php:18
+msgid "Excluded shippings"
+msgstr "Ausgeschlossene Sendungen"
+
+#: src/Settings/Sections/Other.php:21
+msgid "Select shipping codes that should not use Planzer."
+msgstr "Wählen Sie Versandcodes, die Planzer nicht verwenden soll."
+
+#: src/Settings/Sections/Other.php:49 src/Settings/Sections/Other.php:67
 msgid "none"
 msgstr "Keine"
 
 #: src/Settings/Sections/Notifications.php:13
 #: src/Settings/Sections/Notifications.php:14
-#: src/Settings/Sections/Notifications.php:48
+#: src/Settings/Sections/Notifications.php:49
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
@@ -226,6 +256,10 @@ msgid ""
 "Usually with signature but the receiver can choose if he wants the package "
 "to be deposited"
 msgstr "Gegen Unterschrift & Empfänger kann übersteuern"
+
+#: src/Settings/Sections/Notifications.php:38
+msgid "Deposit notice"
+msgstr "Mitteilung über die Einzahlung"
 
 #: src/Settings/Sections/FTP.php:13
 msgid "Mode"
@@ -479,6 +513,7 @@ msgstr "Nein"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:44
 #: src/WooCommerce/Submodules/OrderStatus.php:60
+#: src/WooCommerce/Submodules/BulkAction.php:21
 msgid "Transmit to Planzer"
 msgstr "Übermittlung an Planzer"
 
@@ -489,37 +524,48 @@ msgid_plural "Transmit to Planzer (%s)"
 msgstr[0] "Übermittlung an Planzer (%s)"
 msgstr[1] "Übermittlung an Planzer (%s)"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:80
+#: src/WooCommerce/Submodules/OrderStatus.php:78
+msgid "The order shipping class is excluded from Planzer"
+msgstr "Die Bestellversand-Versandklasse ist von Planzer ausgeschlossen"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:90
+#: src/WooCommerce/Submodules/BulkAction.php:62
 #: src/WooCommerce/Submodules/OrderAction.php:38
 msgid "All products excluded from delivery"
 msgstr "Alle Produkte von der Lieferung ausgeschlossen"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:85
+#: src/WooCommerce/Submodules/OrderStatus.php:95
+#: src/WooCommerce/Submodules/BulkAction.php:67
 #: src/WooCommerce/Submodules/OrderAction.php:43
 msgid "Test mode enabled - data not sent"
 msgstr "Testmodus aktiviert - Daten nicht gesendet"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:89
+#: src/WooCommerce/Submodules/OrderStatus.php:99
+#: src/WooCommerce/Submodules/BulkAction.php:71
 #: src/WooCommerce/Submodules/OrderAction.php:47
 msgid "Planzer: CSV generated."
 msgstr "Planzer: Lieferschein und CSV generiert."
 
-#: src/WooCommerce/Submodules/OrderStatus.php:95
+#: src/WooCommerce/Submodules/OrderStatus.php:105
+#: src/WooCommerce/Submodules/BulkAction.php:77
 #: src/WooCommerce/Submodules/OrderAction.php:53
 msgid "Planzer: delivery/label note and CSV generated."
 msgstr "Planzer: Liefer-/Etikettenschein und CSV generiert."
 
-#: src/WooCommerce/Submodules/OrderStatus.php:103
+#: src/WooCommerce/Submodules/OrderStatus.php:113
+#: src/WooCommerce/Submodules/BulkAction.php:85
 #: src/WooCommerce/Submodules/OrderAction.php:61
 msgid "Reference number:"
 msgstr "Referenz:"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:104
+#: src/WooCommerce/Submodules/OrderStatus.php:114
+#: src/WooCommerce/Submodules/BulkAction.php:86
 #: src/WooCommerce/Submodules/OrderAction.php:62
 msgid "Package number: "
 msgstr "Paketnummer: "
 
-#: src/WooCommerce/Submodules/OrderStatus.php:107
+#: src/WooCommerce/Submodules/OrderStatus.php:117
+#: src/WooCommerce/Submodules/BulkAction.php:90
 #: src/WooCommerce/Submodules/OrderAction.php:65
 msgid ""
 "There was an error while sending data to Planzer - please try again or check "
@@ -527,6 +573,23 @@ msgid ""
 msgstr ""
 "Beim Senden von Daten an Planzer ist ein Fehler aufgetreten. Bitte versuchen "
 "Sie es erneut oder überprüfen Sie das Debuglog."
+
+#: src/WooCommerce/Submodules/BulkAction.php:37
+#, php-format
+msgid "The orders with number <b>%s</b> have proceeded to the planzer."
+msgstr ""
+"Die Bestellungen mit der Nummer <b>%s</b> sind an den Planzer gegangen."
+
+#: src/WooCommerce/Submodules/BulkAction.php:37
+#, php-format
+msgid ""
+"The maximum limit of orders to sent to the planzer at one time is 5. We sent "
+"5 orders: <b>%s</b>. For the rest of the orders not processed please choose "
+"them again"
+msgstr ""
+"Es können maximal 5 Bestellungen gleichzeitig an den Planzer gesendet "
+"werden. Wir haben 5 Bestellungen gesendet: <b>%s</b>. Für die restlichen "
+"nicht bearbeiteten Bestellungen wählen Sie sie bitte erneut aus"
 
 #: src/WooCommerce/Submodules/CheckoutAddressValidation.php:32
 msgid "The address is invalid - please type in an existing address"
@@ -554,8 +617,23 @@ msgid ""
 "There was a problem with the connection to the server, please try again "
 "later or contact administrator."
 msgstr ""
-"Bei der Bestätigung Ihrer Adresse ist ein Problem aufgetreten. Bitte "
-"versuchen Sie es später erneut oder wenden Sie sich an den Administrator."
+"Es gab ein Problem mit der Verbindung zum Server, bitte versuchen Sie es "
+"später erneut oder wenden Sie sich an den Administrator."
+
+#~ msgid "Thank you very much for the order."
+#~ msgstr "Herzlichen Dank fĂźr die Bestellung."
+
+#~ msgid "Feel free to contact us if you have any questions."
+#~ msgstr "Wenn Sie Fragen haben, kĂśnnen Sie uns gerne kontaktieren."
+
+#~ msgid "Kind regards"
+#~ msgstr "Mit freundlichen GrĂźssen"
+
+#~ msgid "E-Mail:"
+#~ msgstr "Email:"
+
+#~ msgid "Website:"
+#~ msgstr "Webseite:"
 
 #~ msgid "Shop Default data"
 #~ msgstr "Aus WooCommerce"
@@ -585,7 +663,7 @@ msgstr ""
 #~ msgstr "SMS-Benachrichtigungen senden"
 
 #~ msgid "Control No."
-#~ msgstr "Ihre zuständige Filiale"
+#~ msgstr "Ihre zustĂ¤ndige Filiale"
 
 #~ msgid "Server Address"
 #~ msgstr "IP Addresse"
@@ -603,12 +681,9 @@ msgstr ""
 #~ msgstr "Finde im Anhang"
 
 #~ msgid "Receiver of the delivery note"
-#~ msgstr "Empfänger des Lieferscheins"
+#~ msgstr "EmpfĂ¤nger des Lieferscheins"
 
 #~ msgid "The zip code is invalid - please type in an existing zip code"
 #~ msgstr ""
-#~ "Die Postleitzahl ist ungültig - bitte geben Sie eine vorhandene "
+#~ "Die Postleitzahl ist ungĂźltig - bitte geben Sie eine vorhandene "
 #~ "Postleitzahl ein"
-
-#~ msgid "Without signature"
-#~ msgstr "Ohne Unterschrift"

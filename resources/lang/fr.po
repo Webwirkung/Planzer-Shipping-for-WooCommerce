@@ -2,355 +2,91 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shipping via Planzer for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-26 09:28+0000\n"
-"PO-Revision-Date: 2022-11-02 08:43+0100\n"
+"POT-Creation-Date: 2023-01-25 09:58+0100\n"
+"PO-Revision-Date: 2023-01-25 10:08+0100\n"
 "Last-Translator: \n"
-"Language-Team: Français\n"
+"Language-Team: FranĂ§ais\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Loco-Version: 2.6.3; wp-6.0.3\n"
 "X-Domain: planzer\n"
 
-#: src/Settings/Sections/FTP.php:21
-msgid "Account ID"
-msgstr "ID de compte"
-
-#: src/Settings/Sections/Sender.php:92
-msgid "Activate automatic address checking on the checkout"
-msgstr "Activation de la vérification d'adresse automatique à la caisse"
-
-#: src/WooCommerce/Submodules/OrderAction.php:38
-#: src/WooCommerce/Submodules/OrderStatus.php:80
-msgid "All products excluded from delivery"
-msgstr "Tous les produits exclus de la livraison"
-
-#: src/Settings/Sections/Sender.php:39
-msgid "Altstetten / Zürich"
-msgstr "Altstetten / Zürich"
-
-#: src/Settings/Sections/Notifications.php:33
-msgid "Always deposit the package (without signature)"
-msgstr "Toujours déposer le colis (sans signature)"
-
-#: resources/views/note/delivery-note/content.php:148
-msgid "Annotation:"
-msgstr "Annotation:"
-
-#: src/Settings/Sections/Sender.php:91
-msgid "Automatic address verification (experimental feature)"
-msgstr "Vérification automatique de l'adresse (expérimental)"
-
-#: src/Settings/Sections/Sender.php:35
-msgid "Bern"
-msgstr "Berne"
-
-#: src/Settings/Sections/Sender.php:34
-msgid "Bioggio"
-msgstr "Bioggio"
-
-#: src/Settings/Sections/Sender.php:98
-msgid ""
-"By default, orders with the status \"Processing\" are automatically "
-"transmitted to Planzer. Here you have the possibility to deactivate this "
-"function and send orders to Planzer manually by changing the status of the "
-"order to \"Transmit to Planzer\" manually."
-msgstr ""
-"Par défaut, les commandes avec le statut de \"Traitement\" sont "
-"automatiquement transmis à Planzer. Ici vous avez la possibilité de "
-"désactiver cette fonction et envoyer des commandes à Planzer manuellement en "
-"modifiant le statut de la commande à \"Transmettre à Planzer\" manuellement."
-
-#: src/Settings/Sections/Sender.php:40
-msgid "Carouge"
-msgstr "Carouge"
-
-#: src/Settings/Sections/General.php:13
-msgid "Checkbox"
-msgstr "Case"
-
-#: src/Settings/Sections/Sender.php:66
-msgid "City"
-msgstr "Ville"
-
-#: src/Settings/Sections/Sender.php:49
-msgid "Company"
-msgstr "Société"
-
-#: src/Settings/Sections/Sender.php:50
-msgid "Company extra"
-msgstr "Société complément"
-
-#: src/Settings/Sections/Delivery.php:26
-msgid "Contact name"
-msgstr "Nom du Contact"
-
-#: src/Settings/Sections/Sender.php:37
-msgid "Conthey"
-msgstr "Conthey"
-
-#: src/Settings/Sections/Sender.php:12
-msgid "Contract Details"
-msgstr "Détails du contrat"
-
-#: src/Settings/Sections/Sender.php:70
-msgid "Country"
-msgstr "Pays"
-
-#: resources/views/note/delivery-note/content.php:118
-msgid "Crowd open"
-msgstr "Quntité en suspens"
-
-#: src/Settings/Sections/Notifications.php:22
-msgid "Customer email notification"
-msgstr "Courriel de notification client"
-
-#: src/Settings/Sections/Sender.php:21
-msgid "Customer No."
-msgstr "No. client"
-
-#: resources/views/note/delivery-note/content.php:97
-msgid "Customer number"
-msgstr "Numéro de client"
-
-#: src/Settings/Sections/Notifications.php:26
-msgid "Customer SMS notification"
-msgstr "SMS de notification client"
-
-#: resources/views/note/delivery-note/content.php:95
-msgid "Date"
-msgstr "Date"
-
-#: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:37
-msgid "Delivery"
-msgstr "Livraison"
-
-#: src/Settings/Sections/Delivery.php:14
-msgid "Delivery note"
-msgstr "Bon de livraison"
-
-#: resources/views/note/delivery-note/content.php:90
-msgid "Delivery note LS"
-msgstr "Bon de livraison LS"
-
-#: src/Settings/Sections/Sender.php:13
-msgid "Depart. No."
-msgstr "No. de départ."
-
-#: resources/views/note/delivery-note/content.php:115
-msgid "Description"
-msgstr "Description"
-
-#: src/Settings/Sections/Sender.php:32
-msgid "Dietikon"
-msgstr "Dietikon"
-
-#: src/Settings/Sections/Notifications.php:19
-msgid "Do you want to receive notifications?"
-msgstr "Voulez-vous recevoir des notifications?"
-
-#: src/Settings/Sections/Sender.php:38
-msgid "Domat / Ems"
-msgstr "Domat / Ems"
-
-#: src/Settings/Sections/Sender.php:82
-msgid "E-Mail"
-msgstr "Courriel"
-
-#: resources/views/note/delivery-note/footer.php:3
-msgid "E-Mail:"
-msgstr "Courriel:"
-
-#: src/Settings/Sections/FTP.php:15
-msgid "Enable test mode of SFTP integration"
-msgstr "Activer le mode de test de SFTP intégration"
-
-#: src/Settings/Sections/Other.php:13
-msgid "Excluded products"
-msgstr "Les produits exclus"
-
-#: resources/views/note/delivery-note/content.php:155
-msgid "Feel free to contact us if you have any questions."
-msgstr "N'hésitez pas à nous contacter en cas de questions."
-
-#: src/Settings/Sections/Delivery.php:26
-msgid "First and last name that will be placed on the delivery note"
-msgstr "Nom et prénom qui sera placée sur le bordereau de livraison"
-
-#: src/Settings/Sections/FTP.php:42
-msgid "FTP"
-msgstr "FTP"
-
-#: src/Settings/Sections/General.php:27
-msgid "General"
-msgstr "Général"
-
-#: src/Settings/Sections/Delivery.php:16
-msgid "Generate delivery note"
-msgstr "Générer bulletin de livraison"
-
-#: src/Settings/Sections/Delivery.php:17
-msgid "Generate label note"
-msgstr "Générer l'étiquette de colisage"
-
-#: src/WooCommerce/Submodules/OrderAction.php:21
-msgid "Generate Planzer note and create package"
-msgstr "Generate Planzer étiquette and créer paquet"
-
-#: src/Settings/Sections/Sender.php:58
-msgid "House Number"
-msgstr "Numéro De Maison"
-
-#. Author URI of the plugin
-msgid "https://webwirkung.ch/"
-msgstr "https://webwirkung.ch/"
-
-#: src/Settings/Sections/Sender.php:81
-msgid "Instruction"
-msgstr "Instructions"
-
-#: resources/views/note/delivery-note/content.php:114
-msgid "Item"
-msgstr "Article"
-
-#: resources/views/note/delivery-note/content.php:156
-msgid "Kind regards"
-msgstr "Cordialement"
-
-#: resources/views/note/delivery-note/content.php:109
-msgid "Ladies and gentlemen"
-msgstr "Mesdames, Messieurs"
-
-#: src/Settings/Sections/Sender.php:77
-msgid "Language"
-msgstr "Langue"
-
-#: src/Settings/Sections/Sender.php:128
-msgctxt "language name"
-msgid "Deutsch"
-msgstr "Deutsch"
-
-#: src/Settings/Sections/Sender.php:131
-msgctxt "language name"
-msgid "English"
-msgstr "Anglais"
-
-#: src/Settings/Sections/Sender.php:129
-msgctxt "language name"
-msgid "Français"
-msgstr "Français"
-
-#: src/Settings/Sections/Sender.php:130
-msgctxt "language name"
-msgid "Italiano"
-msgstr "Italiano"
-
-#: src/Settings/Sections/FTP.php:20
-msgid "Live"
-msgstr "Live"
-
-#: src/Settings/Sections/Delivery.php:21
-msgid "Logo URL"
-msgstr "Adresse URL du Logo"
-
-#: src/Settings/Sections/Sender.php:97 src/Settings/Sections/Sender.php:100
-msgid "Manual transmission"
-msgstr "Transmission manuelle"
-
-#: src/Settings/Sections/Sender.php:87
-msgid "Mobile"
-msgstr "Mobile"
-
-#: src/Settings/Sections/FTP.php:13
-msgid "Mode"
-msgstr "Mode"
-
-#: inc/helpers.php:23
-#, php-format
-msgid "Module %1$s doesn't exists!"
-msgstr "Module de %1$s n'existe pas!"
-
-#: src/Settings/Sections/Sender.php:41
-msgid "Märstetten"
-msgstr "Märstetten"
-
-#: src/Settings/Sections/SectionBase.php:98
-msgid "No"
-msgstr "Pas de"
-
-#: src/Settings/Sections/Notifications.php:32
-msgid "No deposit with signature"
-msgstr "Aucun dépôt avec signature"
-
-#: src/Settings/Sections/Notifications.php:17
-msgid "No, do not send email notifications to me"
-msgstr "Non, ne pas m'envoyer les notifications par courriel"
-
-#: src/Settings/Sections/Other.php:44
-msgid "none"
-msgstr "aucun"
-
-#: inc/precheck.php:67
-msgid "Not sufficient PHP version, please update PHP to use plugin."
-msgstr ""
-"Version de PHP insuffisante , veuillez mettre à jour PHP pour utiliser le "
-"plugin."
-
-#: src/Settings/Sections/Delivery.php:22
-msgid "Note receiver"
-msgstr "Note récepteur"
-
-#: src/Settings/Sections/Notifications.php:30
-msgid "Notice of deposit"
-msgstr "Avis de dépôt"
-
-#: src/Settings/Sections/Notifications.php:13
-#: src/Settings/Sections/Notifications.php:14
-#: src/Settings/Sections/Notifications.php:48
-msgid "Notifications"
-msgstr "Notifications"
-
-#: src/Settings/Sections/General.php:15
-msgid "Number"
-msgstr "Nombre"
-
-#: src/Settings/Sections/Sender.php:108
-msgid "Orders until"
-msgstr "Les commandes jusqu'à"
-
-#: src/Settings/Sections/Sender.php:106
-msgid "Orders until this time will get picked up by Planzer the same day"
-msgstr ""
-"Les commandes jusqu'à ce moment seront pris en charge par Planzer le même "
-"jour"
-
-#: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:28
-msgid "Other"
-msgstr "D'autres"
-
-#: resources/views/note/delivery-note/content.php:82
+#: resources/views/note/delivery-note/content.php:83
 msgid "Package number"
 msgstr "Numéro de colis"
 
-#: src/WooCommerce/Submodules/OrderAction.php:62
-#: src/WooCommerce/Submodules/OrderStatus.php:104
-msgid "Package number: "
-msgstr "Numéro de colis: "
+#: resources/views/note/delivery-note/content.php:91
+msgid "Delivery note LS"
+msgstr "Bon de livraison LS"
 
-#: src/Settings/Sections/Sender.php:36
-msgid "Penthalaz"
-msgstr "Penthalaz"
+#: resources/views/note/delivery-note/content.php:91
+msgid "Order number"
+msgstr "Numéro de commande"
 
-#: src/Settings/Sections/Sender.php:86
-msgid "Phone"
-msgstr "Téléphone"
+#: resources/views/note/delivery-note/content.php:96
+msgid "Date"
+msgstr "Date"
 
-#: src/Settings/Sections/Sender.php:105
-msgid "Pickup Orders"
-msgstr "Ordre de prise en charge"
+#: resources/views/note/delivery-note/content.php:98
+msgid "Customer number"
+msgstr "Numéro de client"
+
+#: resources/views/note/delivery-note/content.php:102
+msgid "Your contact person"
+msgstr "Votre personne de contact"
+
+#: resources/views/note/delivery-note/content.php:115
+msgid "Item"
+msgstr "Article"
+
+#: resources/views/note/delivery-note/content.php:116
+msgid "Description"
+msgstr "Description"
+
+#: resources/views/note/delivery-note/content.php:117
+msgid "Unit"
+msgstr "Unité"
+
+#: resources/views/note/delivery-note/content.php:118
+msgid "Quantity ordered"
+msgstr "Quantité commandée"
+
+#: resources/views/note/delivery-note/content.php:119
+msgid "Crowd open"
+msgstr "Quntité en suspens"
+
+#: resources/views/note/delivery-note/content.php:120
+msgid "Quantity delivered"
+msgstr "Quantité livrée"
+
+#: resources/views/note/delivery-note/content.php:147
+msgid "Product Code"
+msgstr "Code De Produit"
+
+#: resources/views/note/delivery-note/content.php:161
+msgid "Annotation:"
+msgstr "Annotation:"
+
+#: src/Note/Types/DeliveryNote.php:20 src/Settings/Sections/Delivery.php:49
+msgid "{company} {address} Email: {email} Website: {website}"
+msgstr "{company} {address} Email: {email} Site Web: {website}"
+
+#: src/Note/Types/DeliveryNote.php:40 src/Settings/Sections/Delivery.php:33
+msgid "Ladies and gentlemen"
+msgstr "Mesdames, Messieurs"
+
+#: src/Note/Types/DeliveryNote.php:41 src/Settings/Sections/Delivery.php:41
+msgid ""
+"Thank you very much for the order.<br><br>Feel free to contact us if you "
+"have any questions.<br><br>Kind regards<br>{contact_name}<br>{company}"
+msgstr ""
+"Merci beaucoup pour la commande.<br><br>N’hésitez pas à nous contacter si "
+"vous avez des questions.<br><br>Sincères amitiés<br>{contact_name}"
+"<br>{company}"
 
 #: src/Note/Note.php:36
 msgid "Planzer delivery note for order"
@@ -364,20 +100,186 @@ msgstr "Planzer étiquette de colisage pour l'ordre"
 msgid "Planzer note for order"
 msgstr "Planzer note pour l'ordre"
 
-#: src/WooCommerce/Submodules/OrderAction.php:47
-#: src/WooCommerce/Submodules/OrderStatus.php:89
-msgid "Planzer: CSV generated."
-msgstr "Planzer: CSV généré."
-
-#: src/WooCommerce/Submodules/OrderAction.php:53
-#: src/WooCommerce/Submodules/OrderStatus.php:95
-msgid "Planzer: delivery/label note and CSV generated."
-msgstr "Planzer: livraison/label note et CSV généré."
-
 #: src/Note/Note.php:51
 #, php-format
 msgid "Planzer: ERROR while sending Planzer PDF email - %s"
 msgstr "Planzer: ERREUR lors de l'envoi Planzer PDF email - %s"
+
+#: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:61
+msgid "Delivery"
+msgstr "Livraison"
+
+#: src/Settings/Sections/Delivery.php:14
+msgid "Delivery note"
+msgstr "Bon de livraison"
+
+#: src/Settings/Sections/Delivery.php:16
+msgid "Generate delivery note"
+msgstr "Générer bulletin de livraison"
+
+#: src/Settings/Sections/Delivery.php:17
+msgid "Generate label note"
+msgstr "Générer l'étiquette de colisage"
+
+#: src/Settings/Sections/Delivery.php:21
+msgid "Logo URL"
+msgstr "Adresse URL du Logo"
+
+#: src/Settings/Sections/Delivery.php:21
+msgid "URL of logo that will be placed on the delivery note"
+msgstr "URL du logo qui sera placé sur le bordereau de livraison"
+
+#: src/Settings/Sections/Delivery.php:22
+msgid "Note receiver"
+msgstr "Note récepteur"
+
+#: src/Settings/Sections/Delivery.php:23
+msgid ""
+"Receiver of the delivery/label note (for multiple addresses separate them by "
+"using commas)"
+msgstr ""
+"Récepteur de la livraison/l'étiquette de la note (pour plusieurs adresses "
+"séparées par des virgules)"
+
+#: src/Settings/Sections/Delivery.php:26
+msgid "Contact name"
+msgstr "Nom du Contact"
+
+#: src/Settings/Sections/Delivery.php:26
+msgid "First and last name that will be placed on the delivery note"
+msgstr "Nom et prénom qui sera placée sur le bordereau de livraison"
+
+#: src/Settings/Sections/Delivery.php:27
+msgid "Salutation"
+msgstr "Salutation"
+
+#: src/Settings/Sections/Delivery.php:29
+msgid "This salutation text is visible in the delivery note."
+msgstr "Ce texte de salutation est visible dans le bon de livraison."
+
+#: src/Settings/Sections/Delivery.php:35
+msgid "Signature"
+msgstr "Signature"
+
+#: src/Settings/Sections/Delivery.php:37
+msgid "This signature text is visible in the delivery note."
+msgstr "Ce texte de signature est visible sur le bon de livraison."
+
+#: src/Settings/Sections/Delivery.php:43
+msgid "Footer"
+msgstr "Bas de page"
+
+#: src/Settings/Sections/Delivery.php:45
+msgid "This footer text is visible in the delivery note."
+msgstr "Ce texte de pied de page est visible dans le bon de livraison."
+
+#: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:33
+msgid "Other"
+msgstr "D'autres"
+
+#: src/Settings/Sections/Other.php:13
+msgid "Excluded products"
+msgstr "Les produits exclus"
+
+#: src/Settings/Sections/Other.php:16
+msgid "Select product that are note being sent with Planzer."
+msgstr ""
+"Sélectionnez le(s) produit(s) que ne doivent pas être envoyé avec Planzer."
+
+#: src/Settings/Sections/Other.php:18
+msgid "Excluded shippings"
+msgstr "Expéditions exclues"
+
+#: src/Settings/Sections/Other.php:21
+msgid "Select shipping codes that should not use Planzer."
+msgstr ""
+"Sélectionnez les codes d'expédition qui ne doivent pas utiliser Planzer."
+
+#: src/Settings/Sections/Other.php:49 src/Settings/Sections/Other.php:67
+msgid "none"
+msgstr "aucun"
+
+#: src/Settings/Sections/Notifications.php:13
+#: src/Settings/Sections/Notifications.php:14
+#: src/Settings/Sections/Notifications.php:49
+msgid "Notifications"
+msgstr "Notifications"
+
+#: src/Settings/Sections/Notifications.php:16
+msgid "Yes, send email notifications to me"
+msgstr "Oui, envoyer moi des notifications par courriel"
+
+#: src/Settings/Sections/Notifications.php:17
+msgid "No, do not send email notifications to me"
+msgstr "Non, ne pas m'envoyer les notifications par courriel"
+
+#: src/Settings/Sections/Notifications.php:19
+msgid "Do you want to receive notifications?"
+msgstr "Voulez-vous recevoir des notifications?"
+
+#: src/Settings/Sections/Notifications.php:22
+msgid "Customer email notification"
+msgstr "Courriel de notification client"
+
+#: src/Settings/Sections/Notifications.php:23
+msgid "Send email notifications to the package receiver"
+msgstr "Envoyer des notifications par courriel au rĂŠcepteur du colis"
+
+#: src/Settings/Sections/Notifications.php:26
+msgid "Customer SMS notification"
+msgstr "SMS de notification client"
+
+#: src/Settings/Sections/Notifications.php:27
+msgid "Send SMS notifications to the package receiver"
+msgstr "Envoyer des notifications par SMS au rĂŠcepteur du colis"
+
+#: src/Settings/Sections/Notifications.php:30
+msgid "Notice of deposit"
+msgstr "Avis de dépôt"
+
+#: src/Settings/Sections/Notifications.php:32
+msgid "No deposit with signature"
+msgstr "Aucun dépôt avec signature"
+
+#: src/Settings/Sections/Notifications.php:33
+msgid "Always deposit the package (without signature)"
+msgstr "Toujours déposer le colis (sans signature)"
+
+#: src/Settings/Sections/Notifications.php:34
+msgid ""
+"Usually with signature but the receiver can choose if he wants the package "
+"to be deposited"
+msgstr ""
+"Habituellement, avec une signature, mais le destinataire peut choisir s'il "
+"veut que le paquet soit déposé"
+
+#: src/Settings/Sections/Notifications.php:38
+msgid "Deposit notice"
+msgstr "Avis de dépôt"
+
+#: src/Settings/Sections/FTP.php:13
+msgid "Mode"
+msgstr "Mode"
+
+#: src/Settings/Sections/FTP.php:14
+msgid "Test Mode"
+msgstr "Mode Test"
+
+#: src/Settings/Sections/FTP.php:15
+msgid "Enable test mode of SFTP integration"
+msgstr "Activer le mode de test de SFTP intégration"
+
+#: src/Settings/Sections/FTP.php:20
+msgid "Live"
+msgstr "Live"
+
+#: src/Settings/Sections/FTP.php:21
+msgid "Account ID"
+msgstr "ID de compte"
+
+#: src/Settings/Sections/FTP.php:23
+msgid "Server URL"
+msgstr "URL du serveur"
 
 #: src/Settings/Sections/FTP.php:26
 msgid ""
@@ -389,106 +291,320 @@ msgstr ""
 "demande par le support, ou si vous savez ce que vous faites. Les changements "
 "dans ce domaine peuvent entraîner un non envoi de données à Planzer."
 
+#: src/Settings/Sections/FTP.php:42
+msgid "FTP"
+msgstr "FTP"
+
+#: src/Settings/Sections/Sender.php:12
+msgid "Contract Details"
+msgstr "Détails du contrat"
+
+#: src/Settings/Sections/Sender.php:13
+msgid "Depart. No."
+msgstr "No. de départ."
+
+#: src/Settings/Sections/Sender.php:21
+msgid "Customer No."
+msgstr "No. client"
+
+#: src/Settings/Sections/Sender.php:29
+msgid "Your branch"
+msgstr "Votre succursale"
+
+#: src/Settings/Sections/Sender.php:32
+msgid "Dietikon"
+msgstr "Dietikon"
+
 #: src/Settings/Sections/Sender.php:33
 msgid "Pratteln / Basel"
 msgstr "Pratteln / Bâle"
 
-#: resources/views/note/delivery-note/content.php:134
-msgid "Product Code"
-msgstr "Code De Produit"
+#: src/Settings/Sections/Sender.php:34
+msgid "Bioggio"
+msgstr "Bioggio"
 
-#: resources/views/note/delivery-note/content.php:119
-msgid "Quantity delivered"
-msgstr "Quantité livrée"
+#: src/Settings/Sections/Sender.php:35
+msgid "Bern"
+msgstr "Berne"
 
-#: resources/views/note/delivery-note/content.php:117
-msgid "Quantity ordered"
-msgstr "Quantité commandée"
+#: src/Settings/Sections/Sender.php:36
+msgid "Penthalaz"
+msgstr "Penthalaz"
 
-#: src/Settings/Sections/Delivery.php:23
-msgid ""
-"Receiver of the delivery/label note (for multiple addresses separate them by "
-"using commas)"
-msgstr ""
-"Récepteur de la livraison/l'étiquette de la note (pour plusieurs adresses "
-"séparées par des virgules)"
+#: src/Settings/Sections/Sender.php:37
+msgid "Conthey"
+msgstr "Conthey"
 
-#: src/WooCommerce/Submodules/OrderAction.php:61
-#: src/WooCommerce/Submodules/OrderStatus.php:103
-msgid "Reference number:"
-msgstr "Numéro de référence:"
+#: src/Settings/Sections/Sender.php:38
+msgid "Domat / Ems"
+msgstr "Domat / Ems"
+
+#: src/Settings/Sections/Sender.php:39
+msgid "Altstetten / Zürich"
+msgstr "Altstetten / Zürich"
+
+#: src/Settings/Sections/Sender.php:40
+msgid "Carouge"
+msgstr "Carouge"
+
+#: src/Settings/Sections/Sender.php:41
+msgid "Märstetten"
+msgstr "Marstetten"
 
 #: src/Settings/Sections/Sender.php:42
 msgid "Seewen"
 msgstr "Seewen"
 
-#: src/Settings/Sections/General.php:16
-msgid "Select"
-msgstr "Sélectionnez"
+#: src/Settings/Sections/Sender.php:48
+msgid "Sender Information"
+msgstr "Informations Sur L'Expéditeur"
 
-#: src/Settings/Sections/Other.php:16
-msgid "Select product that are note being sent with Planzer."
+#: src/Settings/Sections/Sender.php:49
+msgid "Company"
+msgstr "Société"
+
+#: src/Settings/Sections/Sender.php:50
+msgid "Company extra"
+msgstr "Société complément"
+
+#: src/Settings/Sections/Sender.php:54
+msgid "Street"
+msgstr "Rue"
+
+#: src/Settings/Sections/Sender.php:58
+msgid "House Number"
+msgstr "Numéro De Maison"
+
+#: src/Settings/Sections/Sender.php:62
+msgid "ZIP"
+msgstr "NP"
+
+#: src/Settings/Sections/Sender.php:66
+msgid "City"
+msgstr "Ville"
+
+#: src/Settings/Sections/Sender.php:70
+msgid "Country"
+msgstr "Pays"
+
+#: src/Settings/Sections/Sender.php:73
+msgid "Schweiz / Switzerland"
+msgstr "Schweiz / Suisse"
+
+#: src/Settings/Sections/Sender.php:77
+msgid "Language"
+msgstr "Langue"
+
+#: src/Settings/Sections/Sender.php:81
+msgid "Instruction"
+msgstr "Instructions"
+
+#: src/Settings/Sections/Sender.php:82
+msgid "E-Mail"
+msgstr "Courriel"
+
+#: src/Settings/Sections/Sender.php:86
+msgid "Phone"
+msgstr "Téléphone"
+
+#: src/Settings/Sections/Sender.php:87
+msgid "Mobile"
+msgstr "Mobile"
+
+#: src/Settings/Sections/Sender.php:91
+msgid "Automatic address verification (experimental feature)"
+msgstr "Vérification automatique de l'adresse (expérimental)"
+
+#: src/Settings/Sections/Sender.php:92
+msgid "Activate automatic address checking on the checkout"
+msgstr "Activation de la vérification d'adresse automatique à la caisse"
+
+#: src/Settings/Sections/Sender.php:97 src/Settings/Sections/Sender.php:100
+msgid "Manual transmission"
+msgstr "Transmission manuelle"
+
+#: src/Settings/Sections/Sender.php:98
+msgid ""
+"By default, orders with the status \"Processing\" are automatically "
+"transmitted to Planzer. Here you have the possibility to deactivate this "
+"function and send orders to Planzer manually by changing the status of the "
+"order to \"Transmit to Planzer\" manually."
 msgstr ""
-"Sélectionnez le(s) produit(s) que ne doivent pas être envoyé avec Planzer."
-
-#: src/Settings/Sections/Notifications.php:23
-msgid "Send email notifications to the package receiver"
-msgstr "Envoyer des notifications par courriel au récepteur du colis"
+"Par défaut, les commandes avec le statut de \"Traitement\" sont "
+"automatiquement transmis à Planzer. Ici vous avez la possibilité de "
+"désactiver cette fonction et envoyer des commandes à Planzer manuellement en "
+"modifiant le statut de la commande à \"Transmettre à Planzer\" manuellement."
 
 #: src/Settings/Sections/Sender.php:101
 msgid "Send orders to Planzer only after manual status adjustment"
 msgstr ""
 "Envoyer les commandes à Planzer seulement après changement de l'état manuel"
 
-#: src/Settings/Sections/Notifications.php:27
-msgid "Send SMS notifications to the package receiver"
-msgstr "Envoyer des notifications par SMS au récepteur du colis"
+#: src/Settings/Sections/Sender.php:105
+msgid "Pickup Orders"
+msgstr "Ordre de prise en charge"
+
+#: src/Settings/Sections/Sender.php:106
+msgid "Orders until this time will get picked up by Planzer the same day"
+msgstr ""
+"Les commandes jusqu'à ce moment seront pris en charge par Planzer le même "
+"jour"
+
+#: src/Settings/Sections/Sender.php:108
+msgid "Orders until"
+msgstr "Les commandes jusqu'à"
 
 #: src/Settings/Sections/Sender.php:122
 msgid "Sender"
 msgstr "Expéditeur"
 
-#: src/Settings/Sections/Sender.php:48
-msgid "Sender Information"
-msgstr "Informations Sur L'Expéditeur"
+#: src/Settings/Sections/Sender.php:128
+msgctxt "language name"
+msgid "Deutsch"
+msgstr "Deutsch"
 
-#: src/Settings/Sections/FTP.php:23
-msgid "Server URL"
-msgstr "URL du serveur"
+#: src/Settings/Sections/Sender.php:129
+msgctxt "language name"
+msgid "Français"
+msgstr "Français"
 
-#: src/Core/Config.php:71
-msgid "Settings"
-msgstr "Paramètres"
+#: src/Settings/Sections/Sender.php:130
+msgctxt "language name"
+msgid "Italiano"
+msgstr "Italiano"
 
-#. Name of the plugin
-#. Description of the plugin
-msgid "Shipping via Planzer for WooCommerce"
-msgstr "Expédition par Planzer pour Woocommerce"
+#: src/Settings/Sections/Sender.php:131
+msgctxt "language name"
+msgid "English"
+msgstr "Anglais"
 
-#: src/Settings/Sections/Sender.php:54
-msgid "Street"
-msgstr "Rue"
-
-#: src/Settings/Sections/FTP.php:14
-msgid "Test Mode"
-msgstr "Mode Test"
-
-#: src/WooCommerce/Submodules/OrderAction.php:43
-#: src/WooCommerce/Submodules/OrderStatus.php:85
-msgid "Test mode enabled - data not sent"
-msgstr "Mode Test activé - aucune donnée envoyée"
+#: src/Settings/Sections/General.php:13
+msgid "Checkbox"
+msgstr "Case"
 
 #: src/Settings/Sections/General.php:14
 msgid "Text"
 msgstr "Texte"
 
-#: resources/views/note/delivery-note/content.php:154
-msgid "Thank you very much for the order."
-msgstr "Merci beaucoup pour la commande."
+#: src/Settings/Sections/General.php:15
+msgid "Number"
+msgstr "Nombre"
+
+#: src/Settings/Sections/General.php:16
+msgid "Select"
+msgstr "Sélectionnez"
+
+#: src/Settings/Sections/General.php:27
+msgid "General"
+msgstr "Général"
+
+#: src/Settings/Sections/SectionBase.php:97
+msgid "Yes"
+msgstr "Oui"
+
+#: src/Settings/Sections/SectionBase.php:98
+msgid "No"
+msgstr "Pas de"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:44
+#: src/WooCommerce/Submodules/OrderStatus.php:60
+#: src/WooCommerce/Submodules/BulkAction.php:21
+msgid "Transmit to Planzer"
+msgstr "Transmettre à Planzer"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:49
+#, php-format
+msgid "Transmit to Planzer (%s)"
+msgid_plural "Transmit to Planzer (%s)"
+msgstr[0] "Transmettre à Planzer (%s)"
+msgstr[1] "Transmettre Ă  Planzer (%s)"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:78
+msgid "The order shipping class is excluded from Planzer"
+msgstr "La classe d'expédition de l'ordre est exclue de Planzer"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:90
+#: src/WooCommerce/Submodules/BulkAction.php:62
+#: src/WooCommerce/Submodules/OrderAction.php:38
+msgid "All products excluded from delivery"
+msgstr "Tous les produits exclus de la livraison"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:95
+#: src/WooCommerce/Submodules/BulkAction.php:67
+#: src/WooCommerce/Submodules/OrderAction.php:43
+msgid "Test mode enabled - data not sent"
+msgstr "Mode Test activé - aucune donnée envoyée"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:99
+#: src/WooCommerce/Submodules/BulkAction.php:71
+#: src/WooCommerce/Submodules/OrderAction.php:47
+msgid "Planzer: CSV generated."
+msgstr "Planzer: CSV généré."
+
+#: src/WooCommerce/Submodules/OrderStatus.php:105
+#: src/WooCommerce/Submodules/BulkAction.php:77
+#: src/WooCommerce/Submodules/OrderAction.php:53
+msgid "Planzer: delivery/label note and CSV generated."
+msgstr "Planzer: livraison/label note et CSV généré."
+
+#: src/WooCommerce/Submodules/OrderStatus.php:113
+#: src/WooCommerce/Submodules/BulkAction.php:85
+#: src/WooCommerce/Submodules/OrderAction.php:61
+msgid "Reference number:"
+msgstr "Numéro de référence:"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:114
+#: src/WooCommerce/Submodules/BulkAction.php:86
+#: src/WooCommerce/Submodules/OrderAction.php:62
+msgid "Package number: "
+msgstr "Numéro de colis: "
+
+#: src/WooCommerce/Submodules/OrderStatus.php:117
+#: src/WooCommerce/Submodules/BulkAction.php:90
+#: src/WooCommerce/Submodules/OrderAction.php:65
+msgid ""
+"There was an error while sending data to Planzer - please try again or check "
+"debuglog."
+msgstr ""
+"Il y avait une erreur lors de l'envoi de données à Planzer - Veuillez "
+"essayer de nouveau ou vérifiez debuglog."
+
+#: src/WooCommerce/Submodules/BulkAction.php:37
+#, php-format
+msgid "The orders with number <b>%s</b> have proceeded to the planzer."
+msgstr "Les commandes avec le numéro <b>%s</b> sont passées au planificateur."
+
+#: src/WooCommerce/Submodules/BulkAction.php:37
+#, php-format
+msgid ""
+"The maximum limit of orders to sent to the planzer at one time is 5. We sent "
+"5 orders: <b>%s</b>. For the rest of the orders not processed please choose "
+"them again"
+msgstr ""
+"La limite maximale de commandes à envoyer au planificateur en une seule fois "
+"est de 5. Nous avons envoyé 5 commandes : <b>%s</b>. Pour le reste des "
+"commandes non traitées merci de les sélectionner à nouveau"
 
 #: src/WooCommerce/Submodules/CheckoutAddressValidation.php:32
 msgid "The address is invalid - please type in an existing address"
 msgstr "L'adresse est invalide veuillez saisir une adresse existante"
+
+#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:36
+#: src/Api/Endpoints/Address.php:37
+msgid ""
+"There was a problem with verifying your address, please try again later or "
+"contact administrator."
+msgstr ""
+"Il y avait un problème avec la vérification de votre adresse, veuillez "
+"réessayer plus tard ou contacter l'administrateur."
+
+#: src/WooCommerce/Submodules/OrderAction.php:21
+msgid "Generate Planzer note and create package"
+msgstr "Generate Planzer étiquette and créer paquet"
+
+#: src/Core/Config.php:71
+msgid "Settings"
+msgstr "Paramètres"
 
 #: src/SFTP/SFTP.php:22
 msgid ""
@@ -498,84 +614,42 @@ msgstr ""
 "Il y avait un problème avec la connexion au serveur, veuillez réessayer plus "
 "tard ou contacter l'administrateur."
 
-#: src/Api/Endpoints/Address.php:37
-#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:36
-msgid ""
-"There was a problem with verifying your address, please try again later or "
-"contact administrator."
-msgstr ""
-"Il y avait un problème avec la vérification de votre adresse, veuillez "
-"réessayer plus tard ou contacter l'administrateur."
+#~ msgid "E-Mail:"
+#~ msgstr "Courriel:"
 
-#: src/WooCommerce/Submodules/OrderAction.php:65
-#: src/WooCommerce/Submodules/OrderStatus.php:107
-msgid ""
-"There was an error while sending data to Planzer - please try again or check "
-"debuglog."
-msgstr ""
-"Il y avait une erreur lors de l'envoi de données à Planzer - Veuillez "
-"essayer de nouveau ou vérifiez debuglog."
+#~ msgid "Feel free to contact us if you have any questions."
+#~ msgstr "N'hĂŠsitez pas Ă  nous contacter en cas de questions."
 
-#: src/WooCommerce/Submodules/OrderStatus.php:44
-#: src/WooCommerce/Submodules/OrderStatus.php:60
-msgid "Transmit to Planzer"
-msgstr "Transmettre à Planzer"
+#~ msgid "https://webwirkung.ch/"
+#~ msgstr "https://webwirkung.ch/"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:49
+#~ msgid "Kind regards"
+#~ msgstr "Cordialement"
+
 #, php-format
-msgid "Transmit to Planzer (%s)"
-msgid_plural "Transmit to Planzer (%s)"
-msgstr[0] "Transmettre à Planzer (%s)"
-msgstr[1] "Transmettre à Planzer (%s)"
+#~ msgid "Module %1$s doesn't exists!"
+#~ msgstr "Module de %1$s n'existe pas!"
 
-#: resources/views/note/delivery-note/content.php:116
-msgid "Unit"
-msgstr "Unité"
+#~ msgid "Not sufficient PHP version, please update PHP to use plugin."
+#~ msgstr ""
+#~ "Version de PHP insuffisante , veuillez mettre Ă  jour PHP pour utiliser "
+#~ "le plugin."
 
-#: src/Settings/Sections/Delivery.php:21
-msgid "URL of logo that will be placed on the delivery note"
-msgstr "URL du logo qui sera placé sur le bordereau de livraison"
+#~ msgid "Shipping via Planzer for WooCommerce"
+#~ msgstr "ExpĂŠdition par Planzer pour Woocommerce"
 
-#: src/Settings/Sections/Notifications.php:34
-msgid ""
-"Usually with signature but the receiver can choose if he wants the package "
-"to be deposited"
-msgstr ""
-"Habituellement, avec une signature, mais le destinataire peut choisir s'il "
-"veut que le paquet soit déposé"
+#~ msgid "Thank you very much for the order."
+#~ msgstr "Merci beaucoup pour la commande."
 
-#: resources/views/note/delivery-note/footer.php:4
-msgid "Website:"
-msgstr "Site web:"
+#~ msgid "Website:"
+#~ msgstr "Site web:"
 
-#. Author of the plugin
-msgid "Webwirkung <info@webwirkung.ch>"
-msgstr "Webwirkung <info@webwirkung.ch>"
+#~ msgid "Webwirkung <info@webwirkung.ch>"
+#~ msgstr "Webwirkung <info@webwirkung.ch>"
 
-#: inc/precheck.php:72
-msgid ""
-"WooCommerce is not activated or has not sufficient version. Please enable/"
-"update WooCommerce to use plugin."
-msgstr ""
-"Woocommerce n'est pas activé ou n'est pas suffisamment récent. S'il vous "
-"plaît activer/mettre à jour WooCommerce à utiliser le plugin."
-
-#: src/Settings/Sections/SectionBase.php:97
-msgid "Yes"
-msgstr "Oui"
-
-#: src/Settings/Sections/Notifications.php:16
-msgid "Yes, send email notifications to me"
-msgstr "Oui, envoyer moi des notifications par courriel"
-
-#: src/Settings/Sections/Sender.php:29
-msgid "Your branch"
-msgstr "Votre succursale"
-
-#: resources/views/note/delivery-note/content.php:101
-msgid "Your contact person"
-msgstr "Votre personne de contact"
-
-#: src/Settings/Sections/Sender.php:62
-msgid "ZIP"
-msgstr "NP"
+#~ msgid ""
+#~ "WooCommerce is not activated or has not sufficient version. Please enable/"
+#~ "update WooCommerce to use plugin."
+#~ msgstr ""
+#~ "Woocommerce n'est pas activĂŠ ou n'est pas suffisamment rĂŠcent. S'il "
+#~ "vous plaĂŽt activer/mettre Ă  jour WooCommerce Ă  utiliser le plugin."
