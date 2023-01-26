@@ -95,9 +95,7 @@ class DataLoader
       'A1_67' => $this->getDeliveryDate()->format('d.m.Y'),
 
       'A1_70' => "{$this->order->get_id()}_{$this->package->getSequenceNumber(0)}", // same as P1_7, this is the "upper" reference number
-
-      // MS: do not use this field anymore - see PLZ-27
-      // 'A1_76' => 'planzer_notifications_deposit_notice',
+      'A1_76' => $this->getDepositNoticeInformation(),
 
       'A1_82' => $this->getNotificationValueFor('A1_82'),
     ];
@@ -114,6 +112,11 @@ class DataLoader
       'O1_0' => 'O1',
       'O1_1' => $this->getNotificationValueFor('O1_1'),
     ]);
+  }
+
+  private function getDepositNoticeInformation(): string
+  {
+    return ("2" === get_option('planzer_notifications_deposit_notice')) ? get_option('planzer_notifications_deposit_notice_information') : '';
   }
 
   private function getAccountNumber(): string

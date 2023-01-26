@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: pianificatore, spedizione, e-commerce, negozio, vendite, vendita, woo, negozio, carrello, checkout, woo commerce
-Tested up to: 6.0
-Stable tag: 1.0.10
+Tested up to: 6.1.1
+Stable tag: 1.0.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -40,9 +40,12 @@ Tutte le impostazioni per il plug-in sono disponibili in "WooCommerce > Impostaz
 
 == Funzioni ==
 * Trasmissione manuale o automatica degli ordini a Planzer
+* Per la trasmissione manuale, selezionare e trasmettere più ordini tramite la vista elenco (azione bulk).
 * Impostazioni per le notifiche a te e ai tuoi clienti
 * Genera un'etichetta o una bolla di consegna personalizzata con il tuo logo (entrambi con Planzer QR-Code) e inviala a un indirizzo email a tua scelta
+* Personalizzare i testi della bolla di consegna
 * Escludi i prodotti che non devono essere spediti tramite Planzer (es. Voucher)
+* Escludere i metodi di spedizione che non devono essere spediti tramite Planzer (es. il ritiro)
 * Visualizza lo stato dell'ordine e della trasmissione
 * Più bolle di consegna/etichette per ordine
 * Modalità di test che impedisce l'invio di ordini a Planzer
@@ -183,3 +186,12 @@ Se un ordine viene annullato in WooCommerce da te o dal tuo cliente, questo non 
 = 1.0.10 2022-12-21 =
 
 * Remove fully refunded items from the delivery note.
+
+= 1.0.11 2023-01-26 =
+
+* Remove from delivery note products that are refunded AND have a price of 0.
+* Make all default texts on the delivery note editable.
+* Add the order number to the delivery note.
+* Add the action for transmitting orders to Planzer to Bulk actions on the list view.
+* Make shipping with planzer dependent on the shipping option.
+* Add a text field for the deposit notice.

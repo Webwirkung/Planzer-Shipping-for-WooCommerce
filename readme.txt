@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.0
-Stable tag: 1.0.10
+Tested up to: 6.1.1
+Stable tag: 1.0.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -40,9 +40,12 @@ All settings for the plugin can be found under "WooCommerce > Settings", here a 
 
 == Functions ==
 * Manually or automatic transmission of orders to Planzer
+* In case of manual transmission, select and transmit multiple orders via the list view (bulk action)
 * Settings for notifications to you and your customers
 * Generate a label or a personalized delivery note with your logo (both with Planzer QR-Code) and send it to an email address of your choice
+* Customize texts in the personalized delivery note
 * Exclude products which should not be shipped via Planzer (e.g. Vouchers)
+* Exclude shipping methods that should not be shipped via Planzer (e.g. Vouchers)
 * View the status of the order and transmission
 * Multiple delivery notes/labels per order
 * Testmode that prevents sending orders to Planzer
@@ -182,3 +185,12 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 = 1.0.10 2022-12-21 =
 
 * Remove fully refunded items from the delivery note.
+
+= 1.0.11 2023-01-26 =
+
+* Remove from delivery note products that are refunded AND have a price of 0.
+* Make all default texts on the delivery note editable.
+* Add the order number to the delivery note.
+* Add the action for transmitting orders to Planzer to Bulk actions on the list view.
+* Make shipping with planzer dependent on the shipping option.
+* Add a text field for the deposit notice.

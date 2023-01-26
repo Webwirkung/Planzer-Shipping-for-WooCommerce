@@ -88,7 +88,7 @@
 <br/>
 <br/>
 <div class="delivery-note">
-  <?php echo __('Delivery note LS', 'planzer'); ?>-<?php echo esc_html($data['sequence_number']); ?>
+  <?php echo __('Delivery note LS', 'planzer'); ?>-<?php echo esc_html($data['sequence_number']); ?> / <?php echo __('Order number', 'planzer'); ?> <?php echo esc_html($data['order']->get_id()); ?>
 </div>
 <table class="delivery-note-table">
   <tbody class="tbody">
@@ -107,7 +107,7 @@
   </tbody>
 </table>
 <div class="dear-sir">
-  <?php echo __('Ladies and gentlemen', 'planzer'); ?> <br><br>
+  <?php echo $data['salutation'] ?> <br><br>
 </div>
 <table class="order-table">
   <thead>
@@ -125,19 +125,20 @@
     $x = 1;
     foreach ($data['order']->get_items() as $item_id => $item) :
       $product = wc_get_product($item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id());
+      $refundQuantity = $data['order']->get_qty_refunded_for_item($item->get_id());
 
       if (! empty($data['excluded_products_ids']) && in_array($item->get_product_id(), $data['excluded_products_ids'])) {
         continue;
       }
 
-      if ((string) $data['order']->get_total_refunded_for_item($item->get_id()) === $item->get_total()) {
+      if (0 !== $refundQuantity && (string) $data['order']->get_total_refunded_for_item($item->get_id()) === $item->get_total()) {
         continue;
       }
 
       $quantity = $item->get_quantity();
 
-      if (0 !== $data['order']->get_qty_refunded_for_item($item->get_id())) {
-        $quantity -= abs($data['order']->get_qty_refunded_for_item($item->get_id()));
+      if (0 !== $refundQuantity) {
+        $quantity -= abs($refundQuantity);
       }
 
       ?>
@@ -163,9 +164,5 @@
   </div>
 <?php endif; ?>
 <div class="thank-you">
-  <?php echo __('Thank you very much for the order.', 'planzer'); ?><br><br>
-  <?php echo __('Feel free to contact us if you have any questions.', 'planzer'); ?><br><br>
-  <?php echo __('Kind regards', 'planzer'); ?><br>
-  <?php echo esc_html($data['contact_name']); ?> <br>
-  <?php echo esc_html($data['company']); ?>
+  <?php echo $data['signature']; ?>
 </div>
