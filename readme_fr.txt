@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.0
-Stable tag: 1.0.10
+Tested up to: 6.1.1
+Stable tag: 1.0.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
