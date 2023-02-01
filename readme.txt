@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.1.1
-Stable tag: 1.0.11
+Stable tag: 1.0.12
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -194,3 +194,7 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 * Add the action for transmitting orders to Planzer to Bulk actions on the list view.
 * Make shipping with planzer dependent on the shipping option.
 * Add a text field for the deposit notice.
+
+= 1.0.12 2023-02-01 =
+
+* Add a text for the deposit notice in receive section.
