@@ -10,7 +10,7 @@
  * Requires PHP: 7.4
  * Requires at least: 5.7
  * WC requires at least: 5.8
- * WC tested up to: 6.1
+ * WC tested up to: 6.1.1
  */
 
 define('PLANZER_NAME', 'Planzer');
