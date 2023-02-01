@@ -194,7 +194,7 @@ class DataLoader
       case '2':
         switch ($field) {
           case 'A1_82':
-                return 'Deponieren';
+                return $this->getDepositNoticeInformation();
                 break;
           case 'O1_1':
                 return '';

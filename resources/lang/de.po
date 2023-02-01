@@ -621,13 +621,13 @@ msgstr ""
 "später erneut oder wenden Sie sich an den Administrator."
 
 #~ msgid "Thank you very much for the order."
-#~ msgstr "Herzlichen Dank fĂźr die Bestellung."
+#~ msgstr "Herzlichen Dank für die Bestellung."
 
 #~ msgid "Feel free to contact us if you have any questions."
-#~ msgstr "Wenn Sie Fragen haben, kĂśnnen Sie uns gerne kontaktieren."
+#~ msgstr "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren."
 
 #~ msgid "Kind regards"
-#~ msgstr "Mit freundlichen GrĂźssen"
+#~ msgstr "Mit freundlichen Grüssen"
 
 #~ msgid "E-Mail:"
 #~ msgstr "Email:"
@@ -663,7 +663,7 @@ msgstr ""
 #~ msgstr "SMS-Benachrichtigungen senden"
 
 #~ msgid "Control No."
-#~ msgstr "Ihre zustĂ¤ndige Filiale"
+#~ msgstr "Ihre zuständige Filiale"
 
 #~ msgid "Server Address"
 #~ msgstr "IP Addresse"
@@ -681,9 +681,9 @@ msgstr ""
 #~ msgstr "Finde im Anhang"
 
 #~ msgid "Receiver of the delivery note"
-#~ msgstr "EmpfĂ¤nger des Lieferscheins"
+#~ msgstr "Empfänger des Lieferscheins"
 
 #~ msgid "The zip code is invalid - please type in an existing zip code"
 #~ msgstr ""
-#~ "Die Postleitzahl ist ungĂźltig - bitte geben Sie eine vorhandene "
+#~ "Die Postleitzahl ist ungültig - bitte geben Sie eine vorhandene "
 #~ "Postleitzahl ein"
