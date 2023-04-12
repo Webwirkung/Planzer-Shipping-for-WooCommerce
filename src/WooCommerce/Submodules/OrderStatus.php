@@ -8,6 +8,7 @@ use Planzer\SFTP\SFTP;
 use Planzer\Package\Package;
 use Planzer\QRCode\QRCode;
 use Planzer\Note\NoteFactory;
+use Planzer\QRCode\Counter;
 
 use function Planzer\isTestModelEnabled;
 
@@ -69,6 +70,7 @@ class OrderStatus
 
   private function sendOrderToPlanzer(int $order_id): void
   {
+    Counter::increaseQRNumber();
     $order = wc_get_order($order_id);
 
     if ($this->shouldSendDataToPlanzerWhenProcessing()) {

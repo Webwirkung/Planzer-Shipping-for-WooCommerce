@@ -51,7 +51,7 @@ class SFTP
   public function upload(string $csv, Package $package): void
   {
     if ($this->sftp->isConnected()) {
-      $upload = $this->sftp->put(sprintf("Eingang/PAKET_%s_%s_WP.csv", $package->getPackageNumber(), time()), $csv);
+      $upload = $this->sftp->put(sprintf("Eingang/PAKET_%s_%s_%s_WP.csv", $package->getPackageNumber(), time(), rand()), $csv);
 
       if (false === $upload) {
         $errors = $this->sftp->getSFTPErrors();

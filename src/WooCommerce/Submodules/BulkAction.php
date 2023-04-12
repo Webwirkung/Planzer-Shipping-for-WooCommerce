@@ -7,6 +7,7 @@ use Planzer\Note\NoteFactory;
 use Planzer\SFTP\SFTP;
 use Planzer\Package\Package;
 use Planzer\Note\Note;
+use Planzer\QRCode\Counter;
 
 use function Planzer\isTestModelEnabled;
 
@@ -51,6 +52,7 @@ class BulkAction
     $postsSliced = array_slice($postIds, 0, 5);
 
     foreach ($postsSliced as $id) {
+      Counter::increaseQRNumber();
       $order = wc_get_order($id);
 
       if ('planzer-transmit' !== $order->get_status()) {

@@ -8,6 +8,7 @@ use Planzer\Note\NoteFactory;
 use Planzer\SFTP\SFTP;
 use Planzer\Package\Package;
 use Planzer\Note\Note;
+use Planzer\QRCode\Counter;
 
 use function Planzer\isTestModelEnabled;
 
@@ -27,10 +28,11 @@ class OrderAction
    */
   public function handleGenerateDeliveryNoteAction(WC_Order $order): void
   {
+    Counter::increaseQRNumber();
     $order_id = $order->get_id();
-
     $order_items_id = array_map(fn ($item): int  => $item->get_product_id(), $order->get_items());
     $excluded_ids = get_option('planzer_other_excluded_products', []);
+
     if (
         ! in_array('none', $excluded_ids) &&
         empty(array_diff($order_items_id, $excluded_ids))
