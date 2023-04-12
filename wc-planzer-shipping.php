@@ -3,14 +3,14 @@
 /**
  * Plugin Name: Shipping via Planzer for WooCommerce
  * Description: Shipping via Planzer for WooCommerce
- * Version: 1.0.12
+ * Version: 1.0.13
  * Author: Webwirkung <info@webwirkung.ch>
  * Author URI: https://webwirkung.ch/
  * Text Domain: planzer
  * Requires PHP: 7.4
  * Requires at least: 5.7
  * WC requires at least: 5.8
- * WC tested up to: 6.1.1
+ * WC tested up to: 6.2
  */
 
 define('PLANZER_NAME', 'Planzer');

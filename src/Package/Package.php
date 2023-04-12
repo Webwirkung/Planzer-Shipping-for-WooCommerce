@@ -17,7 +17,6 @@ class Package
   {
     $this->order_id = $order_id;
     $this->sequence_number = QRCounter::getQRNumber();
-    QRCounter::increaseQRNumber();
   }
 
   public function getPackageNumber(int $width = 20): string
