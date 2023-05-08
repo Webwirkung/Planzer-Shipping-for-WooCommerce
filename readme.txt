@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.2
-Stable tag: 1.0.13
+Tested up to: 6.1
+Stable tag: 1.0.14
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -202,3 +202,7 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 = 1.0.13 2023-04-12 =
 
 * Prevent generating two packages with the same package number.
+
+= 1.0.14 2023-05-08 =
+
+* Update the carbon library
