@@ -48,6 +48,18 @@ class Delivery extends SectionBase implements Section
           ],
           'placeholder' => __('{company} {address} Email: {email} Website: {website}', 'planzer'),
         ])
+        ->addSelectInput(__('Delivery time (chargeable)', 'planzer'), 'delivery_time_chargable', [
+          'default' => '',
+          'options' => [
+            '' => __('Next day', 'planzer'),
+            'BIS10' => __('Delivery by 10 o\'clock', 'planzer'),
+            'BIS12' => __('Delivery by 12 o\'clock', 'planzer'),
+          ],
+          'required' => false,
+        ])
+        ->addCheckbox(__('Delivery on Saturday', 'planzer'), 'saturday_delivery', [
+          'default' => '',
+        ])
       ->endGroup('delivery');
   }
 

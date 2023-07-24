@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-25 09:58+0100\n"
+"POT-Creation-Date: 2023-07-24 12:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Planzer: ERROR while sending Planzer PDF email - %s"
 msgstr ""
 
-#: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:61
+#: src/Settings/Sections/Delivery.php:13 src/Settings/Sections/Delivery.php:73
 msgid "Delivery"
 msgstr ""
 
@@ -169,6 +169,26 @@ msgstr ""
 
 #: src/Settings/Sections/Delivery.php:45
 msgid "This footer text is visible in the delivery note."
+msgstr ""
+
+#: src/Settings/Sections/Delivery.php:51
+msgid "Delivery time (chargeable)"
+msgstr ""
+
+#: src/Settings/Sections/Delivery.php:54
+msgid "Next day"
+msgstr ""
+
+#: src/Settings/Sections/Delivery.php:55
+msgid "Delivery by 10 o'clock"
+msgstr ""
+
+#: src/Settings/Sections/Delivery.php:56
+msgid "Delivery by 12 o'clock"
+msgstr ""
+
+#: src/Settings/Sections/Delivery.php:60
+msgid "Delivery on Saturday"
 msgstr ""
 
 #: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:33
@@ -346,75 +366,83 @@ msgstr ""
 msgid "Seewen"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:48
-msgid "Sender Information"
+#: src/Settings/Sections/Sender.php:43
+msgid "Kölliken"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:49
-msgid "Company"
+#: src/Settings/Sections/Sender.php:44
+msgid "Winterthur"
 msgstr ""
 
 #: src/Settings/Sections/Sender.php:50
+msgid "Sender Information"
+msgstr ""
+
+#: src/Settings/Sections/Sender.php:51
+msgid "Company"
+msgstr ""
+
+#: src/Settings/Sections/Sender.php:52
 msgid "Company extra"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:54
+#: src/Settings/Sections/Sender.php:56
 msgid "Street"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:58
+#: src/Settings/Sections/Sender.php:60
 msgid "House Number"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:62
+#: src/Settings/Sections/Sender.php:64
 msgid "ZIP"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:66
+#: src/Settings/Sections/Sender.php:68
 msgid "City"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:70
+#: src/Settings/Sections/Sender.php:72
 msgid "Country"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:73
+#: src/Settings/Sections/Sender.php:75
 msgid "Schweiz / Switzerland"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:77
+#: src/Settings/Sections/Sender.php:79
 msgid "Language"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:81
+#: src/Settings/Sections/Sender.php:83
 msgid "Instruction"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:82
+#: src/Settings/Sections/Sender.php:84
 msgid "E-Mail"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:86
+#: src/Settings/Sections/Sender.php:88
 msgid "Phone"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:87
+#: src/Settings/Sections/Sender.php:89
 msgid "Mobile"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:91
+#: src/Settings/Sections/Sender.php:93
 msgid "Automatic address verification (experimental feature)"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:92
+#: src/Settings/Sections/Sender.php:94
 msgid "Activate automatic address checking on the checkout"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:97 src/Settings/Sections/Sender.php:100
+#: src/Settings/Sections/Sender.php:99 src/Settings/Sections/Sender.php:102
 msgid "Manual transmission"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:98
+#: src/Settings/Sections/Sender.php:100
 msgid ""
 "By default, orders with the status \"Processing\" are automatically "
 "transmitted to Planzer. Here you have the possibility to deactivate this "
@@ -422,42 +450,42 @@ msgid ""
 "order to \"Transmit to Planzer\" manually."
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:101
+#: src/Settings/Sections/Sender.php:103
 msgid "Send orders to Planzer only after manual status adjustment"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:105
+#: src/Settings/Sections/Sender.php:107
 msgid "Pickup Orders"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:106
+#: src/Settings/Sections/Sender.php:108
 msgid "Orders until this time will get picked up by Planzer the same day"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:108
+#: src/Settings/Sections/Sender.php:110
 msgid "Orders until"
 msgstr ""
 
-#: src/Settings/Sections/Sender.php:122
+#: src/Settings/Sections/Sender.php:124
 msgid "Sender"
-msgstr ""
-
-#: src/Settings/Sections/Sender.php:128
-msgctxt "language name"
-msgid "Deutsch"
-msgstr ""
-
-#: src/Settings/Sections/Sender.php:129
-msgctxt "language name"
-msgid "Français"
 msgstr ""
 
 #: src/Settings/Sections/Sender.php:130
 msgctxt "language name"
-msgid "Italiano"
+msgid "Deutsch"
 msgstr ""
 
 #: src/Settings/Sections/Sender.php:131
+msgctxt "language name"
+msgid "Français"
+msgstr ""
+
+#: src/Settings/Sections/Sender.php:132
+msgctxt "language name"
+msgid "Italiano"
+msgstr ""
+
+#: src/Settings/Sections/Sender.php:133
 msgctxt "language name"
 msgid "English"
 msgstr ""
@@ -490,73 +518,73 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:44
-#: src/WooCommerce/Submodules/OrderStatus.php:60
-#: src/WooCommerce/Submodules/BulkAction.php:21
+#: src/WooCommerce/Submodules/OrderStatus.php:45
+#: src/WooCommerce/Submodules/OrderStatus.php:61
+#: src/WooCommerce/Submodules/BulkAction.php:22
 msgid "Transmit to Planzer"
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:49
+#: src/WooCommerce/Submodules/OrderStatus.php:50
 #, php-format
 msgid "Transmit to Planzer (%s)"
 msgid_plural "Transmit to Planzer (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:78
+#: src/WooCommerce/Submodules/OrderStatus.php:80
 msgid "The order shipping class is excluded from Planzer"
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:90
-#: src/WooCommerce/Submodules/BulkAction.php:62
-#: src/WooCommerce/Submodules/OrderAction.php:38
+#: src/WooCommerce/Submodules/OrderStatus.php:92
+#: src/WooCommerce/Submodules/BulkAction.php:70
+#: src/WooCommerce/Submodules/OrderAction.php:40
 msgid "All products excluded from delivery"
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:95
-#: src/WooCommerce/Submodules/BulkAction.php:67
-#: src/WooCommerce/Submodules/OrderAction.php:43
+#: src/WooCommerce/Submodules/OrderStatus.php:97
+#: src/WooCommerce/Submodules/BulkAction.php:75
+#: src/WooCommerce/Submodules/OrderAction.php:45
 msgid "Test mode enabled - data not sent"
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:99
-#: src/WooCommerce/Submodules/BulkAction.php:71
-#: src/WooCommerce/Submodules/OrderAction.php:47
+#: src/WooCommerce/Submodules/OrderStatus.php:101
+#: src/WooCommerce/Submodules/BulkAction.php:79
+#: src/WooCommerce/Submodules/OrderAction.php:49
 msgid "Planzer: CSV generated."
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:105
-#: src/WooCommerce/Submodules/BulkAction.php:77
-#: src/WooCommerce/Submodules/OrderAction.php:53
+#: src/WooCommerce/Submodules/OrderStatus.php:107
+#: src/WooCommerce/Submodules/BulkAction.php:85
+#: src/WooCommerce/Submodules/OrderAction.php:55
 msgid "Planzer: delivery/label note and CSV generated."
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:113
-#: src/WooCommerce/Submodules/BulkAction.php:85
-#: src/WooCommerce/Submodules/OrderAction.php:61
+#: src/WooCommerce/Submodules/OrderStatus.php:115
+#: src/WooCommerce/Submodules/BulkAction.php:93
+#: src/WooCommerce/Submodules/OrderAction.php:63
 msgid "Reference number:"
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:114
-#: src/WooCommerce/Submodules/BulkAction.php:86
-#: src/WooCommerce/Submodules/OrderAction.php:62
+#: src/WooCommerce/Submodules/OrderStatus.php:116
+#: src/WooCommerce/Submodules/BulkAction.php:94
+#: src/WooCommerce/Submodules/OrderAction.php:64
 msgid "Package number: "
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:117
-#: src/WooCommerce/Submodules/BulkAction.php:90
-#: src/WooCommerce/Submodules/OrderAction.php:65
+#: src/WooCommerce/Submodules/OrderStatus.php:119
+#: src/WooCommerce/Submodules/BulkAction.php:97
+#: src/WooCommerce/Submodules/OrderAction.php:67
 msgid ""
 "There was an error while sending data to Planzer - please try again or check "
 "debuglog."
 msgstr ""
 
-#: src/WooCommerce/Submodules/BulkAction.php:37
+#: src/WooCommerce/Submodules/BulkAction.php:38
 #, php-format
 msgid "The orders with number <b>%s</b> have proceeded to the planzer."
 msgstr ""
 
-#: src/WooCommerce/Submodules/BulkAction.php:37
+#: src/WooCommerce/Submodules/BulkAction.php:38
 #, php-format
 msgid ""
 "The maximum limit of orders to sent to the planzer at one time is 5. We sent "
@@ -575,7 +603,7 @@ msgid ""
 "contact administrator."
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderAction.php:21
+#: src/WooCommerce/Submodules/OrderAction.php:22
 msgid "Generate Planzer note and create package"
 msgstr ""
 

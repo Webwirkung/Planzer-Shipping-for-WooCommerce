@@ -40,6 +40,8 @@ class Sender extends SectionBase implements Section
             '58' => __('Carouge', 'planzer'),
             '59' => __('Märstetten', 'planzer'),
             '60' => __('Seewen', 'planzer'),
+            '61' => __('Kölliken', 'planzer'),
+            '62' => __('Winterthur', 'planzer'),
           ],
           'required' => true,
         ])
