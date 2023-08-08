@@ -95,6 +95,7 @@ class DataLoader
       'A1_67' => $this->getDeliveryDate()->format('d.m.Y'),
 
       'A1_70' => "{$this->order->get_id()}_{$this->package->getSequenceNumber(0)}", // same as P1_7, this is the "upper" reference number
+      'A1_73' => get_option('planzer_delivery_delivery_time_chargable', ''),
       'A1_76' => $this->getDepositNoticeInformation(),
 
       'A1_82' => $this->getNotificationValueFor('A1_82'),
@@ -160,13 +161,14 @@ class DataLoader
 
   public function getDeliveryDate(): Carbon
   {
-    $delivery_date = $this->maybeMoveToNextWorkingDay($this->getPickupDate()->addDay());
+    $delivery_date = $this->maybeMoveToNextWorkingDay($this->getPickupDate()->addDay(), 'yes' === get_option('planzer_delivery_saturday_delivery'));
+
     return apply_filters('planzer/csv/delivery_date', $delivery_date, $this->order);
   }
 
-  private function maybeMoveToNextWorkingDay(Carbon $date): Carbon
+  private function maybeMoveToNextWorkingDay(Carbon $date, $checkWeekends = false): Carbon
   {
-    while ($date->isWeekend()) {
+    while ($checkWeekends ? $date->isSunday() : $date->isWeekend()) {
       $date->addDay();
       $date->hour = explode(':', $this->pickup_pickup_from)[0];
       $date->minute = explode(':', $this->pickup_pickup_from)[1];
