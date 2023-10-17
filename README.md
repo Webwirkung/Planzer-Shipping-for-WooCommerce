@@ -1,7 +1,7 @@
 # Shipping via Planzer for WooCommerce
 
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.1 Stable
+Tested up to: 6.3 Stable
 tag: 1.0.16
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -12,10 +12,10 @@ Shipping via Planzer for WooCommerce automatically franks your orders thanks to 
 
 ### Advantages at a glance
 
-- **Easy installation**<br />The plugin can be easily installed and filled with your data. Once the plugin is activated and in live mode, Planzer will pick up the packages from you.
-- **More time for the important things**<br />With our plugin, you no longer have to manually enter orders in the Planzer portal. This saves you time and allows you to take care of your daily business.
-- **Lower error rate**<br /> Since the orders are automatically transferred according to the input of your customers, (including shipping and billing addresses) the error rate will automatically decrease.
-- **QR code with personalized delivery note**<br /> On request, a personalized delivery bill is generated instead of the simple label with QR code.
+**Easy installation**<br />The plugin can be easily installed and filled with your data. Once the plugin is activated and in live mode, Planzer will pick up the packages from you.
+**More time for the important things**<br />With our plugin, you no longer have to manually enter orders in the Planzer portal. This saves you time and allows you to take care of your daily business.
+**Lower error rate**<br /> Since the orders are automatically transferred according to the input of your customers, (including shipping and billing addresses) the error rate will automatically decrease.
+**QR code with personalized delivery note**<br /> On request, a personalized delivery bill is generated instead of the simple label with QR code.
 
 ### Already a Planzer customer?
 
