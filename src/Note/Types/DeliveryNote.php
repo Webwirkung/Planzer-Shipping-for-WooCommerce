@@ -36,7 +36,7 @@ class DeliveryNote extends AbstractNote implements NoteInterface
       'company_address' => $countries,
       'logo' => get_option('planzer_delivery_note_logo'),
       'contact_name' => $contactName,
-      'excluded_products_ids' => get_option('planzer_other_excluded_products'),
+      'excluded_products_ids' => get_option('planzer_other_excluded_products', []),
       'salutation' => str_replace(['{first_name}', '{last_name}'], [$orderFirstName, $orderLirstName], get_option('planzer_delivery_note_salutation')) ?: __('Ladies and gentlemen', 'planzer'),
       'signature' => str_replace(['{contact_name}', '{company}'], [$contactName, $company], nl2br(get_option('planzer_delivery_note_signature') ?: str_replace('<br>', PHP_EOL, __('Thank you very much for the order.<br><br>Feel free to contact us if you have any questions.<br><br>Kind regards<br>{contact_name}<br>{company}', 'planzer')))),
     ]));
