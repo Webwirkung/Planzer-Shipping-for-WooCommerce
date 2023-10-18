@@ -74,7 +74,11 @@ class OrderStatus
     $order = wc_get_order($order_id);
 
     if ($this->shouldSendDataToPlanzerWhenProcessing()) {
-      $excludedShippingMethods = get_option('planzer_other_excluded_shipping');
+      $excludedShippingMethods = get_option('planzer_other_excluded_shipping', []);
+      if ('none' === $excludedShippingMethods || false === $excludedShippingMethods) {
+        $excludedShippingMethods = ['none'];
+      }
+
       foreach ($excludedShippingMethods as $excludedMethod) {
         if ($order->has_shipping_method($excludedMethod)) {
           $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('The order shipping class is excluded from Planzer', 'planzer'));
@@ -85,6 +89,10 @@ class OrderStatus
 
     $order_items_id = array_map(fn ($item): int  => $item->get_product_id(), $order->get_items());
     $excluded_ids = get_option('planzer_other_excluded_products', []);
+    if ('none' === $excluded_ids || false === $excluded_ids) {
+      $excluded_ids = ['none'];
+    }
+
     if (
         ! in_array('none', $excluded_ids) &&
         empty(array_diff($order_items_id, $excluded_ids))

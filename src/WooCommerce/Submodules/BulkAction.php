@@ -62,6 +62,9 @@ class BulkAction
 
       $order_items_id = array_map(fn ($item): int  => $item->get_product_id(), $order->get_items());
       $excluded_ids = get_option('planzer_other_excluded_products', []);
+      if ('none' === $excluded_ids || false === $excluded_ids) {
+        $excluded_ids = ['none'];
+      }
 
       if (
           ! in_array('none', $excluded_ids) &&

@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.3
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -212,3 +212,7 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 * Add new branches: Kölliken, Winterthur
 * New delivery option: Saturday delivery
 * New delivery option: Additional service for guaranteed delivery time: Next day, Delivery by 10 o'clock, Delivery by 12 o'clock
+
+= 1.0.16 2023-10-17 =
+
+* Bugfix connected with wrong data type in in_array function.
