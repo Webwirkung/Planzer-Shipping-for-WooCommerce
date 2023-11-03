@@ -127,7 +127,12 @@
       $product = wc_get_product($item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id());
       $refundQuantity = $data['order']->get_qty_refunded_for_item($item->get_id());
 
-      if (! empty($data['excluded_products_ids']) && in_array($item->get_product_id(), $data['excluded_products_ids'])) {
+      $excluded_ids = $data['excluded_products_ids'];
+      if ('none' === $excluded_ids || false === $excluded_ids) {
+        $excluded_ids = ['none'];
+      }
+
+      if (! empty($excluded_ids) && in_array($item->get_product_id(), $excluded_ids)) {
         continue;
       }
 

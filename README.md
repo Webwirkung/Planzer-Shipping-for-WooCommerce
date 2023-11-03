@@ -1,7 +1,7 @@
 # Shipping via Planzer for WooCommerce
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.3 Stable
-tag: 1.0.16
+Tested up to: 6.4
+tag: 1.0.17
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -260,4 +260,9 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 
 **1.0.16 2023-10-17**
 
-- Bugfix connected with wrong data type in in_array function.
+* Bugfix connected with wrong data type in in_array function.
+
+**1.0.17 2023-10-30**
+
+* Bugfix connected with wrong data type in in_array function in the delivery note template.
+* Check compatibility with WordPress 6.4
