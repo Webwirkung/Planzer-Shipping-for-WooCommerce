@@ -4,11 +4,17 @@ namespace Planzer\QRCode;
 
 class Counter
 {
-  private const OPTION_FIELD_NAME = 'planzer_qr_sequence_number';
-
   public static function getQRNumber(): int
   {
-    return get_option(self::OPTION_FIELD_NAME, 1);
+    global $wpdb;
+
+    $wpdb->query('START TRANSACTION');
+
+    $currentSequence = $wpdb->get_var("SELECT option_value FROM $wpdb->options WHERE option_name = 'planzer_qr_sequence_number' FOR UPDATE");
+
+    $wpdb->query('COMMIT');
+
+    return $currentSequence;
   }
 
   public static function getQRNumberAsString(): string
@@ -18,7 +24,23 @@ class Counter
 
   public static function increaseQRNumber(): bool
   {
-    $increased_number = self::getQRNumber() + 1;
-    return update_option(self::OPTION_FIELD_NAME, $increased_number);
+    global $wpdb;
+
+    $tableName = $wpdb->options;
+
+    $wpdb->query('START TRANSACTION');
+
+    $currentSequence = $wpdb->get_var("SELECT option_value FROM $wpdb->options WHERE option_name = 'planzer_qr_sequence_number' FOR UPDATE");
+
+    $newSequence = $currentSequence + 1;
+
+    $dataUpdate = ['option_value' => $newSequence];
+    $dataWhere = ['option_name' => 'planzer_qr_sequence_number'];
+
+    $wpdb->update($tableName, $dataUpdate, $dataWhere);
+
+    $wpdb->query('COMMIT');
+
+    return $newSequence;
   }
 }
