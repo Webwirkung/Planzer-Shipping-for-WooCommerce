@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce, Plug & Planzer Paket
-Tested up to: 6.4.2
-Stable tag: 1.0.18
+Tested up to: 6.4.3
+Stable tag: 1.0.19
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -226,3 +226,8 @@ Wenn eine Bestellung in WooCommerce von Ihnen oder Ihrem Kunden storniert wird, 
 
 * Replace QR code API generator source
 * Check compatibility with WordPress 6.4.2
+
+= 1.0.19 2024-01-31 =
+
+* Fix package number generator feature.
+* Check compatibility with WordPress 6.4.3
