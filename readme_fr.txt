@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.4.3
-Stable tag: 1.0.20
+Stable tag: 1.0.21
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Planzer Parcel est exactement ce dont vous avez besoin pour votre boutique en ligne : une collecte rapide, une livraison ponctuelle, un contact amical avec le client final, une expérience de livraison inégalée.
 
-Nous livrons des colis de différentes tailles jusqu'à 30 kg à la porte de votre destinataire en Suisse - le lendemain soir et en personne. A moins que vous ne vouliez quelque chose de plus rapide ou de plus précis. Des options supplémentaires intéressantes vous permettent d'adapter la livraison aux souhaits de votre client.
+Nous livrons des colis de différentes tailles jusqu'à 30 kg à la porte de votre destinataire en Suisse - le lendemain soir. A moins que vous ne vouliez quelque chose de plus rapide ou de plus précis. Des options supplémentaires intéressantes vous permettent d'adapter la livraison aux souhaits de votre client.
 
 Pour fournir ce service B2C exceptionnel, nous combinons nos décennies d'expérience dans le transport et la logistique avec les nouvelles technologies et l'efficacité maximale du commerce électronique.
 
@@ -236,3 +236,7 @@ Si une commande est annulée dans WooCommerce par vous ou votre client, cela ne 
 = 1.0.20 2024-02-07 =
 
 * Bugfix related with sequence number value in the database. 
+
+= 1.0.21 2024-02-19 =
+
+* Description correction
