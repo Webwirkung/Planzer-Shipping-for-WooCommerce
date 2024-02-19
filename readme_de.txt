@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce, Plug & Planzer Paket
 Tested up to: 6.4.3
-Stable tag: 1.0.20
+Stable tag: 1.0.21
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Planzer Paket ist genau das, was Sie für Ihren Online-Shop brauchen: schnelle Abholung, pünktliche Auslieferung, freundlicher Endkundenkontakt, einmaliges Empfangserlebnis.
 
-Wir bringen Ihre Pakete unterschiedlicher Grössen bis 30 kg zur Haustür Ihrer Empfängerin oder Ihres Empfänger in der Schweiz. Und zwar bis am Abend des Folgetags und nur höchst persönlich. Es sei denn, Sie möchten, dass es schneller oder spezieller geht. Mit interessanten Zusatzoptionen gestalten Sie die Zustellung nach den Wünschen Ihrer Endkunden.
+Wir bringen Ihre Pakete unterschiedlicher Grössen bis 30 kg zur Haustür Ihrer Empfängerin oder Ihres Empfänger in der Schweiz. Und zwar bis am Abend des Folgetags. Es sei denn, Sie möchten, dass es schneller oder spezieller geht. Mit interessanten Zusatzoptionen gestalten Sie die Zustellung nach den Wünschen Ihrer Endkunden.
 
 Für diese Höchstleistung im B2C-Bereich kombinieren wir unsere jahrzehntelange Erfahrung in Transport und Logistik mit neuen Technologien und maximaler E-Commerce-Effizienz.
 
@@ -235,3 +235,7 @@ Wenn eine Bestellung in WooCommerce von Ihnen oder Ihrem Kunden storniert wird, 
 = 1.0.20 2024-02-07 =
 
 * Bugfix related with sequence number value in the database. 
+
+= 1.0.21 2024-02-19 =
+
+* Description correction
