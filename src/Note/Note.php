@@ -5,6 +5,8 @@ namespace Planzer\Note;
 use WC_Order;
 use Planzer\Note\Interfaces\Note as NoteInterface;
 
+use function Planzer\isTestModelEnabled;
+
 class Note
 {
   private NoteInterface $note;
@@ -41,6 +43,10 @@ class Note
             default:
                 $subject = __('Planzer note for order', 'planzer');
                 break;
+          }
+          
+          if (isTestModelEnabled()) {
+            $subject .= '[TEST MODE]';
           }
 
           $subject .= " {$this->note->getReferenceNumber()}";

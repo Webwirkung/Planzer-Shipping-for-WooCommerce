@@ -8,7 +8,9 @@ class Template
   {
     ob_start();
 
-    include PLANZER_RESOURCES_PATH . "/views/$template_name.php";
+    $default_template_path = PLANZER_RESOURCES_PATH . "/views/";
+    $template_path = apply_filters('planzer_note_template_path', $default_template_path);
+    include $template_path . $template_name . ".php";
 
     return ob_get_clean();
   }

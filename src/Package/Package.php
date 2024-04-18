@@ -5,6 +5,8 @@ namespace Planzer\Package;
 use Planzer\QRCode\Counter as QRCounter;
 use Planzer\QRCode\QRCode;
 
+use function Planzer\isTestModelEnabled;
+
 class Package
 {
   private const QR_PREFIX = 91;
@@ -16,7 +18,12 @@ class Package
   public function __construct(int $order_id)
   {
     $this->order_id = $order_id;
-    $this->sequence_number = QRCounter::getQRNumber();
+    
+    if (isTestModelEnabled()) {
+      $this->sequence_number = 00000;
+    } else {
+      $this->sequence_number = QRCounter::getQRNumber();
+    }
   }
 
   public function getPackageNumber(int $width = 20): string
