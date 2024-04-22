@@ -80,7 +80,7 @@ class BulkAction
         $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
         if (is_a($note, Note::class)) {
           $note->sendPdf($note->generatePDF());
-        }      
+        }
         $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
         return $redirectTo;
       }
