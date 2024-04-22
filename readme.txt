@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.4.3
-Stable tag: 1.0.21
+Tested up to: 6.5
+Stable tag: 1.0.22
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -239,3 +239,9 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 = 1.0.21 2024-02-19 =
 
 * Description correction
+
+= 1.0.22 2024-04-22 =
+
+* Test mode generates a demo delivery note and sends it with [TEST MODE] in subject line
+* Delivery note template path is now filterable to allow custom templates
+* Custom field "planzer_tracking_code" with the tracking code is set in the order
