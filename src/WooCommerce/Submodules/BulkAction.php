@@ -43,8 +43,10 @@ class BulkAction
   /**
    * @filter handle_bulk_actions-edit-shop_order
    */
-  public function handlePlanzerTransmitBulkAction(string $redirectTo, string $action, array $postIds): string
+  public function handlePlanzerTransmitBulkAction(?string $redirectTo, string $action, array $postIds): string
   {
+    $redirectTo = $redirectTo ?? admin_url('edit.php?post_type=shop_order');
+
     if ('wc-planzer-transmit' !== $action) {
       return $redirectTo;
     }
