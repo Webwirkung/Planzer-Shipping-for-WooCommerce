@@ -56,10 +56,11 @@ class Other extends SectionBase implements Section
     $zones = \WC_Shipping_Zones::get_zones();
 
     $shippingMethods = [];
+
     foreach ($zones as $zoneItem) {
       foreach ($zoneItem['shipping_methods'] as $shippingItem) {
         if ('yes' === $shippingItem->enabled) {
-          $shippingMethods[$shippingItem->id] = $shippingItem->title;
+          $shippingMethods[$shippingItem->title] = $shippingItem->title;
         }
       }
     }

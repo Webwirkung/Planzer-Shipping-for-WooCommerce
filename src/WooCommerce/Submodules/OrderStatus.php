@@ -73,17 +73,16 @@ class OrderStatus
     Counter::increaseQRNumber();
     $order = wc_get_order($order_id);
 
-    if ($this->shouldSendDataToPlanzerWhenProcessing()) {
-      $excludedShippingMethods = get_option('planzer_other_excluded_shipping', []);
-      if ('none' === $excludedShippingMethods || false === $excludedShippingMethods) {
-        $excludedShippingMethods = ['none'];
-      }
+    $excludedShippingMethods = get_option('planzer_other_excluded_shipping', []);
 
-      foreach ($excludedShippingMethods as $excludedMethod) {
-        if ($order->has_shipping_method($excludedMethod)) {
-          $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('The order shipping class is excluded from Planzer', 'planzer'));
-          return;
-        }
+    if ('none' === $excludedShippingMethods || false === $excludedShippingMethods) {
+      $excludedShippingMethods = ['none'];
+    }
+
+    foreach ($excludedShippingMethods as $excludedMethod) {
+      if ($order->get_shipping_method() === $excludedMethod) {
+        $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('The order shipping class is excluded from Planzer', 'planzer'));
+        return;
       }
     }
 
@@ -103,11 +102,11 @@ class OrderStatus
 
     if (isTestModelEnabled()) {
       $package = new Package($order_id);
-      update_post_meta($order_id, 'planzer_tracking_code', 'TEST_'.$package->getQRContentWithoutSuffix());
+      update_post_meta($order_id, 'planzer_tracking_code', 'TEST_' . $package->getQRContentWithoutSuffix());
       $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
       if (is_a($note, Note::class)) {
         $note->sendPdf($note->generatePDF());
-      }      
+      }
       $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
       return;
     }
