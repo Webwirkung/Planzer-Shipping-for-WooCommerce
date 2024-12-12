@@ -34,7 +34,7 @@ function wooCommerceRequirementsValid(): bool
   }
 
   $planzer_data = get_file_data(PLANZER_PLUGIN_FILE, ['RequiresWooCommerce' => 'WC requires at least'], 'plugin');
-  $wc_data = get_plugin_data(WP_PLUGIN_DIR . '/woocommerce/woocommerce.php');
+  $wc_data = get_plugin_data(WP_PLUGIN_DIR . '/woocommerce/woocommerce.php', false, /* $translate */ false);
 
   if (! empty($planzer_data['RequiresWooCommerce'])) {
     if (empty($wc_data['Version'])) {
@@ -51,7 +51,7 @@ function wooCommerceRequirementsValid(): bool
 
 function phpRequirementsValid(): bool
 {
-  $plugin_data = get_plugin_data(PLANZER_PLUGIN_FILE);
+  $plugin_data = get_plugin_data(PLANZER_PLUGIN_FILE, false, /* $translate */ false);
 
   if (! empty($plugin_data['RequiresPHP'])) {
     if (version_compare(PHP_VERSION, $plugin_data['RequiresPHP'], '<')) {
