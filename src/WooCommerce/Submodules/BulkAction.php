@@ -37,7 +37,14 @@ class BulkAction
     $status = (5 >= $_REQUEST['posts-ids-count']) ? 'success' : 'warning';
     $message = (5 >= $_REQUEST['posts-ids-count']) ? __("The orders with number <b>%s</b> have proceeded to the planzer.", 'planzer') : __("The maximum limit of orders to sent to the planzer at one time is 5. We sent 5 orders: <b>%s</b>. For the rest of the orders not processed please choose them again", 'planzer');
 
-    printf("<div id='message' class='notice notice-%s is-dismissible'><p>%s</p></div>", $status, sprintf($message, $_REQUEST['processed-ids']));
+    $processedIdsRaw = $_REQUEST['processed-ids'] ?? '';
+    $processedIdsSanitized = array_filter(
+        array_map('absint', explode(',', $processedIdsRaw))
+    );
+
+    if (! empty($processedIdsSanitized)) {
+      printf("<div id='message' class='notice notice-%s is-dismissible'><p>%s</p></div>", $status, sprintf($message, esc_html(implode(',', $processedIdsSanitized))));
+    }
   }
 
   /**
