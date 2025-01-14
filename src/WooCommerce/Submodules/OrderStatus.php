@@ -16,12 +16,12 @@ use function Planzer\isTestModelEnabled;
 class OrderStatus
 {
   private $exclusionService;
-  
+
   public function __construct(ExclusionService $exclusionService)
   {
       $this->exclusionService = $exclusionService;
   }
-  
+
   /**
    * @action woocommerce_order_status_changed
    *
@@ -93,7 +93,7 @@ class OrderStatus
       if (is_a($note, Note::class)) {
         $note->sendPdf($note->generatePDF());
       }
-      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('TTTest mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
+      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
       return;
     }
 
