@@ -8,11 +8,19 @@ use Planzer\SFTP\SFTP;
 use Planzer\Package\Package;
 use Planzer\Note\Note;
 use Planzer\QRCode\Counter;
+use Planzer\WooCommerce\Services\ExclusionService;
 
 use function Planzer\isTestModelEnabled;
 
 class BulkAction
 {
+  private $exclusionService;
+  
+  public function __construct(ExclusionService $exclusionService)
+  {
+      $this->exclusionService = $exclusionService;
+  }
+  
   /**
    * @filter bulk_actions-edit-shop_order
    */
@@ -63,26 +71,17 @@ class BulkAction
     foreach ($postsSliced as $id) {
       Counter::increaseQRNumber();
       $order = wc_get_order($id);
-
+      
+      if ($exclusionReason = $this->exclusionService->getExclusionReason($order)) {
+        $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . $exclusionReason);
+        continue;
+      }
+      
       if ('planzer-transmit' !== $order->get_status()) {
         $order->update_status('wc-planzer-transmit');
         continue;
       }
-
-      $order_items_id = array_map(fn ($item): int  => $item->get_product_id(), $order->get_items());
-      $excluded_ids = get_option('planzer_other_excluded_products', []);
-      if ('none' === $excluded_ids || false === $excluded_ids) {
-        $excluded_ids = ['none'];
-      }
-
-      if (
-          ! in_array('none', $excluded_ids) &&
-          empty(array_diff($order_items_id, $excluded_ids))
-      ) {
-        $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('All products excluded from delivery', 'planzer'));
-        return $redirectTo;
-      }
-
+      
       if (isTestModelEnabled()) {
         $package = new Package($order_id);
         update_post_meta($order_id, 'planzer_tracking_code', 'TEST_'.$package->getQRContentWithoutSuffix());

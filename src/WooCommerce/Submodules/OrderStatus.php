@@ -9,11 +9,19 @@ use Planzer\Package\Package;
 use Planzer\QRCode\QRCode;
 use Planzer\Note\NoteFactory;
 use Planzer\QRCode\Counter;
+use Planzer\WooCommerce\Services\ExclusionService;
 
 use function Planzer\isTestModelEnabled;
 
 class OrderStatus
 {
+  private $exclusionService;
+  
+  public function __construct(ExclusionService $exclusionService)
+  {
+      $this->exclusionService = $exclusionService;
+  }
+  
   /**
    * @action woocommerce_order_status_changed
    *
@@ -73,31 +81,9 @@ class OrderStatus
     Counter::increaseQRNumber();
     $order = wc_get_order($order_id);
 
-    $excludedShippingMethods = get_option('planzer_other_excluded_shipping', []);
-
-    if ('none' === $excludedShippingMethods || false === $excludedShippingMethods) {
-      $excludedShippingMethods = ['none'];
-    }
-
-    foreach ($excludedShippingMethods as $excludedMethod) {
-      if ($order->get_shipping_method() === $excludedMethod) {
-        $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('The order shipping class is excluded from Planzer', 'planzer'));
+    if ($exclusionReason = $this->exclusionService->getExclusionReason($order)) {
+        $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . $exclusionReason);
         return;
-      }
-    }
-
-    $order_items_id = array_map(fn ($item): int  => $item->get_product_id(), $order->get_items());
-    $excluded_ids = get_option('planzer_other_excluded_products', []);
-    if ('none' === $excluded_ids || false === $excluded_ids) {
-      $excluded_ids = ['none'];
-    }
-
-    if (
-        ! in_array('none', $excluded_ids) &&
-        empty(array_diff($order_items_id, $excluded_ids))
-    ) {
-      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('All products excluded from delivery', 'planzer'));
-      return;
     }
 
     if (isTestModelEnabled()) {
@@ -107,7 +93,7 @@ class OrderStatus
       if (is_a($note, Note::class)) {
         $note->sendPdf($note->generatePDF());
       }
-      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
+      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('TTTest mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
       return;
     }
 
