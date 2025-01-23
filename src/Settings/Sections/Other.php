@@ -85,6 +85,8 @@ class Other extends SectionBase implements Section
       $shippingClasses[$shipping_class->term_id] = $shipping_class->name;
     }
 
+    $shippingClasses = array_replace(['none' => __('none', 'planzer')], $shippingClasses);
+
     return apply_filters('planzer/settings/other/excluded_shippingclass_list', $shippingClasses);
   }
 }
