@@ -18,7 +18,7 @@ class Other extends SectionBase implements Section
         ->addMultiselectInput(__('Excluded shipping classes', 'planzer'), 'excluded_shipping_classes', [
           'options' => $this->getShippingClassesList(),
           'default' => 'none',
-          'desc' => __('Select shipping classes that should not use Planzer.', 'planzer'),
+          'desc' => __('Select shipping classes that should not use Planzer.', 'planzer') . '<br>' . __('(This option only works for flat rate shipping methods.)', 'planzer'),
         ])
         ->addMultiselectInput(__('Excluded products', 'planzer'), 'excluded_products', [
           'options' => $this->getProductsList(),
