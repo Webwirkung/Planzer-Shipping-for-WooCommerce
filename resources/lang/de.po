@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-24 12:40+0200\n"
+"POT-Creation-Date: 2025-01-24 12:07+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.1\n"
 
 #: resources/views/note/delivery-note/content.php:83
 msgid "Package number"
@@ -66,11 +66,11 @@ msgstr "Menge offen"
 msgid "Quantity delivered"
 msgstr "Gelieferte Menge"
 
-#: resources/views/note/delivery-note/content.php:147
+#: resources/views/note/delivery-note/content.php:152
 msgid "Product Code"
 msgstr "Produktcode"
 
-#: resources/views/note/delivery-note/content.php:161
+#: resources/views/note/delivery-note/content.php:166
 msgid "Annotation:"
 msgstr "Anmerkung:"
 
@@ -90,19 +90,19 @@ msgstr ""
 "Vielen Dank für die Bestellung.<br><br>Bei Fragen stehen wir Ihnen gerne zur "
 "Verfügung.<br><br>Mit freundlichen Grüßen<br>{contact_name}<br>{company}"
 
-#: src/Note/Note.php:36
+#: src/Note/Note.php:38
 msgid "Planzer delivery note for order"
 msgstr "Planzer Lieferschein der Bestellung"
 
-#: src/Note/Note.php:39
+#: src/Note/Note.php:41
 msgid "Planzer label note for order"
 msgstr "Planzer Etikette der Bestellung"
 
-#: src/Note/Note.php:42
+#: src/Note/Note.php:44
 msgid "Planzer note for order"
 msgstr "Planzer Notiz der Bestellung"
 
-#: src/Note/Note.php:51
+#: src/Note/Note.php:57
 #, php-format
 msgid "Planzer: ERROR while sending Planzer PDF email - %s"
 msgstr "Planzer: FEHLER beim Senden der Planzer-PDF-E-Mail - %s"
@@ -199,29 +199,42 @@ msgstr "Lieferung bis 12 Uhr"
 msgid "Delivery on Saturday"
 msgstr "Lieferung am Samstag"
 
-#: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:33
+#: src/Settings/Sections/Other.php:12 src/Settings/Sections/Other.php:38
 msgid "Other"
 msgstr "Produkte ausschliessen"
 
 #: src/Settings/Sections/Other.php:13
+msgid "Excluded shippings"
+msgstr "Ausgeschlossene Sendungen"
+
+#: src/Settings/Sections/Other.php:16
+msgid "Select shipping codes that should not use Planzer."
+msgstr "Wählen Sie Versandcodes, die Planzer nicht verwenden soll."
+
+#: src/Settings/Sections/Other.php:18
+msgid "Excluded shipping classes"
+msgstr "Ausgeschlossene Versandklassen"
+
+#: src/Settings/Sections/Other.php:21
+msgid "Select shipping classes that should not use Planzer."
+msgstr "Wählen Sie Versandklassen aus, die Planzer nicht verwenden sollten."
+
+#: src/Settings/Sections/Other.php:21
+msgid "(This option only works for flat rate shipping methods.)"
+msgstr "(Diese Option funktioniert nur für Versandmethoden mit Pauschalpreis.)"
+
+#: src/Settings/Sections/Other.php:23
 msgid "Excluded products"
 msgstr "Produkte wählen"
 
-#: src/Settings/Sections/Other.php:16
+#: src/Settings/Sections/Other.php:26
 msgid "Select product that are note being sent with Planzer."
 msgstr ""
 "Wählen Sie die Produkte aus, welche nicht mit Planzer versendet werden "
 "sollen. (z.B. Gutscheine)"
 
-#: src/Settings/Sections/Other.php:18
-msgid "Excluded shippings"
-msgstr "Ausgeschlossene Sendungen"
-
-#: src/Settings/Sections/Other.php:21
-msgid "Select shipping codes that should not use Planzer."
-msgstr "Wählen Sie Versandcodes, die Planzer nicht verwenden soll."
-
-#: src/Settings/Sections/Other.php:49 src/Settings/Sections/Other.php:67
+#: src/Settings/Sections/Other.php:54 src/Settings/Sections/Other.php:73
+#: src/Settings/Sections/Other.php:88
 msgid "none"
 msgstr "Keine"
 
@@ -539,61 +552,52 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nein"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:45
-#: src/WooCommerce/Submodules/OrderStatus.php:61
-#: src/WooCommerce/Submodules/BulkAction.php:22
+#: src/WooCommerce/Submodules/OrderStatus.php:53
+#: src/WooCommerce/Submodules/OrderStatus.php:69
+#: src/WooCommerce/Submodules/BulkAction.php:30
 msgid "Transmit to Planzer"
 msgstr "Übermittlung an Planzer"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:50
+#: src/WooCommerce/Submodules/OrderStatus.php:58
 #, php-format
 msgid "Transmit to Planzer (%s)"
 msgid_plural "Transmit to Planzer (%s)"
 msgstr[0] "Übermittlung an Planzer (%s)"
 msgstr[1] "Übermittlung an Planzer (%s)"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:80
-msgid "The order shipping class is excluded from Planzer"
-msgstr "Die Bestellversand-Versandklasse ist von Planzer ausgeschlossen"
+#: src/WooCommerce/Submodules/OrderStatus.php:96
+#: src/WooCommerce/Submodules/BulkAction.php:92
+msgid ""
+"Test mode enabled - data not sent to Planzer. Demo delivery note generated "
+"and sent."
+msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:92
-#: src/WooCommerce/Submodules/BulkAction.php:70
-#: src/WooCommerce/Submodules/OrderAction.php:40
-msgid "All products excluded from delivery"
-msgstr "Alle Produkte von der Lieferung ausgeschlossen"
-
-#: src/WooCommerce/Submodules/OrderStatus.php:97
-#: src/WooCommerce/Submodules/BulkAction.php:75
-#: src/WooCommerce/Submodules/OrderAction.php:45
-msgid "Test mode enabled - data not sent"
-msgstr "Testmodus aktiviert - Daten nicht gesendet"
-
-#: src/WooCommerce/Submodules/OrderStatus.php:101
-#: src/WooCommerce/Submodules/BulkAction.php:79
-#: src/WooCommerce/Submodules/OrderAction.php:49
+#: src/WooCommerce/Submodules/OrderStatus.php:100
+#: src/WooCommerce/Submodules/BulkAction.php:96
+#: src/WooCommerce/Submodules/OrderAction.php:48
 msgid "Planzer: CSV generated."
 msgstr "Planzer: Lieferschein und CSV generiert."
 
 #: src/WooCommerce/Submodules/OrderStatus.php:107
-#: src/WooCommerce/Submodules/BulkAction.php:85
+#: src/WooCommerce/Submodules/BulkAction.php:103
 #: src/WooCommerce/Submodules/OrderAction.php:55
 msgid "Planzer: delivery/label note and CSV generated."
 msgstr "Planzer: Liefer-/Etikettenschein und CSV generiert."
 
 #: src/WooCommerce/Submodules/OrderStatus.php:115
-#: src/WooCommerce/Submodules/BulkAction.php:93
+#: src/WooCommerce/Submodules/BulkAction.php:111
 #: src/WooCommerce/Submodules/OrderAction.php:63
 msgid "Reference number:"
 msgstr "Referenz:"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:116
-#: src/WooCommerce/Submodules/BulkAction.php:94
+#: src/WooCommerce/Submodules/BulkAction.php:112
 #: src/WooCommerce/Submodules/OrderAction.php:64
 msgid "Package number: "
 msgstr "Paketnummer: "
 
 #: src/WooCommerce/Submodules/OrderStatus.php:119
-#: src/WooCommerce/Submodules/BulkAction.php:97
+#: src/WooCommerce/Submodules/BulkAction.php:115
 #: src/WooCommerce/Submodules/OrderAction.php:67
 msgid ""
 "There was an error while sending data to Planzer - please try again or check "
@@ -602,13 +606,13 @@ msgstr ""
 "Beim Senden von Daten an Planzer ist ein Fehler aufgetreten. Bitte versuchen "
 "Sie es erneut oder überprüfen Sie das Debuglog."
 
-#: src/WooCommerce/Submodules/BulkAction.php:38
+#: src/WooCommerce/Submodules/BulkAction.php:46
 #, php-format
 msgid "The orders with number <b>%s</b> have proceeded to the planzer."
 msgstr ""
 "Die Bestellungen mit der Nummer <b>%s</b> sind an den Planzer gegangen."
 
-#: src/WooCommerce/Submodules/BulkAction.php:38
+#: src/WooCommerce/Submodules/BulkAction.php:46
 #, php-format
 msgid ""
 "The maximum limit of orders to sent to the planzer at one time is 5. We sent "
@@ -632,21 +636,39 @@ msgstr ""
 "Bei der Bestätigung Ihrer Adresse ist ein Problem aufgetreten. Bitte "
 "versuchen Sie es später erneut oder wenden Sie sich an den Administrator."
 
-#: src/WooCommerce/Submodules/OrderAction.php:22
+#: src/WooCommerce/Submodules/OrderAction.php:30
 msgid "Generate Planzer note and create package"
 msgstr "Zusätzlichen Planzer Lieferschein/Etikette generieren"
+
+#: src/WooCommerce/Services/ExclusionService.php:8
+msgid "Products in the order are excluded from Planzer delivery"
+msgstr ""
+"Produkte in der Bestellung sind von der Planzer-Lieferung ausgeschlossen."
+
+#: src/WooCommerce/Services/ExclusionService.php:12
+msgid "The order shipping method is excluded from Planzer delivery"
+msgstr ""
+"Die Versandmethode der Bestellung ist von der Planzer-Lieferung "
+"ausgeschlossen."
+
+#: src/WooCommerce/Services/ExclusionService.php:16
+msgid "The order contains products with excluded shipping classes"
+msgstr "Die Bestellung enthält Produkte mit ausgeschlossenen Versandklassen."
 
 #: src/Core/Config.php:71
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/SFTP/SFTP.php:22
+#: src/SFTP/SFTP_.php:22 src/SFTP/SFTP.php:22
 msgid ""
 "There was a problem with the connection to the server, please try again "
 "later or contact administrator."
 msgstr ""
 "Es gab ein Problem mit der Verbindung zum Server, bitte versuchen Sie es "
 "später erneut oder wenden Sie sich an den Administrator."
+
+#~ msgid "Test mode enabled - data not sent"
+#~ msgstr "Testmodus aktiviert - Daten nicht gesendet"
 
 #~ msgid "Thank you very much for the order."
 #~ msgstr "Herzlichen Dank für die Bestellung."
