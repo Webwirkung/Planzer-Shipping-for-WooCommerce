@@ -9,11 +9,19 @@ use Planzer\SFTP\SFTP;
 use Planzer\Package\Package;
 use Planzer\Note\Note;
 use Planzer\QRCode\Counter;
+use Planzer\WooCommerce\Services\ExclusionService;
 
 use function Planzer\isTestModelEnabled;
 
 class OrderAction
 {
+  private $exclusionService;
+  
+  public function __construct(ExclusionService $exclusionService)
+  {
+      $this->exclusionService = $exclusionService;
+  }
+  
   /**
    * @action woocommerce_order_actions
    */
@@ -32,28 +40,9 @@ class OrderAction
     $order_id = $order->get_id();
     $order_items_id = array_map(fn ($item): int  => $item->get_product_id(), $order->get_items());
 
-    $excluded_ids = get_option('planzer_other_excluded_products', []);
-    if ('none' === $excluded_ids || false === $excluded_ids) {
-      $excluded_ids = ['none'];
-    }
-
-    if (
-        ! in_array('none', $excluded_ids) &&
-        empty(array_diff($order_items_id, $excluded_ids))
-    ) {
-      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('All products excluded from delivery', 'planzer'));
-      return;
-    }
-
-    if (isTestModelEnabled()) {
-      $package = new Package($order_id);
-      update_post_meta($order_id, 'planzer_tracking_code', 'TEST_'.$package->getQRContentWithoutSuffix());
-      $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
-      if (is_a($note, Note::class)) {
-        $note->sendPdf($note->generatePDF());
-      }      
-      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
-      return;
+    if ($exclusionReason = $this->exclusionService->getExclusionReason($order)) {
+        $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . $exclusionReason);
+        return;
     }
 
     $order_note = __('Planzer: CSV generated.', 'planzer');

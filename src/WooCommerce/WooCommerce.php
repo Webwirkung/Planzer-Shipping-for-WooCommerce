@@ -2,16 +2,20 @@
 
 namespace Planzer\WooCommerce;
 
+use Planzer\WooCommerce\Services\ExclusionService;
+
 class WooCommerce
 {
-  public function __construct()
-  {
-    createClass('Planzer\\WooCommerce\\Submodules\\BulkAction');
-    createClass('Planzer\\WooCommerce\\Submodules\\OrderAction');
-    createClass('Planzer\\WooCommerce\\Submodules\\OrderStatus');
+    public function __construct()
+    {
+        $exclusionService = new ExclusionService();
 
-    if ('yes' === get_option('planzer_sender_verify_address')) {
-      createClass('Planzer\\WooCommerce\\Submodules\\CheckoutAddressValidation');
+        createClass('Planzer\\WooCommerce\\Submodules\\BulkAction', [$exclusionService]);
+        createClass('Planzer\\WooCommerce\\Submodules\\OrderAction', [$exclusionService]);
+        createClass('Planzer\\WooCommerce\\Submodules\\OrderStatus', [$exclusionService]);
+
+        if ('yes' === get_option('planzer_sender_verify_address')) {
+            createClass('Planzer\\WooCommerce\\Submodules\\CheckoutAddressValidation');
+        }
     }
-  }
 }
