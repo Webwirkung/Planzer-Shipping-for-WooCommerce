@@ -32,7 +32,11 @@ class CheckoutAddressValidation
         $errors->add('validation', __('The address is invalid - please type in an existing address', 'planzer'), ['validator' => 'planzer-address-api']);
       }
     } catch (\Exception $e) {
-      error_log('Planzer: ERROR with planzer API address validation');
+      if (function_exists('wc_get_logger')) {
+        $logger = wc_get_logger();
+        $logger->error('Planzer: ERROR with planzer API address validation', ['source' => 'wc-planzer-shipping']);
+      }
+
       throw new \Exception(__('There was a problem with verifying your address, please try again later or contact administrator.', 'planzer'));
     }
   }

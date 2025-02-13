@@ -18,7 +18,11 @@ class SFTP
         throw new \Exception("PLANZER SFTP ERROR: Could not log into FTP: {$this->getHost()}", 1);
       }
     } catch (\Exception $e) {
-      error_log('Planzer: ERROR connecting to Planzer SFTP server failed');
+      if (function_exists('wc_get_logger')) {
+        $logger = wc_get_logger();
+        $logger->error('Planzer: ERROR connecting to Planzer SFTP server failed', ['source' => 'wc-planzer-shipping']);
+      }
+
       throw new \Exception(__('There was a problem with the connection to the server, please try again later or contact administrator.', 'planzer'));
     }
   }

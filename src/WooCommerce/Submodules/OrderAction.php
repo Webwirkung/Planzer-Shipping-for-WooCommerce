@@ -16,12 +16,12 @@ use function Planzer\isTestModelEnabled;
 class OrderAction
 {
   private $exclusionService;
-  
+
   public function __construct(ExclusionService $exclusionService)
   {
       $this->exclusionService = $exclusionService;
   }
-  
+
   /**
    * @action woocommerce_order_actions
    */
@@ -47,7 +47,9 @@ class OrderAction
 
     $order_note = __('Planzer: CSV generated.', 'planzer');
     $package = new Package($order_id);
-    update_post_meta($order_id, 'planzer_tracking_code', $package->getQRContentWithoutSuffix());
+
+    $order->update_meta_data('planzer_tracking_code', $package->getQRContentWithoutSuffix());
+    $order->save();
 
     $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
     if (is_a($note, Note::class)) {
@@ -65,7 +67,11 @@ class OrderAction
       $order->add_order_note($order_note);
     } catch (\Throwable $th) {
       $order->add_order_note('<span style="color:red;font-weight: bold;">Planzer: </span>' . __('There was an error while sending data to Planzer - please try again or check debuglog.', 'planzer'));
-      error_log("FATAL ERROR: {$th->getMessage()} in {$th->getFile()} on line {$th->getLine()}");
+
+      if (function_exists('wc_get_logger')) {
+        $logger = wc_get_logger();
+        $logger->error("FATAL ERROR: {$th->getMessage()} in {$th->getFile()} on line {$th->getLine()}", ['source' => 'wc-planzer-shipping']);
+      }
     }
   }
 }

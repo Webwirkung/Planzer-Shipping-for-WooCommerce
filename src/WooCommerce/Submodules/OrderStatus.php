@@ -6,7 +6,6 @@ use Planzer\CSV\CSV;
 use Planzer\Note\Note;
 use Planzer\SFTP\SFTP;
 use Planzer\Package\Package;
-use Planzer\QRCode\QRCode;
 use Planzer\Note\NoteFactory;
 use Planzer\QRCode\Counter;
 use Planzer\WooCommerce\Services\ExclusionService;
@@ -88,20 +87,30 @@ class OrderStatus
 
     if (isTestModelEnabled()) {
       $package = new Package($order_id);
-      update_post_meta($order_id, 'planzer_tracking_code', 'TEST_' . $package->getQRContentWithoutSuffix());
+
+      $order->update_meta_data('planzer_tracking_code', 'TEST_' . $package->getQRContentWithoutSuffix());
+      $order->save();
+
       $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
+
       if (is_a($note, Note::class)) {
         $note->sendPdf($note->generatePDF());
       }
+
       $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
+
       return;
     }
 
     $order_note = __('Planzer: CSV generated.', 'planzer');
+
     $package = new Package($order_id);
-    update_post_meta($order_id, 'planzer_tracking_code', $package->getQRContentWithoutSuffix());
+
+    $order->update_meta_data('planzer_tracking_code', $package->getQRContentWithoutSuffix());
+    $order->save();
 
     $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
+
     if (is_a($note, Note::class)) {
       $note->sendPdf($note->generatePDF());
       $order_note = __('Planzer: delivery/label note and CSV generated.', 'planzer');
@@ -117,7 +126,11 @@ class OrderStatus
       $order->add_order_note($order_note);
     } catch (\Throwable $th) {
       $order->add_order_note('<span style="color:red;font-weight: bold;">Planzer: </span>' . __('There was an error while sending data to Planzer - please try again or check debuglog.', 'planzer'));
-      error_log("FATAL ERROR {$th->getMessage()} in {$th->getFile()}:{$th->getLine()}");
+
+      if (function_exists('wc_get_logger')) {
+        $logger = wc_get_logger();
+        $logger->error("FATAL ERROR: {$th->getMessage()} in {$th->getFile()} on line {$th->getLine()}", ['source' => 'wc-planzer-shipping']);
+      }
     }
   }
 }

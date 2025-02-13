@@ -44,7 +44,7 @@ class Note
                 $subject = __('Planzer note for order', 'planzer');
                 break;
           }
-          
+
           if (isTestModelEnabled()) {
             $subject .= '[TEST MODE]';
           }
@@ -53,7 +53,11 @@ class Note
           $result = wp_mail($email, $subject, ' ', '', [$pdf_path]);
 
           if (! $result) {
-            error_log('Planzer: ERROR while sending Planzer PDF email - ' . substr($email, 0, 4) . '...');
+            if (function_exists('wc_get_logger')) {
+              $logger = wc_get_logger();
+              $logger->error('Planzer: ERROR while sending Planzer PDF email - ' . substr($email, 0, 4) . '...', ['source' => 'wc-planzer-shipping']);
+            }
+
             $this->order->add_order_note(sprintf(__('Planzer: ERROR while sending Planzer PDF email - %s', 'planzer'), substr($email, 0, 4) . '...'));
           }
         }
