@@ -23,7 +23,11 @@ class CSVGroup
   public function setField(int $position, string $value): bool
   {
     if (0 > $position || $this->size < $position) {
-      error_log("PLANZER WARNING: Trying to access out of range group field: '$value' at position $position");
+      if (function_exists('wc_get_logger')) {
+        $logger = wc_get_logger();
+        $logger->error("PLANZER WARNING: Trying to access out of range group field: '$value' at position $position", ['source' => 'wc-planzer-shipping']);
+      }
+
       return false;
     }
 

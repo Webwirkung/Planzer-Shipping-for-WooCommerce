@@ -36,7 +36,11 @@ class CSV
   private function generateGroup(string $name, int $size): ?string
   {
     if (empty($name) || empty($size)) {
-      error_log('PLANZER WARNING: CSV group needs to have name and non zero size');
+      if (function_exists('wc_get_logger')) {
+        $logger = wc_get_logger();
+        $logger->error('PLANZER WARNING: CSV group needs to have name and non zero size', ['source' => 'wc-planzer-shipping']);
+      }
+
       return null;
     }
 

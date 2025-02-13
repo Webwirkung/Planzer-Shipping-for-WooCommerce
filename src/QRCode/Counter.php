@@ -10,7 +10,12 @@ class Counter
 
     $wpdb->query('START TRANSACTION');
 
-    $currentSequence = $wpdb->get_var("SELECT option_value FROM $wpdb->options WHERE option_name = 'planzer_qr_sequence_number' FOR UPDATE");
+    $currentSequence = $wpdb->get_var(
+        $wpdb->prepare(
+            "SELECT option_value FROM $wpdb->options WHERE option_name = %s FOR UPDATE",
+            'planzer_qr_sequence_number'
+        )
+    );
 
     $wpdb->query('COMMIT');
 
@@ -30,7 +35,13 @@ class Counter
 
     $wpdb->query('START TRANSACTION');
 
-    $currentSequence = $wpdb->get_var("SELECT option_value FROM $wpdb->options WHERE option_name = 'planzer_qr_sequence_number' FOR UPDATE");
+    $currentSequence = $wpdb->get_var(
+        $wpdb->prepare("SELECT option_value FROM $wpdb->options WHERE option_name = %s FOR UPDATE", 'planzer_qr_sequence_number')
+    );
+
+    if ($currentSequence === null) {
+        $currentSequence = 0;
+    }
 
     $newSequence = $currentSequence + 1;
 

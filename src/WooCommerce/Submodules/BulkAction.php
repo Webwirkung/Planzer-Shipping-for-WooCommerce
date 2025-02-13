@@ -15,12 +15,12 @@ use function Planzer\isTestModelEnabled;
 class BulkAction
 {
   private $exclusionService;
-  
+
   public function __construct(ExclusionService $exclusionService)
   {
       $this->exclusionService = $exclusionService;
   }
-  
+
   /**
    * @filter bulk_actions-edit-shop_order
    */
@@ -71,20 +71,22 @@ class BulkAction
     foreach ($postsSliced as $id) {
       Counter::increaseQRNumber();
       $order = wc_get_order($id);
-      
+
       if ($exclusionReason = $this->exclusionService->getExclusionReason($order)) {
         $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . $exclusionReason);
         continue;
       }
-      
+
       if ('planzer-transmit' !== $order->get_status()) {
         $order->update_status('wc-planzer-transmit');
         continue;
       }
-      
+
       if (isTestModelEnabled()) {
         $package = new Package($order_id);
-        update_post_meta($order_id, 'planzer_tracking_code', 'TEST_'.$package->getQRContentWithoutSuffix());
+        $order->update_meta_data('planzer_tracking_code', 'TEST_' . $package->getQRContentWithoutSuffix());
+        $order->save();
+
         $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
         if (is_a($note, Note::class)) {
           $note->sendPdf($note->generatePDF());
@@ -95,7 +97,9 @@ class BulkAction
 
       $order_note = __('Planzer: CSV generated.', 'planzer');
       $package = new Package($id);
-      update_post_meta($id, 'planzer_tracking_code', $package->getQRContentWithoutSuffix());
+
+      $order->update_meta_data('planzer_tracking_code', $package->getQRContentWithoutSuffix());
+      $order->save();
 
       $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
       if (is_a($note, Note::class)) {
@@ -113,7 +117,11 @@ class BulkAction
         $order->add_order_note($order_note);
       } catch (\Throwable $th) {
         $order->add_order_note('<span style="color:red;font-weight: bold;">Planzer: </span>' . __('There was an error while sending data to Planzer - please try again or check debuglog.', 'planzer'));
-        error_log("FATAL ERROR {$th->getMessage()} in {$th->getFile()}:{$th->getLine()}");
+
+        if (function_exists('wc_get_logger')) {
+          $logger = wc_get_logger();
+          $logger->error("FATAL ERROR {$th->getMessage()} in {$th->getFile()}:{$th->getLine()}", ['source' => 'wc-planzer-shipping']);
+        }
       }
     }
 
