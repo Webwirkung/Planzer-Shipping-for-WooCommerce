@@ -3,14 +3,14 @@
 /**
  * Plugin Name: Shipping via Planzer for WooCommerce
  * Description: Shipping via Planzer for WooCommerce
- * Version: 1.0.27
+ * Version: 1.0.28
  * Author: Webwirkung <info@webwirkung.ch>
  * Author URI: https://webwirkung.ch/
  * Text Domain: planzer
  * Requires PHP: 7.4
  * Requires at least: 5.7
  * WC requires at least: 5.8
- * WC tested up to: 9.4.3
+ * WC tested up to: 9.6.1
  */
 
 define('PLANZER_NAME', 'Planzer');
@@ -39,3 +39,13 @@ if (! pluginRequirementsValid() && is_plugin_active(plugin_basename(__FILE__))) 
 } else {
   require PLANZER_ROOT_PATH . '/inc/bootstrap.php';
 }
+
+add_action('before_woocommerce_init', function () {
+  if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+      \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+          'custom_order_tables',
+          __FILE__,
+          true
+      );
+  }
+});

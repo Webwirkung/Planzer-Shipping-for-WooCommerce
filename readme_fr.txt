@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
-Tested up to: 6.7.1
-Stable tag: 1.0.27
+Tested up to: 6.7.2
+Stable tag: 1.0.28
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -235,7 +235,7 @@ Si une commande est annulée dans WooCommerce par vous ou votre client, cela ne 
 
 = 1.0.20 2024-02-07 =
 
-* Bugfix related with sequence number value in the database. 
+* Bugfix related with sequence number value in the database.
 
 = 1.0.21 2024-02-19 =
 
@@ -270,3 +270,7 @@ Si une commande est annulée dans WooCommerce par vous ou votre client, cela ne 
 * Added: shipping class based exclusion rule, respecting the WC calculation settings
 * Improved: admin notes on why an order was excluded
 * Fix: Doesn't set the order status to Planzer if excluded
+
+= 1.0.28 2025-02-13 =
+
+* Added HPOS compatibility
