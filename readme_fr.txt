@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: planzer, shipping, e-commerce, store, sales, sell, woo, shop, cart, checkout, woo commerce
 Tested up to: 6.7.2
-Stable tag: 1.0.28
+Stable tag: 1.0.29
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -274,3 +274,7 @@ Si une commande est annulée dans WooCommerce par vous ou votre client, cela ne 
 = 1.0.28 2025-02-13 =
 
 * Added HPOS compatibility
+
+= 1.0.29 2025-03-03 =
+
+* Added Tracking link support
