@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shipping via Planzer for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-24 12:07+0100\n"
-"PO-Revision-Date: 2025-01-24 12:14+0100\n"
+"POT-Creation-Date: 2025-03-03 13:27+0100\n"
+"PO-Revision-Date: 2025-03-03 13:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: FranĂ§ais\n"
 "Language: fr_FR\n"
@@ -100,7 +100,7 @@ msgstr "Planzer étiquette de colisage pour l'ordre"
 msgid "Planzer note for order"
 msgstr "Planzer note pour l'ordre"
 
-#: src/Note/Note.php:57
+#: src/Note/Note.php:61
 #, php-format
 msgid "Planzer: ERROR while sending Planzer PDF email - %s"
 msgstr "Planzer: ERREUR lors de l'envoi Planzer PDF email - %s"
@@ -550,53 +550,53 @@ msgstr "Oui"
 msgid "No"
 msgstr "Pas de"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:53
-#: src/WooCommerce/Submodules/OrderStatus.php:69
+#: src/WooCommerce/Submodules/OrderStatus.php:52
+#: src/WooCommerce/Submodules/OrderStatus.php:68
 #: src/WooCommerce/Submodules/BulkAction.php:30
 msgid "Transmit to Planzer"
 msgstr "Transmettre à Planzer"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:58
+#: src/WooCommerce/Submodules/OrderStatus.php:57
 #, php-format
 msgid "Transmit to Planzer (%s)"
 msgid_plural "Transmit to Planzer (%s)"
 msgstr[0] "Transmettre à Planzer (%s)"
 msgstr[1] "Transmettre Ă  Planzer (%s)"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:96
-#: src/WooCommerce/Submodules/BulkAction.php:92
+#: src/WooCommerce/Submodules/OrderStatus.php:100
+#: src/WooCommerce/Submodules/BulkAction.php:94
 msgid ""
 "Test mode enabled - data not sent to Planzer. Demo delivery note generated "
 "and sent."
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:100
-#: src/WooCommerce/Submodules/BulkAction.php:96
+#: src/WooCommerce/Submodules/OrderStatus.php:105
+#: src/WooCommerce/Submodules/BulkAction.php:98
 #: src/WooCommerce/Submodules/OrderAction.php:48
 msgid "Planzer: CSV generated."
 msgstr "Planzer: CSV généré."
 
-#: src/WooCommerce/Submodules/OrderStatus.php:107
-#: src/WooCommerce/Submodules/BulkAction.php:103
-#: src/WooCommerce/Submodules/OrderAction.php:55
+#: src/WooCommerce/Submodules/OrderStatus.php:116
+#: src/WooCommerce/Submodules/BulkAction.php:107
+#: src/WooCommerce/Submodules/OrderAction.php:57
 msgid "Planzer: delivery/label note and CSV generated."
 msgstr "Planzer: livraison/label note et CSV généré."
 
-#: src/WooCommerce/Submodules/OrderStatus.php:115
-#: src/WooCommerce/Submodules/BulkAction.php:111
-#: src/WooCommerce/Submodules/OrderAction.php:63
+#: src/WooCommerce/Submodules/OrderStatus.php:124
+#: src/WooCommerce/Submodules/BulkAction.php:115
+#: src/WooCommerce/Submodules/OrderAction.php:65
 msgid "Reference number:"
 msgstr "Numéro de référence:"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:116
-#: src/WooCommerce/Submodules/BulkAction.php:112
-#: src/WooCommerce/Submodules/OrderAction.php:64
+#: src/WooCommerce/Submodules/OrderStatus.php:125
+#: src/WooCommerce/Submodules/BulkAction.php:116
+#: src/WooCommerce/Submodules/OrderAction.php:66
 msgid "Package number: "
 msgstr "Numéro de colis: "
 
-#: src/WooCommerce/Submodules/OrderStatus.php:119
-#: src/WooCommerce/Submodules/BulkAction.php:115
-#: src/WooCommerce/Submodules/OrderAction.php:67
+#: src/WooCommerce/Submodules/OrderStatus.php:128
+#: src/WooCommerce/Submodules/BulkAction.php:119
+#: src/WooCommerce/Submodules/OrderAction.php:70
 msgid ""
 "There was an error while sending data to Planzer - please try again or check "
 "debuglog."
@@ -624,8 +624,8 @@ msgstr ""
 msgid "The address is invalid - please type in an existing address"
 msgstr "L'adresse est invalide veuillez saisir une adresse existante"
 
-#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:36
-#: src/Api/Endpoints/Address.php:37
+#: src/WooCommerce/Submodules/CheckoutAddressValidation.php:40
+#: src/Api/Endpoints/Address.php:41
 msgid ""
 "There was a problem with verifying your address, please try again later or "
 "contact administrator."
@@ -636,6 +636,20 @@ msgstr ""
 #: src/WooCommerce/Submodules/OrderAction.php:30
 msgid "Generate Planzer note and create package"
 msgstr "Generate Planzer étiquette and créer paquet"
+
+#: src/WooCommerce/Submodules/OrderAction.php:67
+msgid "Track package"
+msgstr "Suivre le colis"
+
+#: src/WooCommerce/Submodules/OrderAction.php:89
+#: src/WooCommerce/Submodules/OrderAction.php:102
+msgid "Track your package: "
+msgstr "Suivez votre colis: "
+
+#: src/WooCommerce/Submodules/OrderAction.php:89
+#: src/WooCommerce/Submodules/OrderAction.php:102
+msgid "Click here"
+msgstr "Cliquez ici"
 
 #: src/WooCommerce/Services/ExclusionService.php:8
 msgid "Products in the order are excluded from Planzer delivery"
@@ -655,7 +669,7 @@ msgstr ""
 msgid "Settings"
 msgstr "Paramètres"
 
-#: src/SFTP/SFTP_.php:22 src/SFTP/SFTP.php:22
+#: src/SFTP/SFTP.php:26
 msgid ""
 "There was a problem with the connection to the server, please try again "
 "later or contact administrator."

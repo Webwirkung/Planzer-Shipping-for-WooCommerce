@@ -114,6 +114,8 @@ class BulkAction
         $order_note .= "<br><img src=\"{$package->getGeneratedQRUrl()}\"/>";
         $order_note .= "<br><br>" . __('Reference number:', 'planzer') . " {$id}_{$package->getSequenceNumber(0)}";
         $order_note .= "<br><br>" . __('Package number: ', 'planzer') . '<br>' . $package->getQRContentWithoutSuffix();
+        $order_note .= "<br><br><a href='https://tracking.app.planzer.ch/delivery/info?packageNumber=" . $package->getQRContentWithoutSuffix() . "&system=1' target='_blank'>" . __('Track package', 'planzer') . "</a>";
+
         $order->add_order_note($order_note);
       } catch (\Throwable $th) {
         $order->add_order_note('<span style="color:red;font-weight: bold;">Planzer: </span>' . __('There was an error while sending data to Planzer - please try again or check debuglog.', 'planzer'));
