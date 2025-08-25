@@ -23,6 +23,7 @@ class BulkAction
 
   /**
    * @filter bulk_actions-edit-shop_order
+   * @filter bulk_actions-woocommerce_page_wc-orders
    */
   public function addCustomBulkAction(array $actions): array
   {
@@ -57,6 +58,7 @@ class BulkAction
 
   /**
    * @filter handle_bulk_actions-edit-shop_order
+   * @filter handle_bulk_actions-woocommerce_page_wc-orders
    */
   public function handlePlanzerTransmitBulkAction(?string $redirectTo, string $action, array $postIds): string
   {
@@ -83,7 +85,7 @@ class BulkAction
       }
 
       if (isTestModelEnabled()) {
-        $package = new Package($order_id);
+        $package = new Package($id);
         $order->update_meta_data('planzer_tracking_code', 'TEST_' . $package->getQRContentWithoutSuffix());
         $order->save();
 
