@@ -1,6 +1,6 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: pianificatore, spedizione, e-commerce, negozio, vendite, vendita, woo, negozio, carrello, checkout, woo commerce
-Tested up to: 6.8.2
+Tested up to: 6.9.4
 Stable tag: 1.0.31
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
