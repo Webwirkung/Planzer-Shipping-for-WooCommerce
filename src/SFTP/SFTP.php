@@ -55,6 +55,13 @@ class SFTP
   public function upload(string $csv, Package $package): void
   {
     if ($this->sftp->isConnected()) {
+      if (!$this->sftp->is_dir('Eingang')) {
+          if (!$this->sftp->mkdir('Eingang')) {
+              $this->sftp->disconnect();
+              throw new \Exception("PLANZER SFTP ERROR: Could not create directory Eingang");
+          }
+      }
+
       $upload = $this->sftp->put(sprintf("Eingang/PAKET_%s_%s_%s_WP.csv", $package->getPackageNumber(), time(), rand()), $csv);
 
       if (false === $upload) {

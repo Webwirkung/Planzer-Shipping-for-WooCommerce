@@ -286,3 +286,4 @@ Se un ordine viene annullato in WooCommerce da te o dal tuo cliente, questo non 
 = 1.0.31 2026-04-21 =
 
 * The plugin optimizations
+* Create folder Eingang if missing

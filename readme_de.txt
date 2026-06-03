@@ -285,3 +285,4 @@ Wenn eine Bestellung in WooCommerce von Ihnen oder Ihrem Kunden storniert wird, 
 = 1.0.31 2026-04-21 =
 
 * The plugin optimizations
+* Create folder Eingang if missing

@@ -286,3 +286,4 @@ Si une commande est annulée dans WooCommerce par vous ou votre client, cela ne 
 = 1.0.31 2026-04-21 =
 
 * The plugin optimizations
+* Create folder Eingang if missing
