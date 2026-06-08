@@ -28,7 +28,7 @@
         "ext-ctype": "*",
         "composer/installers": "*",
         "phpseclib/phpseclib": "*",
-        "mpdf/mpdf": "*"
+        "mpdf/mpdf": "^8.2"
     },
     "replace": {
         "symfony/polyfill-mbstring": "*",
