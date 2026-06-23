@@ -56,7 +56,7 @@ if (! function_exists('planzerBoot')) {
     }
 }
 
-add_action('admin_init', function () {
+add_action('init', function () {
     $page      = isset($_GET['page'])       ? sanitize_key($_GET['page'])        : '';
     $postType  = isset($_GET['post_type'])  ? sanitize_key($_GET['post_type'])   : '';
     $postType2 = isset($_POST['post_type']) ? sanitize_key($_POST['post_type'])  : '';
