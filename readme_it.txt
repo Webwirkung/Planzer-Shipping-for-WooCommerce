@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: pianificatore, spedizione, e-commerce, negozio, vendite, vendita, woo, negozio, carrello, checkout, woo commerce
 Tested up to: 6.9.4
-Stable tag: 1.0.32
+Stable tag: 1.0.33
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -291,3 +291,7 @@ Se un ordine viene annullato in WooCommerce da te o dal tuo cliente, questo non 
 = 1.0.32 2026-06-18 =
 
 * Update mpdf library
+
+= 1.0.33 2026-06-23 =
+
+* Bugfix: Button "Send to planzer" visibility with legacy WordPress posts storage
