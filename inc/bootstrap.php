@@ -12,7 +12,7 @@ if (! function_exists('planzerDoc') && function_exists('Planzer\\planzerDoc')) {
 if (! function_exists('planzer') && function_exists('Planzer\\planzer')) {
     function planzer(string $moduleName = ''): object
     {
-;        return Planzer\planzer($moduleName);
+        return Planzer\planzer($moduleName);
     }
 }
 
@@ -56,21 +56,23 @@ if (! function_exists('planzerBoot')) {
     }
 }
 
-if (! function_exists('isPlanzerWcPage')) {
-    function isPlanzerWcPage(array $pages): bool
-    {
-        if (! is_admin()) {
-            return false;
-        }
-
-        $page = isset($_GET['page']) ? sanitize_key((string) $_GET['page']) : '';
-
-        return $page !== '' && in_array($page, $pages, true);
-    }
-}
-
 add_action('init', function () {
-    if (isPlanzerWcPage(['wc-orders', 'wc-settings'])) {
+    if (! is_admin()) {
+        return;
+    }
+
+    $page      = isset($_GET['page'])       ? sanitize_key($_GET['page'])       : '';
+    $postType  = isset($_GET['post_type'])  ? sanitize_key($_GET['post_type'])  : '';
+    $postType2 = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : '';
+    $post      = isset($_GET['post'])       ? (int) $_GET['post']               : 0;
+    $postId    = isset($_POST['post_ID'])   ? (int) $_POST['post_ID']           : 0;
+
+    $isWooPage     = strpos($page, 'wc-') === 0;
+    $isLegacyOrder = $postType === 'shop_order' || $postType2 === 'shop_order'
+        || ($post > 0 && get_post_type($post) === 'shop_order')
+        || ($postId > 0 && get_post_type($postId) === 'shop_order');
+
+    if ($isWooPage || $isLegacyOrder) {
         planzerBoot();
     }
 });
