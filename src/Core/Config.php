@@ -5,7 +5,11 @@ namespace Planzer\Core;
 class Config
 {
   /**
-   * @action plugins_loaded
+   * @action init
+   *
+   * Must run on `init`, not `plugins_loaded`: the plugin boots on `init` (priority 5),
+   * so a `plugins_loaded` callback registered here would never fire. Loading translations
+   * on `init` also matches WordPress 6.7+, which warns when textdomains load earlier.
    */
   public function initConfig(): void
   {

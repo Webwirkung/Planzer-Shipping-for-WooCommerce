@@ -69,8 +69,5 @@ if (! function_exists('isPlanzerWcPage')) {
     }
 }
 
-add_action('init', function () {
-    if (isPlanzerWcPage(['wc-orders', 'wc-settings'])) {
-        planzerBoot();
-    }
-});
+add_action("init", "planzerBoot", 5);
+/* HPOS Compatibility change: Under legacy storage, registering a status late just means a missing label (cosmetic, self-heals on the next properly-registered request). Under HPOS, WooCommerce decides the wc- prefix once, at write time, from whether the status is registered on that very request — so a late/gated registration bakes a permanently wrong key (planzer-transmit instead of wc-planzer-transmit) into the authoritative table, and the admin list — which always queries the prefixed key — can never find those orders again. */
