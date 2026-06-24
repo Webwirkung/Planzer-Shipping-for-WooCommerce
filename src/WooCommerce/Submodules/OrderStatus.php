@@ -49,12 +49,12 @@ class OrderStatus
   public function addCustomOrderStatus(array $statuses): array
   {
     $statuses['wc-planzer-transmit'] = [
-      'label' => __('Transmit to Planzer', 'planzer'),
+      'label' => __('Transmitted to Planzer', 'planzer'),
       'public' => false,
       'exclude_from_search' => false,
       'show_in_admin_all_list' => true,
       'show_in_admin_status_list' => true,
-      'label_count' => _n_noop('Transmit to Planzer (%s)', 'Transmit to Planzer (%s)', 'planzer')
+      'label_count' => _n_noop('Transmitted to Planzer (%s)', 'Transmitted to Planzer (%s)', 'planzer')
     ];
     return $statuses;
   }

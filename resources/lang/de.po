@@ -552,18 +552,21 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nein"
 
-#: src/WooCommerce/Submodules/OrderStatus.php:52
-#: src/WooCommerce/Submodules/OrderStatus.php:68
 #: src/WooCommerce/Submodules/BulkAction.php:30
 msgid "Transmit to Planzer"
-msgstr "Übermittlung an Planzer"
+msgstr "An Planzer übermitteln"
+
+#: src/WooCommerce/Submodules/OrderStatus.php:52
+#: src/WooCommerce/Submodules/OrderStatus.php:68
+msgid "Transmitted to Planzer"
+msgstr "An Planzer übertragen"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:57
 #, php-format
-msgid "Transmit to Planzer (%s)"
-msgid_plural "Transmit to Planzer (%s)"
-msgstr[0] "Übermittlung an Planzer (%s)"
-msgstr[1] "Übermittlung an Planzer (%s)"
+msgid "Transmitted to Planzer (%s)"
+msgid_plural "Transmitted to Planzer (%s)"
+msgstr[0] "An Planzer übertragen (%s)"
+msgstr[1] "An Planzer übertragen (%s)"
 
 #: src/WooCommerce/Submodules/OrderStatus.php:100
 #: src/WooCommerce/Submodules/BulkAction.php:94

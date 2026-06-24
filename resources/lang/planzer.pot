@@ -531,16 +531,19 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: src/WooCommerce/Submodules/OrderStatus.php:52
-#: src/WooCommerce/Submodules/OrderStatus.php:68
 #: src/WooCommerce/Submodules/BulkAction.php:30
 msgid "Transmit to Planzer"
 msgstr ""
 
+#: src/WooCommerce/Submodules/OrderStatus.php:52
+#: src/WooCommerce/Submodules/OrderStatus.php:68
+msgid "Transmitted to Planzer"
+msgstr ""
+
 #: src/WooCommerce/Submodules/OrderStatus.php:57
 #, php-format
-msgid "Transmit to Planzer (%s)"
-msgid_plural "Transmit to Planzer (%s)"
+msgid "Transmitted to Planzer (%s)"
+msgid_plural "Transmitted to Planzer (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
