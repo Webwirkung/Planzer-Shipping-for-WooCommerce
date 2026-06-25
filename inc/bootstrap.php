@@ -56,23 +56,4 @@ if (! function_exists('planzerBoot')) {
     }
 }
 
-add_action('init', function () {
-    if (! is_admin()) {
-        return;
-    }
-
-    $page      = isset($_GET['page'])       ? sanitize_key($_GET['page'])       : '';
-    $postType  = isset($_GET['post_type'])  ? sanitize_key($_GET['post_type'])  : '';
-    $postType2 = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : '';
-    $post      = isset($_GET['post'])       ? (int) $_GET['post']               : 0;
-    $postId    = isset($_POST['post_ID'])   ? (int) $_POST['post_ID']           : 0;
-
-    $isWooPage     = strpos($page, 'wc-') === 0;
-    $isLegacyOrder = $postType === 'shop_order' || $postType2 === 'shop_order'
-        || ($post > 0 && get_post_type($post) === 'shop_order')
-        || ($postId > 0 && get_post_type($postId) === 'shop_order');
-
-    if ($isWooPage || $isLegacyOrder) {
-        planzerBoot();
-    }
-});
+add_action("init", "planzerBoot", 5);
