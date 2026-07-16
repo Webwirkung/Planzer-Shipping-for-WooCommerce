@@ -60,7 +60,7 @@ class Webwirkung
       'site_url' => $parsed['host'] . (! empty($parsed['path']) && strlen($parsed['path']) > 1 ? $parsed['path'] : ''),
       'is_multisite' => is_multisite() ? 1 : 0,
       'woocommerce' => $wc_data['Version'],
-      'plugin_slug' => array_last(explode('/', PLANZER_ROOT_PATH)),
+      'plugin_slug' => basename(PLANZER_ROOT_PATH),
       'plugin_version' => $planzer_data['Version'],
       'php' => phpversion(),
       'street' => get_option('planzer_sender_street', 'no_address'),
@@ -73,6 +73,6 @@ class Webwirkung
 
   private function getPluginMainFilePath(): string
   {
-    return PLANZER_ROOT_PATH . '/' . array_last(explode('/', PLANZER_ROOT_PATH)) . '.php';
+      return PLANZER_ROOT_PATH . '/' . basename(PLANZER_ROOT_PATH) . '.php';
   }
 }

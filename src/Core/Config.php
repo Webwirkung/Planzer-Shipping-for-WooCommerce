@@ -5,7 +5,7 @@ namespace Planzer\Core;
 class Config
 {
   /**
-   * @action plugins_loaded
+   * @action init
    */
   public function initConfig(): void
   {
