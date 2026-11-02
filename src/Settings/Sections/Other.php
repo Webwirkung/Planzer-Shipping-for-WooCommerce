@@ -21,8 +21,14 @@ class Other extends SectionBase implements Section
           'desc' => __('Select shipping classes that should not use Planzer.', 'planzer') . '<br>' . __('(This option only works for flat rate shipping methods.)', 'planzer'),
         ])
         ->addMultiselectInput(__('Excluded products', 'planzer'), 'excluded_products', [
-          'options' => $this->getProductsList(),
-          'default' => 'none',
+          'options' => $this->getSelectedProductsList(),
+          'default' => [],
+          'class' => 'wc-product-search',
+          'css' => 'min-width: 350px;',
+          'custom_attributes' => [
+            'data-action' => 'woocommerce_json_search_products',
+            'data-placeholder' => __('Search for a product&hellip;', 'woocommerce'),
+          ],
           'desc' => __('Select product that are note being sent with Planzer.', 'planzer'),
         ])
       ->endGroup('other');
@@ -38,20 +44,23 @@ class Other extends SectionBase implements Section
     return __('Other', 'planzer');
   }
 
-  private function getProductsList(): array
+  private function getSelectedProductsList(): array
   {
-    $list = get_posts([
-      'post_type' => 'product',
-      'numberposts' => -1,
-      'post_status' => 'publish',
-      'fields' => 'ids',
-    ]);
-    $list = array_flip($list);
-    array_walk($list, function (&$value, $key) {
-      $value = get_the_title($key);
-    });
+    // Only the saved products are preloaded, the rest comes from the AJAX search.
+    $saved = (array) get_option('planzer_other_excluded_products', []);
+    $ids = array_filter(array_map('absint', $saved));
 
-    $list = array_replace(['none' => __('none', 'planzer')], $list);
+    $list = [];
+    // A saved 'none' disables the exclusion (1.0.35 behaviour), so keep it selectable until the admin removes it.
+    if (in_array('none', $saved, true)) {
+      $list['none'] = __('none', 'planzer');
+    }
+    foreach ($ids as $id) {
+      $product = wc_get_product($id);
+      if ($product) {
+        $list[$id] = wp_strip_all_tags($product->get_formatted_name());
+      }
+    }
 
     return apply_filters('planzer/settings/other/excluded_products_list', $list);
   }
