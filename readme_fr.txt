@@ -309,3 +309,4 @@ Si une commande est annulée dans WooCommerce par vous ou votre client, cela ne 
 
 * Bugfix: Settings no longer load all products on every admin, AJAX and REST request (503 on large catalogs)
 * "Excluded products" now uses the WooCommerce product search
+* Bugfix: Excluded products were ignored when "none" was saved together with products

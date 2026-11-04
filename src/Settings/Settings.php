@@ -27,6 +27,20 @@ class Settings
     return $settings;
   }
 
+  /**
+   * 'none' disables the product exclusion only on its own, so drop it as soon as products are selected.
+   *
+   * @filter woocommerce_admin_settings_sanitize_option_planzer_other_excluded_products
+   */
+  public function sanitizeExcludedProducts($value)
+  {
+    if (! is_array($value) || count($value) < 2) {
+      return $value;
+    }
+
+    return array_values(array_diff($value, ['none']));
+  }
+
   public function getSetting(string $key)
   {
     return ! empty($key) ? get_option("planzer_{$key}") : '';

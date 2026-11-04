@@ -308,4 +308,5 @@ If an order is cancelled in WooCommerce by you or your customer, this will not b
 
 * Bugfix: Settings no longer load all products on every admin, AJAX and REST request (503 on large catalogs)
 * "Excluded products" now uses the WooCommerce product search
+* Bugfix: Excluded products were ignored when "none" was saved together with products
 

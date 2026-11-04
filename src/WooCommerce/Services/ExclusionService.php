@@ -25,7 +25,7 @@ class ExclusionService {
 
 	private function hasExcludedProducts(\WC_Order $order): bool {
 		$excluded_ids = $this->getExcludedProductIds();
-		if (in_array('none', $excluded_ids)) {
+		if (empty($excluded_ids)) {
 			return false;
 		}
 
@@ -117,9 +117,12 @@ class ExclusionService {
 
 	private function getExcludedProductIds(): array {
 		$excluded_ids = get_option('planzer_other_excluded_products', []);
-		return ('none' === $excluded_ids || false === $excluded_ids) 
-			? ['none'] 
-			: $excluded_ids;
+		if (!is_array($excluded_ids)) {
+			return [];
+		}
+
+		// 'none' only means "nothing excluded" when it is the only entry. Saved together with products, the products count.
+		return array_values(array_filter(array_map('absint', $excluded_ids)));
 	}
 
 	private function getExcludedShippingMethods(): array {
