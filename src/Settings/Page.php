@@ -7,57 +7,71 @@ use Planzer\Settings\Sections\Delivery as DeliverySection;
 use Planzer\Settings\Sections\FTP as FTPSection;
 use Planzer\Settings\Sections\Notifications as NotificationsSection;
 use Planzer\Settings\Sections\Other as OtherSection;
+use Planzer\Settings\Sections\Sender as SenderSection;
 
 class Page extends \WC_Settings_Page
 {
-  private array $sections = [];
+  private const SECTIONS = [
+    'sender' => SenderSection::class,
+    'ftp' => FTPSection::class,
+    'notifications' => NotificationsSection::class,
+    'delivery' => DeliverySection::class,
+    'other' => OtherSection::class,
+  ];
 
   public function __construct()
   {
     $this->id = 'planzer';
     $this->label = PLANZER_NAME;
-    $this->sections = [
-      'sender' => createClass('Planzer\\Settings\\Sections\\Sender'),
-      'ftp' => new FTPSection(),
-      'notifications' => new NotificationsSection(),
-      'delivery' => new DeliverySection(),
-      'other' => new OtherSection(),
-    ];
     parent::__construct();
   }
 
   protected function get_own_sections(): array // phpcs:ignore
   {
-    return array_map(fn (Section $section) => $section->getLabel(), $this->sections);
+    return [
+      'sender' => __('Sender', 'planzer'),
+      'ftp' => __('FTP', 'planzer'),
+      'notifications' => __('Notifications', 'planzer'),
+      'delivery' => __('Delivery', 'planzer'),
+      'other' => __('Other', 'planzer'),
+    ];
   }
 
   protected function get_settings_for_default_section(): array // phpcs:ignore
   {
-    return $this->sections['sender']->getSettings();
+    return $this->getSection('sender')->getSettings();
   }
 
   protected function get_settings_for_delivery_section(): array // phpcs:ignore
   {
-    return $this->sections['delivery']->getSettings();
+    return $this->getSection('delivery')->getSettings();
   }
 
   protected function get_settings_for_ftp_section(): array // phpcs:ignore
   {
-    return $this->sections['ftp']->getSettings();
+    return $this->getSection('ftp')->getSettings();
   }
 
   protected function get_settings_for_notifications_section(): array // phpcs:ignore
   {
-    return $this->sections['notifications']->getSettings();
+    return $this->getSection('notifications')->getSettings();
   }
 
   protected function get_settings_for_sender_section(): array // phpcs:ignore
   {
-    return $this->sections['sender']->getSettings();
+    return $this->getSection('sender')->getSettings();
   }
 
   protected function get_settings_for_other_section(): array // phpcs:ignore
   {
-    return $this->sections['other']->getSettings();
+    return $this->getSection('other')->getSettings();
+  }
+
+  // Not cached: WooCommerce saves and then renders with the same page, the render must see the saved values.
+  private function getSection(string $id): Section
+  {
+    $class = self::SECTIONS[$id];
+    // Sender registers its own hooks (sender country sanitizing), so it goes through createClass.
+    return 'sender' === $id ? createClass($class) : new $class();
   }
 }

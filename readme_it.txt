@@ -1,7 +1,7 @@
 === Shipping via Planzer for WooCommerce ===
 Tags: pianificatore, spedizione, e-commerce, negozio, vendite, vendita, woo, negozio, carrello, checkout, woo commerce
 Tested up to: 6.9.4
-Stable tag: 1.0.35
+Stable tag: 1.0.36
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -304,3 +304,9 @@ Se un ordine viene annullato in WooCommerce da te o dal tuo cliente, questo non 
 
 * Change action to load plugin translations
 * Bugfix in cronjob for older version of wordpress.
+
+= 1.0.36 2026-11-02 =
+
+* Bugfix: Settings no longer load all products on every admin, AJAX and REST request (503 on large catalogs)
+* "Excluded products" now uses the WooCommerce product search
+* Bugfix: Excluded products, shipping methods and shipping classes were ignored when "none" was saved together with them. Note: shops with such a setting will see these exclusions become active after the update, please check the "Other" settings.

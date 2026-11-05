@@ -25,7 +25,7 @@ class ExclusionService {
 
 	private function hasExcludedProducts(\WC_Order $order): bool {
 		$excluded_ids = $this->getExcludedProductIds();
-		if (in_array('none', $excluded_ids)) {
+		if (empty($excluded_ids)) {
 			return false;
 		}
 
@@ -39,7 +39,7 @@ class ExclusionService {
 
 	private function hasExcludedShippingMethod(\WC_Order $order): bool {
 		$excluded_methods = $this->getExcludedShippingMethods();
-		if (in_array('none', $excluded_methods)) {
+		if (empty($excluded_methods)) {
 			return false;
 		}
 
@@ -48,7 +48,7 @@ class ExclusionService {
 
 	private function hasExcludedShippingClass(\WC_Order $order): bool {
 		$excluded_classes = $this->getExcludedShippingClasses();
-		if (in_array('none', $excluded_classes)) {
+		if (empty($excluded_classes)) {
 			return false;
 		}
 	
@@ -117,22 +117,28 @@ class ExclusionService {
 
 	private function getExcludedProductIds(): array {
 		$excluded_ids = get_option('planzer_other_excluded_products', []);
-		return ('none' === $excluded_ids || false === $excluded_ids) 
-			? ['none'] 
-			: $excluded_ids;
+		if (!is_array($excluded_ids)) {
+			return [];
+		}
+
+		// 'none' only means "nothing excluded" when it is the only entry. Saved together with products, the products count.
+		return array_values(array_filter(array_map('absint', $excluded_ids)));
 	}
 
+	// 'none' only means "nothing excluded" when it is the only entry. Saved together with methods or classes, those count.
 	private function getExcludedShippingMethods(): array {
-		$excluded_methods = get_option('planzer_other_excluded_shipping', []);
-		return ('none' === $excluded_methods || false === $excluded_methods)
-			? ['none']
-			: $excluded_methods;
+		return $this->withoutNone(get_option('planzer_other_excluded_shipping', []));
 	}
 
 	private function getExcludedShippingClasses(): array {
-		$excluded_classes = get_option('planzer_other_excluded_shipping_classes', []);
-		return ('none' === $excluded_classes || false === $excluded_classes)
-			? ['none']
-			: $excluded_classes;
+		return $this->withoutNone(get_option('planzer_other_excluded_shipping_classes', []));
+	}
+
+	private function withoutNone($value): array {
+		if (!is_array($value)) {
+			return [];
+		}
+
+		return array_values(array_diff($value, ['none']));
 	}
 }
