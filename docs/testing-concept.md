@@ -174,6 +174,25 @@ Compared against golden files in `tests/e2e/fixtures/golden/`, with the variable
 | S55 | Sat 10:00 | no | Mon | Tue |
 | S56 | Cutoff set to 12:00, Wed 13:00 | no | Thu | Fri |
 
+### PDF
+Every PDF is taken from the Mailpit attachment and checked on four levels. The tools are `poppler-utils` and `zbar-tools`, installed in the Playwright container and in CI. There is no pixel comparison against a screenshot: dates, numbers and mPDF updates would make it fail for the wrong reasons.
+
+1. **Format** (`pdfinfo`): label A6 landscape, delivery note A4 portrait, page count.
+2. **Content** (`pdftotext`): the texts the scenario expects.
+3. **QR code** (`pdftoppm` at 600 dpi + `zbarimg`): the decoded content equals the QR content from PAKET V17, which is `91` + customer no. (6) + branch (3) + sequence (9), padded with spaces, plus `8888888`, 70 characters in total. It must also equal P1_8 of the CSV from the same run.
+4. **QR geometry** (measured on the 600 dpi image): module size at least 0.5 mm and a quiet zone of at least 4 modules (PAKET V17, hard check). Edge length compared with the 48 × 48 mm from PAKET V17: reported, not failing (see §9). From the templates the label QR is about 67 mm (`width="255"`).
+
+| ID | Scenario | Checked |
+|---|---|---|
+| S80 | Label note (S01) | A6 landscape, 1 page; package number, receiver name, contact name, sequence; QR = P1_8 |
+| S81 | Delivery note (S09) | A4 portrait; sender block, receiver address with company, "Delivery note LS-{seq} / Order number {id}", date, customer ID, items with quantities, customer note; QR = P1_8 |
+| S82 | Delivery note with a partial refund and an excluded product | refunded quantity reduced, fully refunded and excluded lines missing |
+| S83 | `planzer_sender_language` de / fr / it / en | headings in that language |
+| S84 | Salutation, signature and footer with placeholders (`{first_name}`, `{last_name}`, `{contact_name}`, `{company}`, `{address}`, `{email}`, `{website}`) | all replaced, no `{` left in the text |
+| S85 | Test mode (S03) | same PDF, QR content uses sequence 0 |
+| S86 | QR geometry on the label and on the delivery note | module ≥ 0.5 mm, quiet zone ≥ 4 modules; edge length reported |
+| S87 | `api.qrserver.com` unreachable (blocked in the test network) | documents what the merchant gets: PDF without QR, or an error |
+
 ### Customer side and settings
 | ID | Scenario | Expected |
 |---|---|---|
@@ -253,6 +272,7 @@ The tests do not lock these in as correct. Each one gets a test marked `test.fix
 1. Andrea:
    - Pick-up time from/to (A1_35/A1_36, commented out in the code): deliberate or missing? (§6)
    - Deposit notice option 1 "Nur gegen Unterschrift" sends O1_1 = `Depot` on all three platforms. Is that the code agreed with Planzer for "signature only"? (S44)
+   - PAKET V17 asks for a 48 × 48 mm QR. The label QR is about 67 mm, and the server's delivery note QR is about 42 mm. Does Planzer require the exact size, or only the module size of at least 0.5 mm? (S86)
 2. Readme: state that only the latest WordPress/WooCommerce are supported (Ria, 2026-11-11). Add in the implementation PR.
 3. Required check: Ria turns on branch protection on `master` once the workflow is merged.
 
