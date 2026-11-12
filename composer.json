@@ -27,7 +27,7 @@
         "ext-mbstring": "*",
         "ext-ctype": "*",
         "composer/installers": "*",
-        "phpseclib/phpseclib": "*",
+        "phpseclib/phpseclib": "^3.0",
         "mpdf/mpdf": "^8.2"
     },
     "replace": {

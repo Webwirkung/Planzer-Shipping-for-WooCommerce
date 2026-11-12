@@ -75,6 +75,10 @@ Für dieses Plugin benötigen Sie im Vorfeld einen Vertrag mit Planzer. In diese
 
 [Jetzt registrieren](https://plug-n.planzer-paket.ch/de/installation/#registration).
 
+= Welche WordPress- und WooCommerce-Versionen werden unterstützt? =
+
+Wir unterstützen und testen das Plugin mit den jeweils aktuellen Versionen von WordPress und WooCommerce. Bitte halten Sie beide auf dem neusten Stand.
+
 = Wo kann ich die übermittelten Bestellungen sehen? =
 
 Sie können alle übermittelten Bestellungen in [Ihrem Planzer Portal](https://paketversenden.planzergroup.com/myorders) sehen.

@@ -74,6 +74,10 @@ Oui, votre serveur DOIT avoir la fonction `eval()` activée - elle est nécessai
 
 Pour ce plugin, vous avez besoin d'un contrat préalable avec Planzer. Dans ce contrat, vous trouverez toutes les informations dont vous avez besoin pour configurer le plugin. Vous n'avez pas encore de contrat ? Devenir [client Planzer](https://planzerhelp.zendesk.com/hc/en-us/requests/new)
 
+= Quelles versions de WordPress et WooCommerce sont prises en charge ? =
+
+Nous prenons en charge et testons le plugin avec les dernières versions de WordPress et WooCommerce. Veuillez maintenir les deux à jour.
+
 = Où puis-je voir les commandes ? =
 
 Vous pouvez voir toutes les commandes soumises [dans votre portail Planzer](https://paketversenden.planzergroup.com/myorders).
