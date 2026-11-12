@@ -34,9 +34,11 @@ Steps of the workflow:
    - **Legacy:** orders stored as posts (HPOS off), orders screen `edit.php?post_type=shop_order`, order edit `post.php`.
 5. Upload artifacts.
 
-The same `docker compose` setup runs locally (`npm run test:e2e`), so a developer can reproduce a red check without CI.
+The same `docker compose` setup runs locally (`tests/e2e/README.md`), so a developer can reproduce a red check without CI.
 
-Release safety: the Buddy pipeline "Deploy new release to WordPress" commits only `build/wc-planzer-shipping/`, which `webpack.build.mix.js` fills with the main file, `readme*.txt`, `inc/`, `src/`, `vendor/`, `dist/` and `resources/{views,lang}`. `docs/`, `tests/` and `.github/` never reach SVN. Buddy runs `composer install` **without** `--no-dev` and ships `vendor/` as a whole, so all test tooling goes into `package.json` (Playwright), never into composer `require-dev`.
+Release safety: the Buddy pipeline "Deploy new release to WordPress" commits only `build/wc-planzer-shipping/`, which `webpack.build.mix.js` fills with the main file, `readme*.txt`, `inc/`, `src/`, `vendor/`, `dist/` and `resources/{views,lang}`. `docs/`, `tests/` and `.github/` never reach SVN. Buddy runs `composer install` **without** `--no-dev` and ships `vendor/` as a whole, so all test tooling goes into its own `tests/e2e/package.json` (Playwright), never into composer `require-dev`.
+
+The build step (`tests/e2e/bin/build-plugin.sh`) follows the `webpack.build.mix.js` file list. `composer.lock` is not committed, so it resolves dependencies fresh, the way Buddy does once its cache is gone. This found that `"phpseclib/phpseclib": "*"` now resolves to phpseclib 4, which breaks the SFTP upload; the constraint is `^3.0` since this branch.
 
 ## 3. Test environment
 
@@ -47,8 +49,9 @@ Location: `tests/e2e/` (compose file, Playwright config, specs, fixtures).
 | `wordpress` | `wordpress:php8.2-apache` + WP-CLI | WordPress latest, WooCommerce latest, plugin mounted from the build |
 | `db` | `mariadb:11` | Database |
 | `mailpit` | `axllent/mailpit` | Catches every `wp_mail`, including the PDF attachment; REST API for assertions |
-| `sftp` | `atmoz/sftp` | Stands in for Planzer. User `WooCommerce`, password = the constant in `src/SFTP/SFTP.php`. The plugin's `planzer_ftp_live_server_address` points at `sftp` |
-| `playwright` | `mcr.microsoft.com/playwright` | Runs the specs |
+| `sftp` | `atmoz/sftp` | Stands in for Planzer. User `WooCommerce`, password = the constant in `src/SFTP/SFTP.php`. The plugin's `planzer_ftp_live_server_address` points at `sftp`. `atmoz/sftp` chroots the user into a home it cannot write to, so `Eingang` is created at start |
+
+Playwright runs on the host (locally) or the runner (CI), not in a container. The PDF tools run in the `wordpress` container.
 
 How each output is captured, without changing plugin code:
 
@@ -177,7 +180,7 @@ Compared against golden files in `tests/e2e/fixtures/golden/`, with the variable
 | S56 | Cutoff set to 12:00, Wed 13:00 | no | Thu | Fri |
 
 ### PDF
-Every PDF is taken from the Mailpit attachment and checked on four levels. The tools are `poppler-utils` and `zbar-tools`, installed in the Playwright container and in CI. There is no pixel comparison against a screenshot: dates, numbers and mPDF updates would make it fail for the wrong reasons.
+Every PDF is taken from the Mailpit attachment and checked on four levels. The tools are `poppler-utils` and `zbar-tools`, installed in the `wordpress` container. There is no pixel comparison against a screenshot: dates, numbers and mPDF updates would make it fail for the wrong reasons.
 
 1. **Format** (`pdfinfo`): label A6 landscape, delivery note A4 portrait, page count.
 2. **Content** (`pdftotext`): the texts the scenario expects.
@@ -224,7 +227,7 @@ Loaded by `tests/e2e/fixtures/seed.sh` (WP-CLI), identical for every run:
 - **Products:** 3 simple products (one of them for exclusion tests), 2 shipping classes with different flat-rate costs.
 - **Shipping:** zone Switzerland with flat rate ("per class" and "per order" variants) and free shipping.
 - **Customers:** one with the same billing and shipping address, one with a different shipping address, plus addresses for the S42 street parsing cases.
-- **Golden CSV files:** two, `golden/private.csv` and `golden/company.csv`. Both are generated once from the current `master` and reviewed against the Planzer specification **PAKET Standard V17 (2021-01-26)** before they are committed. From then on they are the reference. Fields affected by a known defect (D3) are masked in the comparison and covered by a `test.fixme` instead, so the golden files never lock a bug in as correct.
+- **Golden CSV files:** two, `golden/private.csv` and `golden/company.csv`. Both are generated once from the current `master` and reviewed against the Planzer specification **PAKET Standard V17 (2021-01-26)** before they are committed. From then on they are the reference. Fields affected by a known defect (D3) are masked in the comparison and covered by a `test.fail()` instead, so the golden files never lock a bug in as correct.
 
 The plugin does not set the receiver customer type (A1_37). Private and company receivers differ only in A1_41 (company), filled from the order address.
 
@@ -253,7 +256,7 @@ To be confirmed with Andrea. Until then the tests expect them empty:
 
 ## 7. Known defects found while writing this
 
-The tests do not lock these in as correct. Each one gets a test marked `test.fixme` with a reference here and becomes its own card:
+The tests do not lock these in as correct. Each one gets a test that describes the correct behaviour, marked `test.fail()` with a reference here, and becomes its own card. A `test.fail()` test runs and must fail: once the defect is fixed it turns red, the marker is removed, and the test guards the fix.
 
 | # | Defect | Where |
 |---|---|---|
@@ -267,6 +270,8 @@ The tests do not lock these in as correct. Each one gets a test marked `test.fix
 | D8 | Bulk success notice is shown even when orders were excluded or failed | `BulkAction.php:40-57` |
 | D9 | SFTP user and password are hardcoded in the plugin source | `SFTP.php` |
 | D10 | With deposit notice 2, the deposit text also goes into A1_76, which PAKET V17 defines as the deposit notice for the **pick-up** at the sender. The server has this mapping commented out | `DataLoader.php:108` |
+| D11 | `dist/scripts/vendor.js` is enqueued on every admin page but the build never creates it (also missing in the 1.0.36 release): a 404 on every admin page | `Config.php:50` |
+| D12 | Delivery note: the "Package number" line sits 3.6 modules above the QR code; PAKET V17 asks for a quiet zone of at least 4 modules | `delivery-note/content.php` |
 
 ## 8. Why these scenarios (past fixes)
 
@@ -276,7 +281,7 @@ The tests do not lock these in as correct. Each one gets a test marked `test.fix
 | cb791c7, c503050 – `none` broke exclusions | S36, S37 |
 | eb2fff9 – settings loaded all products | S71 |
 | 3bdb7e2, 180ddc4 – HPOS bulk action and meta | S24, S90–S96, HPOS/legacy matrix |
-| b38777c – `Eingang` folder missing | S01 on an empty SFTP home |
+| b38777c – `Eingang` folder missing | Not covered: the SFTP stand-in has to create `Eingang` itself (§3) |
 | f6037cf, c498e6c – date logic rewritten, weekend detection | S50–S56 |
 | d34cc4b, fdfc3ec – exclusion service, titles vs IDs | S30–S35, S22 |
 | 9399213 – test mode demo note | S03 |

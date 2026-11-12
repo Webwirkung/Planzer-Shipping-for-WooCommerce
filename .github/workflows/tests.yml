@@ -1,0 +1,64 @@
+# E2E tests for the plugin, see docs/testing-concept.md §2.
+name: E2E tests
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: E2E (${{ matrix.storage }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - storage: HPOS
+            hpos: '1'
+          - storage: legacy posts
+            hpos: '0'
+    env:
+      PLANZER_E2E_HPOS: ${{ matrix.hpos }}
+    defaults:
+      run:
+        working-directory: tests/e2e
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: tests/e2e/package-lock.json
+
+      - name: Install Playwright
+        run: npm ci && npx playwright install --with-deps chromium
+
+      - name: Build plugin (as a release)
+        run: bin/build-plugin.sh
+
+      - name: Start WordPress + WooCommerce (latest)
+        run: bin/setup.sh
+
+      - name: Run tests
+        run: npx playwright test
+
+      - name: Collect logs and captured files
+        if: failure()
+        run: bin/collect-artifacts.sh
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: e2e-${{ matrix.hpos == '1' && 'hpos' || 'legacy' }}
+          path: |
+            tests/e2e/playwright-report
+            tests/e2e/test-results
+            tests/e2e/artifacts
+          retention-days: 14
