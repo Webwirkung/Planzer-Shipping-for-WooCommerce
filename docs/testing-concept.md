@@ -1,6 +1,6 @@
 # Automated tests – concept (WooCommerce plugin)
 
-Card: P22031 – AI Testing Implementation. Status: draft for review.
+Card: P22031 – AI Testing Implementation. Status: ready (reviewed 2026-11-12).
 
 This document is the spec the tests are written from. Every scenario below has an ID; a test carries that ID in its name, so a failing check points back here.
 
@@ -29,7 +29,9 @@ Steps of the workflow:
 1. Build the plugin from the branch the way a release does: `composer install --no-dev`, `npm ci && npm run production` (the admin JS/CSS live in `dist/`, which is not committed).
 2. Start the environment (§3) with `docker compose`.
 3. Install WordPress + WooCommerce (latest), activate the plugin, load fixtures (§6) with WP-CLI.
-4. Run the Playwright suite twice: once with HPOS on, once with legacy post storage (matrix job).
+4. Run the Playwright suite twice (matrix job), so **every scenario in §5 runs in both order storage modes**:
+   - **HPOS:** custom order tables on, compatibility sync off, orders screen `admin.php?page=wc-orders`.
+   - **Legacy:** orders stored as posts (HPOS off), orders screen `edit.php?post_type=shop_order`, order edit `post.php`.
 5. Upload artifacts.
 
 The same `docker compose` setup runs locally (`npm run test:e2e`), so a developer can reproduce a red check without CI.
@@ -122,7 +124,7 @@ Expected-result shorthand:
 | S03 | Test mode on, order to processing | no CSV; email subject has `[TEST MODE]`; meta `TEST_…`; test-mode note |
 | S04 | Manual mode on, order to processing | nothing happens, no note |
 | S05 | Manual mode on, status set to "Transmit to Planzer" on the order screen | sent |
-| S06 | Manual mode off: "Transmit to Planzer" not in the status dropdown, no bulk action | UI check |
+| S06 | Manual mode off: "Transmit to Planzer" not in the status dropdown, no bulk action | UI check, see S90–S96 |
 | S07 | Order action "Generate Planzer note…" | sent |
 | S08 | SFTP container stopped, order to processing | red error note; WC log entry; meta and email exist (documents current behaviour) |
 | S09 | `planzer_delivery_generate_note` = delivery note | PDF is A4 with an items table; refunded/excluded lines left out |
@@ -193,6 +195,19 @@ Every PDF is taken from the Mailpit attachment and checked on four levels. The t
 | S86 | QR geometry on the label and on the delivery note | module ≥ 0.5 mm, quiet zone ≥ 4 modules; edge length reported |
 | S87 | `api.qrserver.com` unreachable (blocked in the test network) | documents what the merchant gets: PDF without QR, or an error |
 
+### Admin UI
+Guards against buttons and options silently disappearing after a plugin, WordPress or WooCommerce update. Every row runs on the HPOS screens and on the legacy screens (§2). Elements are located by their value or key (`wc-planzer-transmit`, `planzer_generate_delivery_note`), not only by the translated label.
+
+| ID | Scenario | Expected |
+|---|---|---|
+| S90 | Manual mode on, order edit screen | status select contains "Transmit to Planzer" (`wc-planzer-transmit`); choosing it and saving runs P2 |
+| S91 | Manual mode on, orders list | bulk actions select (top and bottom) contains "Transmit to Planzer"; with one such order the status view "Transmit to Planzer (1)" is shown |
+| S92 | Manual mode off | the status select, the bulk actions select and the status views do not contain "Transmit to Planzer" |
+| S93 | Order edit screen, manual mode on and off | Order actions select contains "Generate Planzer note and create package" (`planzer_generate_delivery_note`); the Update button runs P4 |
+| S94 | WooCommerce › Settings | tab "Planzer" with the sections Sender, FTP, Notifications, Delivery, Other; every section renders its fields and a "Save changes" button |
+| S95 | Plugins screen | the plugin row has a "Settings" link that opens WooCommerce › Settings › Planzer › Sender |
+| S96 | Settings page and both order screens | plugin JS and CSS from `dist/` load without 404 and the browser console has no JavaScript errors |
+
 ### Customer side and settings
 | ID | Scenario | Expected |
 |---|---|---|
@@ -227,7 +242,6 @@ Deliberately not sent (business decision). The tests expect these empty:
 | A1_71 | Remarks |
 | A1_77–A1_81 | Insurance value, cash on delivery, customs amount and currencies |
 | P1_2–P1_5 | Length, width, height (cm), weight (kg). Mandatory in the specification |
-| A1_37 / A1_38 | Receiver customer type (G/P) and salutation |
 | File name | Specification: `PAKET…` with `.txt`. Plugin: `PAKET_<nr>_<time>_<rand>_WP.csv`, which Planzer accepts |
 
 To be confirmed with Andrea. Until then the tests expect them empty:
@@ -235,6 +249,7 @@ To be confirmed with Andrea. Until then the tests expect them empty:
 | Field | Specification | Plugin |
 |---|---|---|
 | A1_35 / A1_36 | Pick-up time from / to | commented out (`DataLoader.php:83-84`) |
+| A1_37 / A1_38 | Receiver customer type (G = company, P = private) and salutation | not set; company and private receivers differ only in A1_41 |
 
 ## 7. Known defects found while writing this
 
@@ -260,7 +275,7 @@ The tests do not lock these in as correct. Each one gets a test marked `test.fix
 | 38846ce – orders missing after "Transmit to Planzer" (boot limited to admin) | S01, S05 via checkout and REST, not only admin |
 | cb791c7, c503050 – `none` broke exclusions | S36, S37 |
 | eb2fff9 – settings loaded all products | S71 |
-| 3bdb7e2, 180ddc4 – HPOS bulk action and meta | S24, HPOS matrix |
+| 3bdb7e2, 180ddc4 – HPOS bulk action and meta | S24, S90–S96, HPOS/legacy matrix |
 | b38777c – `Eingang` folder missing | S01 on an empty SFTP home |
 | f6037cf, c498e6c – date logic rewritten, weekend detection | S50–S56 |
 | d34cc4b, fdfc3ec – exclusion service, titles vs IDs | S30–S35, S22 |
@@ -273,6 +288,7 @@ The tests do not lock these in as correct. Each one gets a test marked `test.fix
    - Pick-up time from/to (A1_35/A1_36, commented out in the code): deliberate or missing? (§6)
    - Deposit notice option 1 "Nur gegen Unterschrift" sends O1_1 = `Depot` on all three platforms. Is that the code agreed with Planzer for "signature only"? (S44)
    - PAKET V17 asks for a 48 × 48 mm QR. The label QR is about 67 mm, and the server's delivery note QR is about 42 mm. Does Planzer require the exact size, or only the module size of at least 0.5 mm? (S86)
+   - Receiver customer type A1_37 (and salutation A1_38) is never sent, so a company and a private receiver differ only in A1_41. Should we send `G` when the address has a company and `P` otherwise? (S40, S47)
 2. Readme: state that only the latest WordPress/WooCommerce are supported (Ria, 2026-11-11). Add in the implementation PR.
 3. Required check: Ria turns on branch protection on `master` once the workflow is merged.
 
