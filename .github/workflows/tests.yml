@@ -49,6 +49,18 @@ jobs:
       - name: Run tests
         run: npx playwright test
 
+      - name: Test summary
+        if: always()
+        run: node bin/summary.mjs reports/results.json "E2E (${{ matrix.storage }})" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-${{ matrix.hpos == '1' && 'hpos' || 'legacy' }}
+          path: tests/e2e/playwright-report
+          retention-days: 14
+
       - name: Collect logs and captured files
         if: failure()
         run: bin/collect-artifacts.sh
@@ -58,7 +70,6 @@ jobs:
         with:
           name: e2e-${{ matrix.hpos == '1' && 'hpos' || 'legacy' }}
           path: |
-            tests/e2e/playwright-report
             tests/e2e/test-results
             tests/e2e/artifacts
           retention-days: 14

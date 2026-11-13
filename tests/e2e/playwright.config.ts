@@ -8,7 +8,9 @@ export default defineConfig({
   workers: 1,
   timeout: 60_000,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
+  reporter: process.env.CI
+    ? [['list'], ['html', { open: 'never' }], ['json', { outputFile: 'reports/results.json' }]]
+    : 'list',
   globalSetup: './lib/global-setup.ts',
   use: {
     baseURL: BASE_URL,
