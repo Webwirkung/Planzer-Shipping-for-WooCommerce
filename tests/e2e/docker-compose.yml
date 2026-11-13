@@ -1,0 +1,53 @@
+# Test environment for the Planzer WooCommerce plugin. See docs/testing-concept.md §3.
+name: planzer-e2e
+
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 2s
+      retries: 30
+    tmpfs:
+      - /var/lib/mysql
+
+  wordpress:
+    build: docker/wordpress
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${PLANZER_E2E_PORT:-8190}:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: "1"
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+        define('DISABLE_WP_CRON', true);
+        define('WP_ENVIRONMENT_TYPE', 'local');
+    volumes:
+      - ./.build/wc-planzer-shipping:/var/www/html/wp-content/plugins/wc-planzer-shipping
+      - ./mu-plugins:/var/www/html/wp-content/mu-plugins:ro
+      - ./fixtures:/e2e/fixtures:ro
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    ports:
+      - "${PLANZER_E2E_MAILPIT_PORT:-8195}:8025"
+
+  # Stands in for the Planzer SFTP server. Same user and password as src/SFTP/SFTP.php,
+  # port 22 as hardcoded there.
+  sftp:
+    image: atmoz/sftp:alpine
+    command: "WooCommerce:pLa27@WebWoComm09!:1001"
+    volumes:
+      - ./docker/sftp/init.sh:/etc/sftp.d/init.sh:ro
