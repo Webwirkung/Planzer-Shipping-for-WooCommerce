@@ -41,7 +41,6 @@ test('D2 bulk in test mode handles every selected order', async ({ page }) => {
 });
 
 test('D3 A1_40 without shipping last name falls back to the billing last name', async () => {
-  test.fail(true, 'D3');
   await reset();
   createOrder({ shipping: { first_name: 'Anna', last_name: '', address_1: 'Bahnhofstrasse 12a', city: 'Zürich', postcode: '8001', country: 'CH' }, status: 'processing' });
   expect(field(onlyCsv(), 'A1_40')).toBe('Beispiel');
