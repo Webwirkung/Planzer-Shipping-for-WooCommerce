@@ -45,6 +45,22 @@ class OrderAction
         return;
     }
 
+    // Test mode as on a status change (OrderStatus): no upload, TEST_ tracking code, demo note.
+    if (isTestModelEnabled()) {
+      $package = new Package($order_id);
+
+      $order->update_meta_data('planzer_tracking_code', 'TEST_' . $package->getQRContentWithoutSuffix());
+      $order->save();
+
+      $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
+      if (is_a($note, Note::class)) {
+        $note->sendPdf($note->generatePDF());
+      }
+
+      $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
+      return;
+    }
+
     $order_note = __('Planzer: CSV generated.', 'planzer');
     $package = new Package($order_id);
 

@@ -54,6 +54,12 @@ class BulkAction
     if (! empty($processedIdsSanitized)) {
       printf("<div id='message' class='notice notice-%s is-dismissible'><p>%s</p></div>", $status, sprintf($message, esc_html(implode(',', $processedIdsSanitized))));
     }
+
+    $excludedIdsSanitized = array_filter(array_map('absint', explode(',', $_REQUEST['excluded-ids'] ?? '')));
+
+    if (! empty($excludedIdsSanitized)) {
+      printf("<div class='notice notice-info is-dismissible'><p>%s</p></div>", sprintf(__('These orders were not sent to Planzer because they are excluded from Planzer delivery: <b>%s</b>', 'planzer'), esc_html(implode(',', $excludedIdsSanitized))));
+    }
   }
 
   /**
@@ -70,19 +76,28 @@ class BulkAction
 
     $postsSliced = array_slice($postIds, 0, 5);
 
+    $processedIds = [];
+    $excludedIds = [];
+
     foreach ($postsSliced as $id) {
-      Counter::increaseQRNumber();
       $order = wc_get_order($id);
 
       if ($exclusionReason = $this->exclusionService->getExclusionReason($order)) {
+        Counter::increaseQRNumber();
         $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . $exclusionReason);
+        $excludedIds[] = $id;
         continue;
       }
 
       if ('planzer-transmit' !== $order->get_status()) {
+        // The status change sends the order (OrderStatus), which increases the counter itself.
         $order->update_status('wc-planzer-transmit');
+        $processedIds[] = $id;
         continue;
       }
+
+      Counter::increaseQRNumber();
+      $processedIds[] = $id;
 
       if (isTestModelEnabled()) {
         $package = new Package($id);
@@ -94,7 +109,7 @@ class BulkAction
           $note->sendPdf($note->generatePDF());
         }
         $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
-        return $redirectTo;
+        continue;
       }
 
       $order_note = __('Planzer: CSV generated.', 'planzer');
@@ -131,7 +146,8 @@ class BulkAction
 
     return add_query_arg([
       'wc-planzer-transmit' => '1',
-      'processed-ids' => implode(',', $postsSliced),
+      'processed-ids' => implode(',', $processedIds),
+      'excluded-ids' => implode(',', $excludedIds),
       'posts-ids-count' => count($postIds),
     ], $redirectTo);
   }
