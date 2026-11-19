@@ -1,0 +1,85 @@
+# Deploys the plugin to the staging site on Kinsta after every merge into develop.
+# Same build as the E2E tests and a release (tests/e2e/bin/build-plugin.sh), uploaded over SSH.
+# Setup (SSH key, secret and variables): docs/deployment-staging.md.
+name: Deploy to staging
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to staging
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: staging
+      url: https://playgroundria.kinsta.cloud
+    env:
+      SSH_HOST: ${{ vars.KINSTA_SSH_HOST }}
+      SSH_PORT: ${{ vars.KINSTA_SSH_PORT }}
+      SSH_USER: ${{ vars.KINSTA_SSH_USER }}
+      # The site's public folder, e.g. /www/playgroundria_123/public
+      SITE_PATH: ${{ vars.KINSTA_SITE_PATH }}
+      PLUGIN_DIR: wc-planzer-shipping
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the plugin
+        run: tests/e2e/bin/build-plugin.sh
+
+      # Only the host key from the secret is trusted (no ssh-keyscan on the runner), so nobody can pose as the host.
+      - name: SSH key and verified host key
+        env:
+          SSH_KEY: ${{ secrets.KINSTA_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ vars.KINSTA_SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+          printf 'Host %s\n  Port %s\n  User %s\n  StrictHostKeyChecking yes\n  UserKnownHostsFile ~/.ssh/known_hosts\n' \
+            "$SSH_HOST" "$SSH_PORT" "$SSH_USER" > ~/.ssh/config
+          chmod 600 ~/.ssh/config
+
+      - name: Upload next to the live plugin
+        run: |
+          rsync -az --delete -e ssh \
+            tests/e2e/.build/wc-planzer-shipping/ \
+            "$SSH_USER@$SSH_HOST:$SITE_PATH/wp-content/plugins/$PLUGIN_DIR.new/"
+
+      # The site is in maintenance mode while the folders are swapped (a second at most), so no request runs
+      # into a missing plugin; the trap ends it also when a step fails.
+      - name: Switch, check and clear caches
+        run: |
+          ssh "$SSH_HOST" bash -s -- "$SITE_PATH" "$PLUGIN_DIR" <<'REMOTE'
+          set -euo pipefail
+          site="$1"; dir="$2"
+          cd "$site"
+          wp maintenance-mode activate
+          trap 'wp --path="$site" maintenance-mode deactivate || true' EXIT
+          cd "$site/wp-content/plugins"
+          rm -rf "$dir.old"
+          if [ -d "$dir" ]; then mv "$dir" "$dir.old"; fi
+          mv "$dir.new" "$dir"
+          cd "$site"
+          wp maintenance-mode deactivate
+          trap - EXIT
+          rm -rf "$site/wp-content/plugins/$dir.old"
+          wp plugin is-active "$dir" || wp plugin activate "$dir"
+          echo "Version: $(wp plugin get "$dir" --field=version)"
+          wp cache flush
+          wp kinsta cache purge --all || echo "Kinsta cache purge not available"
+          REMOTE
+
+      - name: Summary
+        run: |
+          {
+            echo "### Deployed to staging"
+            echo "Commit \`${GITHUB_SHA::7}\` → https://playgroundria.kinsta.cloud"
+          } >> "$GITHUB_STEP_SUMMARY"
