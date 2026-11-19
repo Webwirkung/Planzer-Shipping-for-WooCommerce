@@ -1,6 +1,6 @@
 # Deploys the plugin to the staging site on Kinsta after every merge into develop.
 # Same build as the E2E tests and a release (tests/e2e/bin/build-plugin.sh), uploaded over SSH.
-# Setup (secrets, SSH key): README.md, "Deployment to staging".
+# Setup (SSH key, secret and variables): docs/deployment-staging.md.
 name: Deploy to staging
 
 on:
@@ -21,11 +21,11 @@ jobs:
       name: staging
       url: https://playgroundria.kinsta.cloud
     env:
-      SSH_HOST: ${{ secrets.KINSTA_SSH_HOST }}
-      SSH_PORT: ${{ secrets.KINSTA_SSH_PORT }}
-      SSH_USER: ${{ secrets.KINSTA_SSH_USER }}
+      SSH_HOST: ${{ vars.KINSTA_SSH_HOST }}
+      SSH_PORT: ${{ vars.KINSTA_SSH_PORT }}
+      SSH_USER: ${{ vars.KINSTA_SSH_USER }}
       # The site's public folder, e.g. /www/playgroundria_123/public
-      SITE_PATH: ${{ secrets.KINSTA_SITE_PATH }}
+      SITE_PATH: ${{ vars.KINSTA_SITE_PATH }}
       PLUGIN_DIR: wc-planzer-shipping
     steps:
       - uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
       - name: SSH key and verified host key
         env:
           SSH_KEY: ${{ secrets.KINSTA_SSH_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.KINSTA_SSH_KNOWN_HOSTS }}
+          SSH_KNOWN_HOSTS: ${{ vars.KINSTA_SSH_KNOWN_HOSTS }}
         run: |
           install -m 700 -d ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
