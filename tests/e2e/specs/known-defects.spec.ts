@@ -41,7 +41,6 @@ test('D2 bulk in test mode handles every selected order', async ({ page }) => {
 });
 
 test('D3 A1_40 without shipping last name falls back to the billing last name', async () => {
-  test.fail(true, 'D3');
   await reset();
   createOrder({ shipping: { first_name: 'Anna', last_name: '', address_1: 'Bahnhofstrasse 12a', city: 'Zürich', postcode: '8001', country: 'CH' }, status: 'processing' });
   expect(field(onlyCsv(), 'A1_40')).toBe('Beispiel');
@@ -55,7 +54,6 @@ test('D5 bulk increases the QR counter once per order', async ({ page }) => {
 });
 
 test('D7 a ";" in the address does not shift the CSV columns', async () => {
-  test.fail(true, 'D7');
   await reset();
   createOrder({ billing: { first_name: 'Anna', last_name: 'Beispiel', address_1: 'Bahnhofstrasse 12a; Hinterhaus', city: 'Zürich', postcode: '8001', country: 'CH', email: 'anna@example.test' }, status: 'processing' });
   const csv = parseCsv(sftpFiles()[0].content);
@@ -72,7 +70,6 @@ test('D8 bulk notice does not report excluded orders as transmitted', async ({ p
 });
 
 test('D10 deposit notice 2 does not fill A1_76 (deposit notice for the pick-up at the sender)', async () => {
-  test.fail(true, 'D10');
   await reset();
   createOrder({ status: 'processing' });
   expect(field(onlyCsv(), 'A1_76')).toBe('');

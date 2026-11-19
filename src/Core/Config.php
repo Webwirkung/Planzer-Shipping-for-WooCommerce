@@ -47,7 +47,6 @@ class Config
 
     wp_enqueue_style('planzer/admin.css', PLANZER_ASSETS_URI . '/styles/admin.css', false, $version);
     wp_enqueue_script('planzer/manifest.js', PLANZER_ASSETS_URI . '/scripts/manifest.js', ['jquery'], $version, true);
-    wp_enqueue_script('planzer/vendor.js', PLANZER_ASSETS_URI . '/scripts/vendor.js', ['planzer/manifest.js'], $version, true);
     wp_enqueue_script('planzer/admin.js', PLANZER_ASSETS_URI . '/scripts/admin.js', ['planzer/manifest.js'], $version, true);
 
     wp_localize_script('planzer/admin.js', 'planzer', [

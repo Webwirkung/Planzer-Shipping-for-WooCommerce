@@ -271,7 +271,7 @@ export function orderCheckbox(orderId: number): string {
  * Fields left out of the golden comparison because a known defect fills them (concept §6/§7).
  * The defect has its own test.fail() test in specs/known-defects.spec.ts.
  */
-const GOLDEN_MASK: Record<string, string> = { A1_76: 'D10' };
+const GOLDEN_MASK: Record<string, string> = {};
 
 /** CSV with the masked fields replaced by their defect ID, for comparing with a golden file. */
 export function maskCsv(content: string): string {
