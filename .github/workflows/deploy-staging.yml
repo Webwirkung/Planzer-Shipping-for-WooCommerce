@@ -33,33 +33,44 @@ jobs:
       - name: Build the plugin
         run: tests/e2e/bin/build-plugin.sh
 
-      - name: SSH key
+      # Only the host key from the secret is trusted (no ssh-keyscan on the runner), so nobody can pose as the host.
+      - name: SSH key and verified host key
         env:
           SSH_KEY: ${{ secrets.KINSTA_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.KINSTA_SSH_KNOWN_HOSTS }}
         run: |
           install -m 700 -d ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+          printf 'Host %s\n  Port %s\n  User %s\n  StrictHostKeyChecking yes\n  UserKnownHostsFile ~/.ssh/known_hosts\n' \
+            "$SSH_HOST" "$SSH_PORT" "$SSH_USER" > ~/.ssh/config
+          chmod 600 ~/.ssh/config
 
       - name: Upload next to the live plugin
         run: |
-          rsync -az --delete -e "ssh -p $SSH_PORT" \
+          rsync -az --delete -e ssh \
             tests/e2e/.build/wc-planzer-shipping/ \
             "$SSH_USER@$SSH_HOST:$SITE_PATH/wp-content/plugins/$PLUGIN_DIR.new/"
 
-      # Swap the folders in one step, so the site never runs a half-uploaded plugin.
+      # The site is in maintenance mode while the folders are swapped (a second at most), so no request runs
+      # into a missing plugin; the trap ends it also when a step fails.
       - name: Switch, check and clear caches
         run: |
-          ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" bash -s -- "$SITE_PATH" "$PLUGIN_DIR" <<'REMOTE'
+          ssh "$SSH_HOST" bash -s -- "$SITE_PATH" "$PLUGIN_DIR" <<'REMOTE'
           set -euo pipefail
           site="$1"; dir="$2"
+          cd "$site"
+          wp maintenance-mode activate
+          trap 'wp --path="$site" maintenance-mode deactivate || true' EXIT
           cd "$site/wp-content/plugins"
           rm -rf "$dir.old"
           if [ -d "$dir" ]; then mv "$dir" "$dir.old"; fi
           mv "$dir.new" "$dir"
-          rm -rf "$dir.old"
           cd "$site"
+          wp maintenance-mode deactivate
+          trap - EXIT
+          rm -rf "$site/wp-content/plugins/$dir.old"
           wp plugin is-active "$dir" || wp plugin activate "$dir"
           echo "Version: $(wp plugin get "$dir" --field=version)"
           wp cache flush

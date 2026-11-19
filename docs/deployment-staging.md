@@ -7,7 +7,7 @@ Every merge into `develop` deploys the plugin to the staging site https://playgr
 
 1. Builds the plugin like a release with `tests/e2e/bin/build-plugin.sh` (composer without dev packages, admin assets).
 2. Uploads it with `rsync` over SSH into `wp-content/plugins/wc-planzer-shipping.new`.
-3. Swaps the folders (`wc-planzer-shipping` → `.old`, `.new` → `wc-planzer-shipping`), so the site never runs a half-uploaded plugin, and removes the old one.
+3. Puts the site into maintenance mode for the swap (`wc-planzer-shipping` → `.old`, `.new` → `wc-planzer-shipping`), so no request runs into a missing or half-uploaded plugin, ends maintenance mode (also when a step fails) and removes the old folder.
 4. Checks that the plugin is active (activates it if not), prints its version, flushes the WordPress object cache and the Kinsta cache.
 
 Pull requests into `develop` already ran the E2E tests, so the deployment doesn't run them again.
@@ -33,5 +33,15 @@ ssh-keygen -t ed25519 -N '' -C 'github-actions planzer-woocommerce staging' -f p
 | `KINSTA_SSH_USER` | SSH username from MyKinsta |
 | `KINSTA_SITE_PATH` | Path of the site, e.g. `/www/playgroundria_123/public` |
 | `KINSTA_SSH_KEY` | Content of `planzer-staging-deploy` (private key) |
+| `KINSTA_SSH_KNOWN_HOSTS` | Verified host key line(s), see below |
+
+Host key: the workflow trusts only this key, so nobody can pose as the server. Get it once from a machine you trust and check the fingerprint against your own `~/.ssh/known_hosts` from an earlier SSH/SFTP login to the site (or ask Kinsta support):
+
+```bash
+ssh-keyscan -p <port> <host> 2>/dev/null | tee kinsta-known-hosts
+ssh-keygen -lf kinsta-known-hosts      # compare the fingerprint
+```
+
+Paste the content of `kinsta-known-hosts` as `KINSTA_SSH_KNOWN_HOSTS`.
 
 Then delete both key files locally.
