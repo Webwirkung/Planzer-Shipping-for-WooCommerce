@@ -13,12 +13,10 @@ async function bulkTransmit(page: Page, orderIds: number[]): Promise<void> {
   for (const id of orderIds) await page.locator(orderCheckbox(id)).check();
   await page.locator('#bulk-action-selector-top').selectOption('wc-planzer-transmit');
   await page.locator('#doaction').click();
-  // No URL check here: in test mode (D2) the redirect has no wc-planzer-transmit parameter.
   await page.waitForLoadState('load');
 }
 
 test('D1 order action respects test mode: no CSV upload, TEST_ tracking', async ({ page }) => {
-  test.fail(true, 'D1');
   await reset({ options: { planzer_ftp_test_mode: 'yes' } });
   const orderId = createOrder({ status: 'on-hold' });
   await page.goto(orderEditUrl(orderId));
@@ -31,7 +29,6 @@ test('D1 order action respects test mode: no CSV upload, TEST_ tracking', async 
 });
 
 test('D2 bulk in test mode handles every selected order', async ({ page }) => {
-  test.fail(true, 'D2');
   await reset({ options: { planzer_ftp_test_mode: 'yes', planzer_sender_enable_manual_orders: 'yes' } });
   const orders = [createOrder({ status: 'processing' }), createOrder({ status: 'processing' })];
   for (const id of orders) setStatus(id, 'planzer-transmit');
@@ -51,7 +48,6 @@ test('D3 A1_40 without shipping last name falls back to the billing last name', 
 });
 
 test('D5 bulk increases the QR counter once per order', async ({ page }) => {
-  test.fail(true, 'D5');
   const start = await reset({ options: { planzer_sender_enable_manual_orders: 'yes' } });
   const orders = [createOrder({ status: 'processing' }), createOrder({ status: 'processing' })];
   await bulkTransmit(page, orders);
@@ -68,11 +64,11 @@ test('D7 a ";" in the address does not shift the CSV columns', async () => {
 });
 
 test('D8 bulk notice does not report excluded orders as transmitted', async ({ page }) => {
-  test.fail(true, 'D8');
   await reset({ options: { planzer_sender_enable_manual_orders: 'yes', planzer_other_excluded_products: [ids().products['E2E-MUG']] } });
   const excluded = createOrder({ items: [['E2E-MUG', 1]], status: 'processing' });
   await bulkTransmit(page, [excluded]);
-  await expect(page.locator('#message.notice-success')).not.toContainText(String(excluded));
+  await expect(page.locator('.notice-info')).toContainText(String(excluded));
+  await expect(page.locator('#message.notice-success')).toHaveCount(0);
 });
 
 test('D10 deposit notice 2 does not fill A1_76 (deposit notice for the pick-up at the sender)', async () => {
