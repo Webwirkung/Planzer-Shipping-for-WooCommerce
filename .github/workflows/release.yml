@@ -1,0 +1,87 @@
+# Creates the tag and the GitHub release when a release is merged into master (develop -> master).
+# Tag v.<Version> from the plugin header, as the releases made by hand (v.1.0.36). The plugin zip is attached.
+name: Create release
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Tag and release
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Version and tag
+        id: version
+        run: |
+          version=$(grep -oPm1 '^\s*\*\s*Version:\s*\K[0-9][0-9A-Za-z.\-]*' wc-planzer-shipping.php)
+          stable=$(grep -oPm1 '^Stable tag:\s*\K\S+' readme.txt || true)
+          tag="v.$version"
+          git fetch --quiet --tags --force origin
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            echo "::error title=Version not raised::Tag $tag already exists. Raise «Version» in wc-planzer-shipping.php (and «Stable tag» and the changelog in readme.txt), merge that into master, and the release is created then."
+            exit 1
+          fi
+          if [ "$stable" != "$version" ]; then
+            echo "::warning title=Stable tag::readme.txt says «Stable tag: $stable», the plugin header says $version."
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Build the plugin zip
+        run: |
+          tests/e2e/bin/build-plugin.sh
+          cd tests/e2e/.build
+          zip -qr "$GITHUB_WORKSPACE/wc-planzer-shipping-${{ steps.version.outputs.version }}.zip" wc-planzer-shipping
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          export TZ=Europe/Zurich
+          previous_tag=$(git describe --tags --abbrev=0 "$GITHUB_SHA^" 2>/dev/null || true)
+
+          # 1. The description of the release PR (develop -> master): the summary for the consultants.
+          gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/pulls" --jq '.[0].body // ""' > notes.md
+
+          # 2. The changelog entry of this version from readme.txt («= 1.0.37 2026-11-20 =» up to the next entry).
+          changelog=$(awk -v v="$VERSION" '
+            $0 ~ "^= " v "( |=)" { on = 1; next }
+            on && /^= / { exit }
+            on { print }' readme.txt | sed '/^[[:space:]]*$/d')
+          if [ -n "$changelog" ]; then
+            printf '\n\n### Changelog %s\n\n%s\n' "$VERSION" "$changelog" >> notes.md
+          else
+            echo "::warning title=Changelog::No entry «= $VERSION … =» in readme.txt."
+          fi
+
+          # 3. The pull requests since the previous release.
+          args=(-f tag_name="$TAG" -f target_commitish="$GITHUB_SHA")
+          [ -n "$previous_tag" ] && args+=(-f previous_tag_name="$previous_tag")
+          printf '\n\n' >> notes.md
+          gh api "repos/$GITHUB_REPOSITORY/releases/generate-notes" "${args[@]}" --jq .body >> notes.md
+
+          gh release create "$TAG" "wc-planzer-shipping-$VERSION.zip" \
+            --target "$GITHUB_SHA" \
+            --title "Release $(date +%d.%m.%Y) · $VERSION" \
+            --notes-file notes.md
+
+          {
+            echo "### Release $TAG created"
+            echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$TAG"
+          } >> "$GITHUB_STEP_SUMMARY"
