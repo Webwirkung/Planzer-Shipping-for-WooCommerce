@@ -1,0 +1,16 @@
+{
+  "name": "planzer-woocommerce-e2e",
+  "private": true,
+  "description": "E2E tests for the Planzer WooCommerce plugin. See docs/testing-concept.md.",
+  "scripts": {
+    "build": "bin/build-plugin.sh",
+    "setup": "bin/setup.sh",
+    "test": "playwright test",
+    "test:e2e": "bin/build-plugin.sh && bin/setup.sh && playwright test",
+    "down": "docker compose down -v"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.49.1",
+    "@types/node": "20.17.10"
+  }
+}

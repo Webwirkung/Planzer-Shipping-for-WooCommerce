@@ -135,6 +135,9 @@ Yes, your server MUST have the function `eval()` enabled - it is needed to send 
 For this plugin you need a contract with Planzer in advance. In this contract you will find all the information you need to configure the plugin.
 You don't have a contract yet? Become a [Planzer customer](https://planzerhelp.zendesk.com/hc/en-us/requests/new)
 
+### Which WordPress and WooCommerce versions are supported?
+We support and test the plugin with the latest versions of WordPress and WooCommerce. Please keep both up to date.
+
 ### Where can I see the orders?
 You can see all submitted orders [in your Planzer Portal](https://paketversenden.planzergroup.com/myorders).
 

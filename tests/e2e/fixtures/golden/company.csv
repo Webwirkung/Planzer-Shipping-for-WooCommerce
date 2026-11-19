@@ -1,0 +1,3 @@
+A1;215;123456;14;G;;;;Muster Versand AG;Lager Nord;CH;Luzern;6003;Musterstrasse;12;;;Rampe 3;0411234567;0791234567;A;versand@example.test;;de;;;;;;;;;;;11.11.2026;;;;;Marco;Rossi;Beispiel GmbH;;CH;Lugano;6900;Via Cantonale;5;;;;0912223344;;;marco.rossi@example.test;;de;;;;;;;;;;;12.11.2026;;;{ORDER_ID}_{SEQ};;;;;;Vor der Tür deponieren;;;;;;Vor der Tür deponieren;;;;
+P1;PAKE;;;;;;{ORDER_ID}_{SEQ};91123456057{SEQ9}
+O1;

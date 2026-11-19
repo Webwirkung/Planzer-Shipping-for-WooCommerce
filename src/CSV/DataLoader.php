@@ -159,7 +159,7 @@ class DataLoader
     {
         $tz = new DateTimeZone($this->time_zone);
 
-        $pickup_date = new DateTimeImmutable('now', $tz);
+        $pickup_date = apply_filters('planzer/csv/now', new DateTimeImmutable('now', $tz), $this->order);
 
         [$hour, $minute] = $this->parseHourMinute($this->pickup_end_of_day_hour);
         $end_of_day_date = $pickup_date->setTime($hour, $minute);
