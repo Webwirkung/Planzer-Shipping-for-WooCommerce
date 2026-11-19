@@ -24,16 +24,16 @@ ssh-keygen -t ed25519 -N '' -C 'github-actions planzer-woocommerce staging' -f p
 ```
 
 - `planzer-staging-deploy.pub` → MyKinsta → User settings → SSH keys (of a MyKinsta user with access to the site).
-- GitHub repo → Settings → Environments → `staging`:
+- GitHub repo → Settings → Secrets and variables → Actions (repository level; set on 19.11.2026; an environment `staging` would need repo admin rights):
 
 | Where | Name | Value |
 |---|---|---|
-| Environment secret | `KINSTA_SSH_KEY` | Content of `planzer-staging-deploy` (private key, with the BEGIN/END lines) |
-| Environment variable | `KINSTA_SSH_HOST` | Host (IP) from MyKinsta |
-| Environment variable | `KINSTA_SSH_PORT` | SSH port from MyKinsta |
-| Environment variable | `KINSTA_SSH_USER` | SSH username from MyKinsta |
-| Environment variable | `KINSTA_SITE_PATH` | Path of the site, e.g. `/www/playgroundria_123/public` |
-| Environment variable | `KINSTA_SSH_KNOWN_HOSTS` | Verified host key line(s), see below |
+| Secret | `KINSTA_SSH_KEY` | Content of `planzer-staging-deploy` (private key, with the BEGIN/END lines) |
+| Variable | `KINSTA_SSH_HOST` | Host (IP) from MyKinsta |
+| Variable | `KINSTA_SSH_PORT` | SSH port from MyKinsta |
+| Variable | `KINSTA_SSH_USER` | SSH username from MyKinsta |
+| Variable | `KINSTA_SITE_PATH` | Path of the site, e.g. `/www/playgroundria_123/public` |
+| Variable | `KINSTA_SSH_KNOWN_HOSTS` | Verified host key line(s), see below |
 
 Only the private key is secret. Host, port, user and path are shown in MyKinsta, and the host key is public; only repo admins can change variables, as with secrets.
 
