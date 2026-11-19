@@ -14,7 +14,7 @@ Pull requests into `develop` already ran the E2E tests, so the deployment doesn'
 
 ## Setup (once)
 
-In MyKinsta, site "playgroundria" → Info → "SFTP/SSH": host, port, username and the path of the site
+In MyKinsta, site "Playground Ria" → environment **Live** (https://playgroundria.kinsta.cloud, the one we test on; the Kinsta environment "Staging" is not used) → Info → "SFTP/SSH": host, port, username and the path of the site
 (`/www/…/public`).
 
 SSH key only for this deployment:
