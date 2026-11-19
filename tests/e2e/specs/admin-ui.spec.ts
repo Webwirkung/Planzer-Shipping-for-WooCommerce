@@ -86,12 +86,6 @@ test('S96 plugin assets load without 404 and without console errors', async ({ p
     await page.waitForLoadState('networkidle');
   }
   expect(errors).toEqual([]);
-  // vendor.js is enqueued in src/Core/Config.php but never built (also missing in the 1.0.36 release).
-  expect(failed.filter((f) => !f.endsWith('/dist/scripts/vendor.js') && !f.includes('/dist/scripts/vendor.js?'))).toEqual([]);
-});
-
-test('D11 vendor.js is enqueued but not part of the build: 404 on every admin page', async ({ page }) => {
-  test.fail(true, 'D11');
-  const res = await page.request.get('/wp-content/plugins/wc-planzer-shipping/dist/scripts/vendor.js');
-  expect(res.status()).toBe(200);
+  // D11: vendor.js used to be enqueued without being built, a 404 on every admin page.
+  expect(failed).toEqual([]);
 });

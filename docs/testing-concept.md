@@ -262,15 +262,15 @@ The tests do not lock these in as correct. Each one gets a test that describes t
 |---|---|---|
 | D1 | **Fixed.** Order action (P4) ignores test mode: a real CSV is uploaded and the tracking code has no `TEST_` prefix | `OrderAction.php:37-78` |
 | D2 | **Fixed.** Bulk in test mode returns after the first order already in "Transmit to Planzer"; the rest are skipped and no notice is shown | `BulkAction.php:97` |
-| D3 | A1_40 falls back to the shipping **first** name instead of the billing last name | `DataLoader.php:87` |
+| D3 | **Fixed.** A1_40 falls back to the shipping **first** name instead of the billing last name | `DataLoader.php:87` |
 | D4 | No idempotency: re-entering processing sends the order to Planzer again | `OrderStatus.php` |
 | D5 | **Fixed.** Bulk increments the counter twice per order when it changes the status (gaps in the sequence) | `BulkAction.php:74` + P2 |
 | D6 | Tracking meta and PDF email happen before the SFTP upload, so a failed upload leaves a tracking code Planzer never received | `OrderStatus.php`, `OrderAction.php`, `BulkAction.php` |
-| D7 | CSV values are not escaped: a `;` in an address shifts all following columns. PAKET V17 defines `"` as the quoting mark | `CSV.php` |
+| D7 | **Fixed** (`;` becomes `,`, line breaks a space; the file format stays unchanged). CSV values are not escaped: a `;` in an address shifts all following columns. PAKET V17 defines `"` as the quoting mark | `CSV.php` |
 | D8 | **Fixed** (excluded orders get their own notice). Bulk success notice is shown even when orders were excluded or failed | `BulkAction.php:40-57` |
 | D9 | SFTP user and password are hardcoded in the plugin source | `SFTP.php` |
-| D10 | With deposit notice 2, the deposit text also goes into A1_76, which PAKET V17 defines as the deposit notice for the **pick-up** at the sender. The server has this mapping commented out | `DataLoader.php:108` |
-| D11 | `dist/scripts/vendor.js` is enqueued on every admin page but the build never creates it (also missing in the 1.0.36 release): a 404 on every admin page | `Config.php:50` |
+| D10 | **Fixed.** With deposit notice 2, the deposit text also goes into A1_76, which PAKET V17 defines as the deposit notice for the **pick-up** at the sender. The server has this mapping commented out | `DataLoader.php:108` |
+| D11 | **Fixed.** `dist/scripts/vendor.js` is enqueued on every admin page but the build never creates it (also missing in the 1.0.36 release): a 404 on every admin page | `Config.php:50` |
 | D12 | Delivery note: the "Package number" line sits 3.6 modules above the QR code; PAKET V17 asks for a quiet zone of at least 4 modules | `delivery-note/content.php` |
 
 ## 8. Why these scenarios (past fixes)

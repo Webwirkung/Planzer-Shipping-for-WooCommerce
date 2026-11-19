@@ -31,7 +31,8 @@ class CSVGroup
       return false;
     }
 
-    $this->data[$position] = $value;
+    // «;» separates the fields and a line break the groups, so neither may appear inside a value (D7).
+    $this->data[$position] = str_replace([';', "\r\n", "\r", "\n"], [',', ' ', ' ', ' '], $value);
     return true;
   }
 
