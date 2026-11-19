@@ -105,7 +105,8 @@ class DataLoader
 
             'A1_70' => "{$this->order->get_id()}_{$this->package->getSequenceNumber(0)}",
             'A1_73' => get_option('planzer_delivery_delivery_time_chargable', ''),
-            'A1_76' => $this->getDepositNoticeInformation(),
+            // Deposit notice for the pick-up at the sender (PAKET V17); the receiver's deposit notice is elsewhere (D10).
+            'A1_76' => '',
 
             'A1_82' => $this->getNotificationValueFor('A1_82'),
         ];
