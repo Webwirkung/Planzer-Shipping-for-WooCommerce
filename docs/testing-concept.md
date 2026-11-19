@@ -19,9 +19,9 @@ Out of scope (agreed with Ria, 2026-11-11):
 
 | | |
 |---|---|
-| Trigger | Every pull request against `master`, plus manual `workflow_dispatch` |
+| Trigger | Every pull request against `develop` or `master`, plus manual `workflow_dispatch` |
 | Where | GitHub Actions, `.github/workflows/tests.yml`, `ubuntu-latest` |
-| Gate | Required status check on `master`: a red run blocks the merge |
+| Gate | Required status check on `develop` and `master`: a red run blocks the merge |
 | Runtime target | Under 10 minutes |
 | Artifacts on failure | Playwright report and trace, captured CSV files, Mailpit messages, `debug.log`, WooCommerce logs |
 
@@ -295,7 +295,7 @@ The tests do not lock these in as correct. Each one gets a test that describes t
    - PAKET V17 asks for a 48 × 48 mm QR. The label QR is about 67 mm, and the server's delivery note QR is about 42 mm. Does Planzer require the exact size, or only the module size of at least 0.5 mm? (S86)
    - Receiver customer type A1_37 (and salutation A1_38) is never sent, so a company and a private receiver differ only in A1_41. Should we send `G` when the address has a company and `P` otherwise? (S40, S47)
 2. Readme: state that only the latest WordPress/WooCommerce are supported (Ria, 2026-11-11). Add in the implementation PR.
-3. Required check: Ria turns on branch protection on `master` once the workflow is merged.
+3. Required check: Ria turns on branch protection on `develop` and `master` once the workflow is merged.
 
 Decided:
 - Clock: `planzer/csv/now` filter (§3).

@@ -3,7 +3,7 @@ name: E2E tests
 
 on:
   pull_request:
-    branches: [master]
+    branches: [master, develop]
   workflow_dispatch:
 
 concurrency:
