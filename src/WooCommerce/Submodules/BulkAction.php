@@ -2,19 +2,23 @@
 
 namespace Planzer\WooCommerce\Submodules;
 
+use Planzer\CSV\CSV;
+use Planzer\Note\NoteFactory;
+use Planzer\SFTP\SFTP;
+use Planzer\Package\Package;
+use Planzer\Note\Note;
 use Planzer\QRCode\Counter;
 use Planzer\WooCommerce\Services\ExclusionService;
-use Planzer\WooCommerce\Services\Transmitter;
+
+use function Planzer\isTestModelEnabled;
 
 class BulkAction
 {
-  private ExclusionService $exclusionService;
-  private Transmitter $transmitter;
+  private $exclusionService;
 
-  public function __construct(ExclusionService $exclusionService, Transmitter $transmitter)
+  public function __construct(ExclusionService $exclusionService)
   {
-    $this->exclusionService = $exclusionService;
-    $this->transmitter = $transmitter;
+      $this->exclusionService = $exclusionService;
   }
 
   /**
@@ -42,29 +46,20 @@ class BulkAction
     $status = (5 >= $_REQUEST['posts-ids-count']) ? 'success' : 'warning';
     $message = (5 >= $_REQUEST['posts-ids-count']) ? __("The orders with number <b>%s</b> have proceeded to the planzer.", 'planzer') : __("The maximum limit of orders to sent to the planzer at one time is 5. We sent 5 orders: <b>%s</b>. For the rest of the orders not processed please choose them again", 'planzer');
 
-    $processedIds = $this->idsFromRequest('processed-ids');
-    $excludedIds = $this->idsFromRequest('excluded-ids');
-    $failedIds = $this->idsFromRequest('failed-ids');
+    $processedIdsRaw = $_REQUEST['processed-ids'] ?? '';
+    $processedIdsSanitized = array_filter(
+        array_map('absint', explode(',', $processedIdsRaw))
+    );
 
-    if (! empty($processedIds)) {
-      printf("<div id='message' class='notice notice-%s is-dismissible'><p>%s</p></div>", $status, sprintf($message, esc_html(implode(',', $processedIds))));
+    if (! empty($processedIdsSanitized)) {
+      printf("<div id='message' class='notice notice-%s is-dismissible'><p>%s</p></div>", $status, sprintf($message, esc_html(implode(',', $processedIdsSanitized))));
     }
 
-    if (! empty($excludedIds)) {
-      printf("<div class='notice notice-info is-dismissible'><p>%s</p></div>", sprintf(__('These orders were not sent to Planzer because they are excluded from Planzer delivery: <b>%s</b>', 'planzer'), esc_html(implode(',', $excludedIds))));
-    }
+    $excludedIdsSanitized = array_filter(array_map('absint', explode(',', $_REQUEST['excluded-ids'] ?? '')));
 
-    if (! empty($failedIds)) {
-      printf("<div class='notice notice-error is-dismissible'><p>%s</p></div>", sprintf(__('These orders could not be sent to Planzer, see the order notes: <b>%s</b>', 'planzer'), esc_html(implode(',', $failedIds))));
+    if (! empty($excludedIdsSanitized)) {
+      printf("<div class='notice notice-info is-dismissible'><p>%s</p></div>", sprintf(__('These orders were not sent to Planzer because they are excluded from Planzer delivery: <b>%s</b>', 'planzer'), esc_html(implode(',', $excludedIdsSanitized))));
     }
-  }
-
-  /**
-   * @return int[]
-   */
-  private function idsFromRequest(string $key): array
-  {
-    return array_values(array_filter(array_map('absint', explode(',', (string) ($_REQUEST[$key] ?? '')))));
   }
 
   /**
@@ -80,19 +75,13 @@ class BulkAction
     }
 
     $postsSliced = array_slice($postIds, 0, 5);
+
     $processedIds = [];
     $excludedIds = [];
-    $failedIds = [];
 
     foreach ($postsSliced as $id) {
       $order = wc_get_order($id);
 
-      if (! $order) {
-        $failedIds[] = $id;
-        continue;
-      }
-
-      // Excluded orders keep their status and get a note; the attempt counts, as in Transmitter.
       if ($exclusionReason = $this->exclusionService->getExclusionReason($order)) {
         Counter::increaseQRNumber();
         $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . $exclusionReason);
@@ -101,19 +90,57 @@ class BulkAction
       }
 
       if ('planzer-transmit' !== $order->get_status()) {
-        // The status change sends the order (OrderStatus); the counter is increased there, once.
+        // The status change sends the order (OrderStatus), which increases the counter itself.
         $order->update_status('wc-planzer-transmit');
-        $result = $this->transmitter->getResult($order->get_id());
-      } else {
-        $result = $this->transmitter->transmit($order);
+        $processedIds[] = $id;
+        continue;
       }
 
-      if (in_array($result, [Transmitter::RESULT_SENT, Transmitter::RESULT_TEST], true)) {
-        $processedIds[] = $id;
-      } elseif (Transmitter::RESULT_EXCLUDED === $result) {
-        $excludedIds[] = $id;
-      } else {
-        $failedIds[] = $id;
+      Counter::increaseQRNumber();
+      $processedIds[] = $id;
+
+      if (isTestModelEnabled()) {
+        $package = new Package($id);
+        $order->update_meta_data('planzer_tracking_code', 'TEST_' . $package->getQRContentWithoutSuffix());
+        $order->save();
+
+        $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
+        if (is_a($note, Note::class)) {
+          $note->sendPdf($note->generatePDF());
+        }
+        $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . __('Test mode enabled - data not sent to Planzer. Demo delivery note generated and sent.', 'planzer'));
+        continue;
+      }
+
+      $order_note = __('Planzer: CSV generated.', 'planzer');
+      $package = new Package($id);
+
+      $order->update_meta_data('planzer_tracking_code', $package->getQRContentWithoutSuffix());
+      $order->save();
+
+      $note = NoteFactory::create($order, $package, get_option('planzer_delivery_generate_note', 'label_note'));
+      if (is_a($note, Note::class)) {
+        $note->sendPdf($note->generatePDF());
+        $order_note = __('Planzer: delivery/label note and CSV generated.', 'planzer');
+      }
+
+      try {
+        $csv = new CSV($order, $package);
+        $sftp = new SFTP();
+        $sftp->upload($csv->getCsvContent(), $package);
+        $order_note .= "<br><img src=\"{$package->getGeneratedQRUrl()}\"/>";
+        $order_note .= "<br><br>" . __('Reference number:', 'planzer') . " {$id}_{$package->getSequenceNumber(0)}";
+        $order_note .= "<br><br>" . __('Package number: ', 'planzer') . '<br>' . $package->getQRContentWithoutSuffix();
+        $order_note .= "<br><br><a href='https://tracking.app.planzer.ch/delivery/info?packageNumber=" . $package->getQRContentWithoutSuffix() . "&system=1' target='_blank'>" . __('Track package', 'planzer') . "</a>";
+
+        $order->add_order_note($order_note);
+      } catch (\Throwable $th) {
+        $order->add_order_note('<span style="color:red;font-weight: bold;">Planzer: </span>' . __('There was an error while sending data to Planzer - please try again or check debuglog.', 'planzer'));
+
+        if (function_exists('wc_get_logger')) {
+          $logger = wc_get_logger();
+          $logger->error("FATAL ERROR {$th->getMessage()} in {$th->getFile()}:{$th->getLine()}", ['source' => 'wc-planzer-shipping']);
+        }
       }
     }
 
@@ -121,7 +148,6 @@ class BulkAction
       'wc-planzer-transmit' => '1',
       'processed-ids' => implode(',', $processedIds),
       'excluded-ids' => implode(',', $excludedIds),
-      'failed-ids' => implode(',', $failedIds),
       'posts-ids-count' => count($postIds),
     ], $redirectTo);
   }
