@@ -2,6 +2,7 @@
 
 namespace Planzer\WooCommerce\Submodules;
 
+use Planzer\QRCode\Counter;
 use Planzer\WooCommerce\Services\ExclusionService;
 use Planzer\WooCommerce\Services\Transmitter;
 
@@ -91,8 +92,9 @@ class BulkAction
         continue;
       }
 
-      // Excluded orders keep their status and get a note.
+      // Excluded orders keep their status and get a note; the attempt counts, as in Transmitter.
       if ($exclusionReason = $this->exclusionService->getExclusionReason($order)) {
+        Counter::increaseQRNumber();
         $order->add_order_note('<span style="color:#0070ff;font-weight: bold;">Planzer: </span>' . $exclusionReason);
         $excludedIds[] = $id;
         continue;
