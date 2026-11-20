@@ -55,7 +55,7 @@ test('S01 classic checkout, order goes to processing → sent', async ({ browser
   await expectSent(orderId, start + 1);
 });
 
-test('S02 processing → on-hold → processing sends twice (current behaviour, D4)', async () => {
+test('S02 processing → on-hold → processing sends twice (intended)', async () => {
   const start = await reset();
   const orderId = createOrder({ status: 'processing' });
   setStatus(orderId, 'on-hold');
@@ -118,7 +118,7 @@ test('S07 order action "Generate Planzer note and create package" → sent', asy
   await expectSent(orderId, start + 1);
 });
 
-test('S08 SFTP down: red error note, log entry; tracking and mail already done (D6)', async () => {
+test('S08 SFTP down: red error note, log entry; tracking and mail already done (intended)', async () => {
   await reset({ options: { planzer_ftp_live_server_address: 'sftp-unreachable.invalid' } });
   const orderId = createOrder({ status: 'processing' });
 
