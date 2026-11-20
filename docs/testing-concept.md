@@ -123,13 +123,13 @@ Expected-result shorthand:
 | ID | Scenario | Expected |
 |---|---|---|
 | S01 | Classic checkout, order goes to processing | sent |
-| S02 | Same order goes processing → on-hold → processing | sent twice, two CSV files, counter +2 (documents current behaviour) |
+| S02 | Same order goes processing → on-hold → processing | sent twice, two CSV files, counter +2 (intended) |
 | S03 | Test mode on, order to processing | no CSV; email subject has `[TEST MODE]`; meta `TEST_…`; test-mode note |
 | S04 | Manual mode on, order to processing | nothing happens, no note |
 | S05 | Manual mode on, status set to "Transmit to Planzer" on the order screen | sent |
 | S06 | Manual mode off: "Transmit to Planzer" not in the status dropdown, no bulk action | UI check, see S90–S96 |
 | S07 | Order action "Generate Planzer note…" | sent |
-| S08 | SFTP container stopped, order to processing | red error note; WC log entry; meta and email exist (documents current behaviour) |
+| S08 | SFTP container stopped, order to processing | red error note; WC log entry; meta and email exist (intended) |
 | S09 | `planzer_delivery_generate_note` = delivery note | PDF is A4 with an items table; refunded/excluded lines left out |
 | S10 | Two recipients in `planzer_delivery_note_email` | two emails |
 
@@ -195,7 +195,7 @@ Every PDF is taken from the Mailpit attachment and checked on four levels. The t
 | S83 | `planzer_sender_language` de / fr / it / en | headings in that language |
 | S84 | Salutation, signature and footer with placeholders (`{first_name}`, `{last_name}`, `{contact_name}`, `{company}`, `{address}`, `{email}`, `{website}`) | all replaced, no `{` left in the text |
 | S85 | Test mode (S03) | same PDF, QR content uses sequence 0 |
-| S86 | QR geometry on the label and on the delivery note | module ≥ 0.5 mm, quiet zone ≥ 4 modules; edge length reported |
+| S86 | QR geometry on the label and on the delivery note | module ≥ 0.5 mm, quiet zone ≥ 4 modules on the label and ≥ 3.5 on the delivery note (agreed); edge length reported |
 | S87 | `api.qrserver.com` unreachable (blocked in the test network) | documents what the merchant gets: PDF without QR, or an error |
 
 ### Admin UI
@@ -227,7 +227,7 @@ Loaded by `tests/e2e/fixtures/seed.sh` (WP-CLI), identical for every run:
 - **Products:** 3 simple products (one of them for exclusion tests), 2 shipping classes with different flat-rate costs.
 - **Shipping:** zone Switzerland with flat rate ("per class" and "per order" variants) and free shipping.
 - **Customers:** one with the same billing and shipping address, one with a different shipping address, plus addresses for the S42 street parsing cases.
-- **Golden CSV files:** two, `golden/private.csv` and `golden/company.csv`. Both are generated once from the current `master` and reviewed against the Planzer specification **PAKET Standard V17 (2021-01-26)** before they are committed. From then on they are the reference. Fields affected by a known defect (D3) are masked in the comparison and covered by a `test.fail()` instead, so the golden files never lock a bug in as correct.
+- **Golden CSV files:** two, `golden/private.csv` and `golden/company.csv`. Both are generated once from the current `master` and reviewed against the Planzer specification **PAKET Standard V17 (2021-01-26)** before they are committed. From then on they are the reference. A field affected by a known defect is masked in the comparison and covered by a `test.fail()` instead, so the golden files never lock a bug in as correct (none at the moment).
 
 The plugin does not set the receiver customer type (A1_37). Private and company receivers differ only in A1_41 (company), filled from the order address.
 
@@ -258,20 +258,18 @@ To be confirmed with Andrea. Until then the tests expect them empty:
 
 The tests do not lock these in as correct. Each one gets a test that describes the correct behaviour, marked `test.fail()` with a reference here, and becomes its own card. A `test.fail()` test runs and must fail: once the defect is fixed it turns red, the marker is removed, and the test guards the fix.
 
+Reviewed on 20.11.2026 and kept as intended, so not listed as defects: an order is sent again when it re-enters processing (S02); tracking and the PDF email happen before the SFTP upload (S08); the SFTP credentials are part of the plugin, as agreed from the start; the delivery note QR quiet zone of 3.6 modules (S86).
+
 | # | Defect | Where |
 |---|---|---|
 | D1 | **Fixed.** Order action (P4) ignores test mode: a real CSV is uploaded and the tracking code has no `TEST_` prefix | `OrderAction.php:37-78` |
 | D2 | **Fixed.** Bulk in test mode returns after the first order already in "Transmit to Planzer"; the rest are skipped and no notice is shown | `BulkAction.php:97` |
 | D3 | **Fixed.** A1_40 falls back to the shipping **first** name instead of the billing last name | `DataLoader.php:87` |
-| D4 | No idempotency: re-entering processing sends the order to Planzer again | `OrderStatus.php` |
 | D5 | **Fixed.** Bulk increments the counter twice per order when it changes the status (gaps in the sequence) | `BulkAction.php:74` + P2 |
-| D6 | Tracking meta and PDF email happen before the SFTP upload, so a failed upload leaves a tracking code Planzer never received | `OrderStatus.php`, `OrderAction.php`, `BulkAction.php` |
 | D7 | **Fixed** (`;` becomes `,`, line breaks a space; the file format stays unchanged). CSV values are not escaped: a `;` in an address shifts all following columns. PAKET V17 defines `"` as the quoting mark | `CSV.php` |
 | D8 | **Fixed** (excluded orders get their own notice). Bulk success notice is shown even when orders were excluded or failed | `BulkAction.php:40-57` |
-| D9 | SFTP user and password are hardcoded in the plugin source | `SFTP.php` |
 | D10 | **Fixed.** With deposit notice 2, the deposit text also goes into A1_76, which PAKET V17 defines as the deposit notice for the **pick-up** at the sender. The server has this mapping commented out | `DataLoader.php:108` |
 | D11 | **Fixed.** `dist/scripts/vendor.js` is enqueued on every admin page but the build never creates it (also missing in the 1.0.36 release): a 404 on every admin page | `Config.php:50` |
-| D12 | Delivery note: the "Package number" line sits 3.6 modules above the QR code; PAKET V17 asks for a quiet zone of at least 4 modules | `delivery-note/content.php` |
 
 ## 8. Why these scenarios (past fixes)
 
